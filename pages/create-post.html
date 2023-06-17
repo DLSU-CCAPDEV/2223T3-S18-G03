@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" meda="all" href="css/noire.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div><p class=forum-header>CREATE A POST</p></div>
+        <!-- Container for Posts and the Sidebar -->
+        <div class="hori" style="justify-content: center;">
+
+            <!-- Posts -->                  
+            <div class="vert block">
+
+                <!-- Sample Post -->
+                <div class = forum-post>
+                    <div class="hori">
+                        <div class="vert">
+                            <img src="resources/prof-pics/anya.jpg" width="75px" height="75px" class="post-profpic">
+                            <div class = "hori" style="justify-content: center;">
+                                <div id="upvote-icon"></div>
+                                <div ><p class=post-score>0</p></div>
+                                <div id="downvote-icon"></div>
+                            </div>
+                        </div>
+                        <div class="vert">
+                            <div><a href="main-page.html" target="self" ><p class=post-author>Posted by Anyalover69:</p></a></div>
+                                <form class="vert">
+                                    <input class="post-title" type="text" id="created-title" name="created-title" placeholder="Title...">
+                                <textarea class="post-text" type="text" id="created-text" name="created-text" placeholder="Text..."></textarea>
+                                <label for="attached-image" class="attach-button">
+                                    <div class="hori"><div id="image-icon"></div class="attach-button">ATTACH AN IMAGE</div>
+                                </label>
+                                <input type="file" id="attached-image" name="attached-image">
+                                </form>
+                            <div class="hori">
+                                <div id="comment-icon"></div> <div><a href="main-page.html" target="self" ><p class=post-options>Comment</p></a></div>
+                                <div id="share-icon"></div> <div><a href="main-page.html" target="self" ><p class=post-options>Share</p></a></div>
+                                <div id="report-icon"></div> <div><a href="main-page.html" target="self" ><p class=post-options>Report</p></a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="create-button">POST</button>
+            </div>
+
+            <!-- Sidebar Elements -->
+            <div class="vert block">
+
+                <div class = side-element>
+                    <p>Welcome to ------ where you can post anything you want. Please consult blahblabhal for any questions and queries</p>
+                </div>
+
+                <div class = side-element>
+                    <p>Current date is: 06/09/2420</p>
+                </div>
+
+            </div>
+        </div>
+</body>
+</html>
