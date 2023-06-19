@@ -73,7 +73,7 @@ h1{
 }
 
 /* Class for posts */
-.forum-post{
+.forum_post{
     margin-top:20px;
     min-height:75px;
     border-radius: 5px;
@@ -83,11 +83,11 @@ h1{
     padding:10px;
 
 }
-.forum-post:hover{
+.forum_post:hover{
     border: 2px solid aliceblue;
 }
 
-.forum-header{
+.forum_header{
     margin-top:20px;
     margin-bottom: -20px;
     font-size:24px;
@@ -97,7 +97,7 @@ h1{
 }
 
 /* Class for side bar */
-.side-element{
+.side_element{
     margin-top:20px;
     border-radius: 5px;
     background-color: #37383a;
@@ -112,14 +112,14 @@ p , a {
 }
 
 
-.post-title { 
+.post_title { 
     margin-top: -8px;
     font-size:24px;
     font-weight: 700;
     padding-left:20px;
 }
 
-.post-options { 
+.post_options { 
     margin-top: -16px;
     font-size:15px;
     padding-left:20px;
@@ -127,14 +127,14 @@ p , a {
     font-style: italic;
 }
 
-.post-author {
+.post_author {
     margin-top: -9px;
     font-size:14px;
     padding-left:20px;
     color:#9398a0;
 }
 
-.post-profpic {
+.post_profpic {
     border-color: #EFEFEF; 
     border-radius:50%; 
     margin-left: 10px;
@@ -143,7 +143,7 @@ p , a {
 
 }
 
-.post-score {
+.post_score {
     margin-top: 12px;
     font-size:17px;
     padding-left:11px;
@@ -151,7 +151,7 @@ p , a {
 
 }
 
-.post-text { 
+.post_text { 
     margin-top: -15px;
     font-weight: 200;
     font-size:17px;
@@ -161,7 +161,7 @@ p , a {
 }
 
 /* Classes for creating a post */
-input[type="text"].post-title {
+input[type="text"].post_title {
     min-width: 550px;
     height: 50px;
     margin-left: 20px;
@@ -170,7 +170,7 @@ input[type="text"].post-title {
     background-color:#37383a;
 }
 
-textarea[type="text"].post-text {
+textarea[type="text"].post_text {
     max-width: 700px;
     height: 400px;
     margin-top: 20px;
@@ -186,7 +186,7 @@ input[type="file"]{
     display:none;
 }
 
-.attach-button{
+.attach_button{
     border: 2px solid #ccc;
     display: inline-block;
     padding: 10px 20px 10px;
@@ -198,7 +198,7 @@ input[type="file"]{
 }
 
 
-.create-button{
+.create_button{
     margin-top: 20px;
     color:#E8EAED;
     background-color:#37383a;
@@ -213,8 +213,8 @@ input[type="file"]{
 
 
 /* Icons */
-#upvote-icon {
-    background-image:url(../resources/sprite-sheets/post-sprites.png);
+#upvote_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
     margin-left: 8px;
     margin-right: -7px;
     margin-top: 10px;
@@ -223,8 +223,8 @@ input[type="file"]{
     background-position: 0px 0px;
 }
 
-#downvote-icon {
-    background-image:url(../resources/sprite-sheets/post-sprites.png);
+#downvote_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
     margin-top: 10px;
     margin-left: 3px;
     width:24px;
@@ -232,8 +232,8 @@ input[type="file"]{
     background-position: -24px 0px;
 }
 
-#comment-icon {
-    background-image:url(../resources/sprite-sheets/post-sprites.png);
+#comment_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
     margin-left: 22px;
     margin-right: -16px;
     width:24px;
@@ -241,8 +241,8 @@ input[type="file"]{
     background-position: -48px 0px;
 }
 
-#share-icon {
-    background-image:url(../resources/sprite-sheets/post-sprites.png);
+#share_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
     margin-left: 22px;
     margin-right: -16px;
     width:24px;
@@ -250,8 +250,8 @@ input[type="file"]{
     background-position: -72px 0px;
 }
 
-#report-icon {
-    background-image:url(../resources/sprite-sheets/post-sprites.png);
+#report_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
     margin-left: 22px;
     margin-right: -16px;
     width:24px;
@@ -259,8 +259,8 @@ input[type="file"]{
     background-position: -96px 0px;
 }
 
-#image-icon {
-    background-image:url(../resources/sprite-sheets/post-sprites.png);
+#image_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
     width:24px;
     height:24px;
     background-position: -72px 0px;

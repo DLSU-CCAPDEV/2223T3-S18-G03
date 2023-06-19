@@ -129,7 +129,7 @@ a .button{
 .content{
     margin-bottom: 15px;
 }
-.comment-button{
+.comment_button{
     width: 110px;
     margin-left: 0;
     margin-bottom: 10px;
@@ -138,7 +138,7 @@ a .button{
     display: flex;
     flex-direction: column;
 }
-.reply-button{
+.reply_button{
     width: 33px;
     font-size: 0.75em;
     margin-left: 0;
