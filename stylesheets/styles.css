@@ -1,13 +1,12 @@
 body{
     font-size: 18px;
-    color: white;
-    background-color: #5c5c5c;
+    color: #E8EAED;
+    background-color: #181a1d;
 }
 div{
     display: inline-block;
 }
 nav{
-    display: flex;
     width: 100%;
     align-items:center;
     justify-content:center;
@@ -15,8 +14,10 @@ nav{
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #8c8c8c;
+    background-color: #1a1a1b;
     max-height: 50px;
+    padding-top: 2px;
+    padding-bottom: 1px;
 }
 img{
     width: 40px;
@@ -30,13 +31,17 @@ nav div{
 #logo{
     margin-right: 15px;
 }
-nav input{
+input{
     padding: 7px;
     margin: 1px;
     flex-grow: 9999;
     font-size: 18px;
+    border-radius: 20px;
+    padding-left: 20px;
+    background-color: #37383a;
+    color: #E8EAED;
 }
-nav input::placeholder{
+input::placeholder{
     font-size: 18px;
 }
 nav .filler{
@@ -49,16 +54,19 @@ nav .filler{
     margin-left: 5px;
     margin-right: 5px;
     vertical-align: middle;
-    background-color: #C62828;
+    background-color: #276c22;
     border-radius: 20px;
 }
 a .button{
     color:white;
 }
 .button:hover{
-    background-color: #eb3636;
+    background-color: #44b93b;
 }
-.button2{
+.username a{
+    padding-left: 0;
+}
+.username a div{
     display: none;
 }
 .bg{
@@ -66,21 +74,19 @@ a .button{
 }
 .username{
     margin-right: 5px;
-    display: flex;
-    flex-direction: column;
     align-items: start;
 }
 .username div{
     padding: 5px 0 5px 0;
 }
-.username:hover .button2{
+.username:hover a div{
     display: inline-block;
     position: fixed;
     top: 40px;
-}
-.username:hover a .button2{
-    top: 70px;
     color: white;
+}
+.username:hover a .button3{
+    top: 70px;
 }
 .username:hover .button2:hover{
     color:#C62828;
@@ -89,58 +95,102 @@ a .button{
     display: inline-block;
     position: fixed;
     height: 100px;
-    width: 120px;
+    width: 130px;
     top: 0;
     right: 0;
-    background-color: #8c8c8c;
+    background-color: #1a1a1b;
     z-index: -1;
 }
 .post{
-    display: flex;
-    flex-direction: column;
     width: 60%;
     margin: auto;
     margin-top: 100px;
-    background-color: #3d3d3d;
+    background-color: #37383a;
     padding: 10px;
+    border-color: #000000;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
 }
-
+.post:hover{
+    border-color: aliceblue;
+}
 .pfp{
-    height: 18px;
-    width: 18px;
+    height: 24px;
+    width: 24px;
     border-radius: 50%;
     vertical-align: middle;
 }
 .op{
-    height: 24px;
-    width: 24px;
+    height: 30px;
+    width: 30px;
 }
 .user div{
-    font-size: 16px;
+    font-size: 20px;
     vertical-align: middle;
 }
 .user{
     margin-bottom: 6px;
 }
 .header{
-    font-size: 2.5em;
+    font-size: 30px;
+    font-weight: 700;
     margin-bottom: 15px;
 }
 .content{
+    font-size: 24px;
+    font-weight: 200;
     margin-bottom: 15px;
 }
-.comment_button{
-    width: 110px;
-    margin-left: 0;
-    margin-bottom: 10px;
+.rate{
+    align-items: center;
+    padding-right: 8px;
 }
-.comment{
-    display: flex;
-    flex-direction: column;
+.upvote{
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    width:24px;
+    height:24px;
+    background-position: 0px 0px;
 }
-.reply_button{
-    width: 33px;
+.vote{
+    font-size: 0.75em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.downvote{
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    width:24px;
+    height:24px;
+    background-position: -24px 0px;
+}
+#add-comment{
+    padding: 7px;
+    margin: 1px;
+    font-size: 18px;
+    border-radius: 20px;
+    padding-left: 20px;
+    background-color: #37383a;
+    color: #E8EAED;
+    margin-bottom: 25px;
+    height: 5em;
+}
+.comment-proper{
+    flex-grow: 9999;
+}
+.reply{
+    margin-left: 40px;
+}
+.add-reply{
+    padding: 7px;
+    margin: 1px;
     font-size: 0.75em;
     margin-left: 0;
     margin-bottom: 10px;
+    border-radius: 20px;
+    padding-left: 20px;
+    background-color: #37383a;
+    color: #E8EAED;
+    height: 3em;
 }
