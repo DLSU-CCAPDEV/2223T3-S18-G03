@@ -9,6 +9,11 @@ body, textarea, button {
     text-align: justify;
 }
 
+a{
+    all:unset;
+
+}
+
 h1{
 	text-align: center;
 }
@@ -170,6 +175,7 @@ p , a {
     padding-top: 10px;
     height: 100%;
     width: 100%;
+    border-radius: 5%;
 }
 
 /* Classes for creating a post */

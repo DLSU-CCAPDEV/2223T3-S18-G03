@@ -20,7 +20,8 @@ function refresh(){
 }
 
 function postshow(e){
-    alert('Post click');
+    //alert('Post click');
+
 
 
 }
