@@ -1,0 +1,437 @@
+/*  Jetbrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*  Whole site */
+body, textarea, button {
+    background-color: #181a1d;
+    color: aliceblue;
+    font-family: 'Rubik', monospace;
+    text-align: justify;
+}
+input{
+    padding: 7px;
+    margin: 1px;
+    flex-grow: 9999;
+    font-size: 18px;
+    border-radius: 20px;
+    padding-left: 20px;
+    background-color: #37383a;
+    color: #E8EAED;
+}
+input::placeholder{
+    font-size: 18px;
+}
+nav .filler{
+    width: 12.5%;
+}
+.button{
+    padding: 7px;
+    padding-left: 12px;
+    padding-right: 12px;
+    margin-left: 5px;
+    margin-right: 5px;
+    vertical-align: middle;
+    background-color: #276c22;
+    border-radius: 20px;
+}
+a .button{
+    color:white;
+}
+.button:hover{
+    background-color: #44b93b;
+}
+.username a{
+    padding-left: 0;
+}
+.username a div{
+    display: none;
+}
+.bg{
+    display: none;
+}
+.username{
+    margin-right: 5px;
+    align-items: start;
+}
+.username div{
+    padding: 5px 0 5px 0;
+}
+.username:hover a div{
+    display: inline-block;
+    position: fixed;
+    top: 40px;
+    color: white;
+}
+.username:hover a .button3{
+    top: 70px;
+}
+.username:hover .button2:hover{
+    color:#C62828;
+}
+.username:hover .bg{
+    display: inline-block;
+    position: fixed;
+    height: 100px;
+    width: 130px;
+    top: 0;
+    right: 0;
+    background-color: #1a1a1b;
+    z-index: -1;
+}
+.post{
+    width: 60%;
+    margin: auto;
+    margin-top: 100px;
+    background-color: #37383a;
+    padding: 10px;
+    border-color: #000000;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 2px;
+}
+.post:hover{
+    border-color: aliceblue;
+}
+.pfp{
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+.op{
+    height: 30px;
+    width: 30px;
+}
+.user div{
+    font-size: 20px;
+    vertical-align: middle;
+}
+.user{
+    margin-bottom: 6px;
+}
+.header{
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+.content{
+    font-size: 24px;
+    font-weight: 200;
+    margin-bottom: 15px;
+}
+.rate{
+    align-items: center;
+    padding-right: 8px;
+}
+.upvote{
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    width:24px;
+    height:24px;
+    background-position: 0px 0px;
+}
+.vote{
+    font-size: 0.75em;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.downvote{
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    width:24px;
+    height:24px;
+    background-position: -24px 0px;
+}
+#add-comment{
+    padding: 7px;
+    margin: 1px;
+    font-size: 18px;
+    border-radius: 20px;
+    padding-left: 20px;
+    background-color: #37383a;
+    color: #E8EAED;
+    margin-bottom: 25px;
+    height: 5em;
+}
+.comment-proper{
+    flex-grow: 9999;
+}
+.reply{
+    margin-left: 40px;
+}
+.add-reply{
+    padding: 7px;
+    margin: 1px;
+    font-size: 0.75em;
+    margin-left: 0;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    padding-left: 20px;
+    background-color: #37383a;
+    color: #E8EAED;
+    height: 3em;
+}
+h1{
+	text-align: center;
+}
+/* Register Page */
+.container {
+  margin: 0 auto;
+  max-width: 300px;
+  padding: 20px;
+  background-color: #21594A;
+  border-radius: 5px;
+  margin-top: 100px;
+}
+.container h2 {
+  text-align: center;
+}
+.container img {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 100px;
+  height: auto;
+}
+.container input[type="text"],
+.container input[type="password"] {
+  font: Verdana;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid gray;
+  box-sizing: border-box;
+}
+.container input[type="submit"] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  border: none;
+}
+.container input[type="submit"]:hover {
+  background-color: #45a049;
+}
+/* Horizontal flex container */
+.hori {
+    display:flex;
+    flex-direction:row;
+    align-content:flex-start;
+}
+
+/* Vertical flex container */
+.vert {
+    display:flex;
+    flex-direction:column;
+    align-content:flex-start;
+}
+
+/* Adds margin and padding to a flex container */
+.block {
+    margin:5px;
+    padding:10px;
+}
+
+/* Class for posts */
+.forum_post{
+    margin-top:20px;
+    min-height:75px;
+    border-radius: 5px;
+    background-color: #37383a;
+    border: 2px solid black;
+    max-width:700px;
+    padding:10px;
+
+}
+.forum_post:hover{
+    border: 2px solid aliceblue;
+}
+
+.forum_header{
+    margin-top:20px;
+    margin-bottom: -20px;
+    font-size:24px;
+    font-weight: 400;
+    padding-left:20px;
+    color:#9398a0;
+}
+
+/* Class for side bar */
+.side_element{
+    margin-top:20px;
+    border-radius: 5px;
+    background-color: #37383a;
+    max-width:350px;
+    padding-right:30px;
+    line-height: 1.45em;
+}
+
+/* Normal text style*/
+p , a { 
+    padding-left:20px;
+}
+
+
+.post_title { 
+    margin-top: -8px;
+    font-size:24px;
+    font-weight: 700;
+    padding-left:20px;
+}
+
+.post_options { 
+    margin-top: -16px;
+    font-size:15px;
+    padding-left:20px;
+    color:#9398a0;
+    font-style: italic;
+}
+
+.post_author {
+    margin-top: -9px;
+    font-size:14px;
+    padding-left:20px;
+    color:#9398a0;
+}
+
+.post_profpic {
+    border-color: #EFEFEF; 
+    border-radius:50%; 
+    margin-left: 10px;
+    margin-top: 10px;
+    border: 3px solid #E8EAED;
+
+}
+
+.post_score {
+    margin-top: 12px;
+    font-size:17px;
+    padding-left:11px;
+    color:#E8EAED;
+
+}
+
+.post_text { 
+    margin-top: -15px;
+    font-weight: 200;
+    font-size:17px;
+    padding-left:20px;
+    padding-right:20px;
+    line-height: 1.45em;
+}
+
+/* Classes for creating a post */
+input[type="text"].post_title {
+    min-width: 550px;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color:#E8EAED;
+    background-color:#37383a;
+}
+
+textarea[type="text"].post_text {
+    max-width: 700px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    color:#E8EAED;
+    background-color:#37383a;
+    padding-top: 10px;
+}
+
+input[type="file"]{
+    display:none;
+}
+
+.attach_button{
+    border: 2px solid #ccc;
+    display: inline-block;
+    padding: 10px 20px 10px;
+    cursor: pointer;
+    max-width: 190px;
+    margin-left:20px;
+    margin-bottom:20px;
+    background-color: #2a2b2c;
+}
+
+
+.create_button{
+    margin-top: 20px;
+    color:#E8EAED;
+    background-color:#37383a;
+    text-align: center;
+    font-size: 2em;
+    padding:0.5em;
+    font-weight: 500;
+    letter-spacing: 0em;
+    border-radius: 5px;
+}
+
+
+
+/* Icons */
+#upvote_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 8px;
+    margin-right: -7px;
+    margin-top: 10px;
+    width:24px;
+    height:24px;
+    background-position: 0px 0px;
+}
+
+#downvote_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-top: 10px;
+    margin-left: 3px;
+    width:24px;
+    height:24px;
+    background-position: -24px 0px;
+}
+
+#comment_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 22px;
+    margin-right: -16px;
+    width:24px;
+    height:24px;
+    background-position: -48px 0px;
+}
+
+#share_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 22px;
+    margin-right: -16px;
+    width:24px;
+    height:24px;
+    background-position: -72px 0px;
+}
+
+#report_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 22px;
+    margin-right: -16px;
+    width:24px;
+    height:24px;
+    background-position: -96px 0px;
+}
+
+#image_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    width:24px;
+    height:24px;
+    background-position: -72px 0px;
+    margin-right: 15px;
+    margin-top: -3px;
+}
+
+
+
+
+
+

@@ -1,21 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" meda="all" href="../stylesheets/noire.css">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../stylesheets/noire.css">
+    <link rel="stylesheet" href="../stylesheets/styles.css">
     <title>Search Results</title>
 </head>
 <body>
-  <div class="container">
-    <h1>Search Results for Hotdog</h1>
+    <nav class="hori">
+        <div id="logo"><a href="home.html"><img src="../images/logo.png"></a></div>
+        <div class="filler"></div>
+        <input type="text" placeholder="Search..." id="searchbar">
+        <div class="filler"></div>
+        <a href="CreatePostLogged.html"><div class="button">Create Post</div></a>
+        <div><img src="../images/prof_pics/anya.jpg"></div>
+        <div class="username vert">
+            <div>Anyalover69</div>
+            <a href="EditProfile.html"><div class="button2">Edit Profile</div></a>
+            <a href="ExpandedPost.html"><div class="button3">Log Out</div></a>
+            <div class="bg"></div>
+        </div>
+        
+    </nav>
+	<div class="container" style ="display: flex; justify-content: center;">
         <!-- Container for Posts and the Sidebar -->
         <div class="hori" style="justify-content: center;">
-
             <!-- Posts -->                  
             <div class="vert block">
-
+				<h1>Search Results for Hotdog</h1>
                 <!-- Sample Post -->
                 <div class = forum_post>
                     <div class="hori">
@@ -157,6 +168,6 @@
             </div>
 
         </div>
-
+		<script src="script.js"></script> 
 </body>
 </html>
