@@ -1,9 +1,12 @@
-
-nav div{
+body{
+    font-size: 18px;
+    color: #E8EAED;
+    background-color: #181a1d;
+}
+div{
     display: inline-block;
 }
 nav{
-    display: flex;
     width: 100%;
     align-items:center;
     justify-content:center;
@@ -13,7 +16,8 @@ nav{
     left: 0;
     background-color: #1a1a1b;
     max-height: 50px;
-
+    padding-top: 2px;
+    padding-bottom: 1px;
 }
 nav img{
     width: 40px;
@@ -23,25 +27,24 @@ nav img{
 nav div{
     padding: 3px;
     margin: 1px;
-    border-bottom: 5pc;
 }
 #logo{
     margin-right: 15px;
 }
-nav input{
+input{
     padding: 7px;
-    padding-left: 20px;
     margin: 1px;
     flex-grow: 9999;
     font-size: 18px;
     border-radius: 20px;
-    color:#E8EAED;
-    background-color:#37383a;
+    padding-left: 20px;
+    background-color: #37383a;
+    color: #E8EAED;
 }
 input::placeholder{
     font-size: 18px;
 }
-.filler{
+nav .filler{
     width: 12.5%;
 }
 .button{
@@ -60,7 +63,10 @@ a .button{
 .button:hover{
     background-color: #44b93b;
 }
-.button2{
+.username a{
+    padding-left: 0;
+}
+.username a div{
     display: none;
 }
 .bg{
@@ -68,81 +74,36 @@ a .button{
 }
 .username{
     margin-right: 5px;
-    display: flex;
-    flex-direction: column;
     align-items: start;
 }
 .username div{
     padding: 5px 0 5px 0;
 }
-.username:hover .button2{
+.username:hover a div{
     display: inline-block;
     position: fixed;
     top: 40px;
-}
-.username:hover a .button2{
-    top: 70px;
     color: white;
 }
+.username:hover a .button3{
+    top: 70px;
+}
 .username:hover .button2:hover{
-    color:#44b93b;
+    color:#C62828;
+}
+.username:hover .button3:hover{
+    color:#C62828;
 }
 .username:hover .bg{
     display: inline-block;
     position: fixed;
     height: 100px;
-    width: 120px;
+    width: 130px;
     top: 0;
     right: 0;
     background-color: #1a1a1b;
     z-index: -1;
 }
-.post{
-    display: flex;
-    flex-direction: column;
-    width: 60%;
-    margin: auto;
-    margin-top: 100px;
-    background-color: #3d3d3d;
-    padding: 10px;
-}
 
-.pfp{
-    height: 18px;
-    width: 18px;
-    border-radius: 50%;
-    vertical-align: middle;
-}
-.op{
-    height: 24px;
-    width: 24px;
-}
-.user div{
-    font-size: 16px;
-    vertical-align: middle;
-}
-.user{
-    margin-bottom: 6px;
-}
-.header{
-    font-size: 2.5em;
-    margin-bottom: 15px;
-}
-.content{
-    margin-bottom: 15px;
-}
-.comment_button{
-    width: 110px;
-    margin-left: 0;
-    margin-bottom: 10px;
-}
-.comment{
-    display: flex;
-    flex-direction: column;
-}
-.reply_button{
-    width: 33px;
-    font-size: 0.75em;
-    margin-left: 0;
-    margin-bottom: 10px;
-}
+
+
