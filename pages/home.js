@@ -19,45 +19,18 @@ function showPost(){
             <div><p class=post_title>${localStorage.created_title}</p></div>
             <div><p class=post_text>
                 ${localStorage.created_text}
-                <img class="post_image" src="${localStorage.attached_image}" width="100%" height="100%">
             </p></div>
         </div>
     </div>
     </div>
     `
 
-    new_post_imageless = `
-    <div class = forum_post>
-    <div class="hori">
-        <div class="vert">
-            <img src="../images/pfp.png" width="75px" height="75px" class="post_profpic">
-            <div class = "hori" style="justify-content: space-between;">
-                <div class="upvote"></div>
-                <div class="vote">0</div>
-                <div class="downvote"></div>
-            </div>
-        </div>
-        <div class="vert">
-            <div><p class=post_author>Posted by Lorem Ipsum:</p></div>
-            <div><p class=post_title>${localStorage.created_title}</p></div>
-            <div><p class=post_text>
-                ${localStorage.created_text}
-            </p></div>
-        </div>
-    </div>
-    </div>
-    `
 
-    if(!localStorage.attached_image) {
-        main.innerHTML -= main_copy;
-        main.innerHTML += new_post_imageless;
-        main.innerHTML += main_copy;
-    }
-    else {
+
         main.innerHTML -= main_copy;
         main.innerHTML += new_post;
         main.innerHTML += main_copy;
-    }
+
     refresh();
 }
 
