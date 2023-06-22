@@ -7,8 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
 </head>
-<body>
+<body onload="showPost()">
 
     <!-- Navbar -->
     <nav>
@@ -21,7 +22,7 @@
         <div class="username">
             <div>Lorem ipsum</div>
             <a href="Profile.html"><div class="button2" style="margin-top: -25px;">Edit Profile</div></a>
-            <a href="Home.html"><div class="button2">Log Out</div></a>
+            <a href="homelogged.html"><div class="button2">Log Out</div></a>
             <div class="bg"></div>
         </div>
         
@@ -30,21 +31,21 @@
         <div class="hori" style="justify-content: center; padding-top: 20px;">
 
             <!-- Posts -->                  
-            <div class="vert block">
+            <div class="vert block"id="all_posts">
 
                 <!-- Sample Post -->
                 <div class = forum_post>
                     <div class="hori">
                         <div class="vert">
                             <img src="../images/prof_pics/anya.jpg" width="75px" height="75px" class="post_profpic">
-                            <div class = "hori" style="justify-items: center;">
-                                <div id="upvote_icon"></div>
-                                <div ><p class=post_score>100</p></div>
-                                <div id="downvote_icon"></div>
+                            <div class = "hori" style="justify-content: space-between;">
+                                <div class="upvote"></div>
+                                <div class="vote">100</div>
+                                <div class="downvote"></div>
                             </div>
                         </div>
                         <div class="vert">
-                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by Anyalover69:</p></a></div>
+                            <div><p class=post_author>Posted by Anyalover69:</p></a></div>
                             <div><p class=post_title>Wtf is wrong with Spy X Family</p></div>
                             <div><p class=post_text>
                                 When Anya received her first bolt, Henderson had stated that violence automatically gets 3 bolts. But, because of him, it was only 1.
@@ -53,11 +54,11 @@
                                 Loosing a life is more major, than a swollen cheek. (No hate. I love Damian.)
                                 Punching Damian for no justified reason would have cost her 3 bolts.
                                 But, saving the life of a drowning boy was only worth 1 Stella?</p></div>
-                            <div class="hori">
-                                <div id="comment_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Comment</p></a></div>
-                                <div id="share_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Share</p></a></div>
-                                <div id="report_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Report</p></a></div>
-                            </div>
+                            <!--<div class="hori">
+                                <div id="comment_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Comment</p></a></div>
+                                <div id="share_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Share</p></a></div>
+                                <div id="report_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Report</p></a></div>!
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -68,22 +69,24 @@
                         <div class="vert">
                             <img src="../images/prof_pics/lmao.jpg" width="75px" height="75px" class="post_profpic">
                             <div class = "hori" style="justify-content: center;">
-                                <div id="upvote_icon"></div>
-                                <div ><p class=post_score>4.2k</p></div>
-                                <div id="downvote_icon"></div>
+                                <div class = "hori" style="justify-content: space-between;">
+                                    <div class="upvote"></div>
+                                    <div class="vote">4243</div>
+                                    <div class="downvote"></div>
+                                </div>
                             </div>
                         </div>
                         <div class="vert">
-                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by dankmeemer:</p></a></div>
+                            <div><p class=post_author>Posted by dankmeemer:</p></div>
                             <div><p class=post_title>Ambatukam?</p></div>
                             <div><p class=post_text>
-                                <img src="../images/post_pics/ambatu.png" width="100%" height="100%">
+                                <img class="post_image" src="../images/post_pics/ambatu.png" width="100%" height="100%">
                             </p></div>
-                            <div class="hori">
-                                <div id="comment_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Comment</p></a></div>
-                                <div id="share_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Share</p></a></div>
-                                <div id="report_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Report</p></a></div>
-                            </div>
+                            <!--<div class="hori">
+                                <div id="comment_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Comment</p></a></div>
+                                <div id="share_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Share</p></a></div>
+                                <div id="report_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Report</p></a></div>!
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -93,24 +96,24 @@
                     <div class="hori">
                         <div class="vert">
                             <img src="../images/prof_pics/egril.jpg" width="75px" height="75px" class="post_profpic">
-                            <div class = "hori" style="justify-content: center;">
-                                <div id="upvote_icon"></div>
-                                <div ><p class=post_score>-23</p></div>
-                                <div id="downvote_icon"></div>
+                            <div class = "hori" style="justify-content: space-between;">
+                                <div class="upvote"></div>
+                                <div class="vote">-53</div>
+                                <div class="downvote"></div>
                             </div>
                         </div>
                         <div class="vert">
-                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by totallynotacatfish:</p></a></div>
+                            <div><p class=post_author>Posted by totallynotacatfish:</p></div>
                             <div><p class=post_title>looking for pro ADC duo in LoL</p></div>
                             <div><p class=post_text>
                                 need an adc player (atleast Challenger) to boost me to diamond in league of legends please. i am bronze IV right now
                                 but its because my adc is always shit. i will meow for you everytime you get a kill. uWu
                             </p></div>
-                            <div class="hori">
-                                <div id="comment_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Comment</p></a></div>
-                                <div id="share_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Share</p></a></div>
-                                <div id="report_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Report</p></a></div>
-                            </div>
+                            <!--<div class="hori">
+                                <div id="comment_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Comment</p></a></div>
+                                <div id="share_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Share</p></a></div>
+                                <div id="report_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Report</p></a></div>!
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -120,14 +123,14 @@
                     <div class="hori">
                         <div class="vert">
                             <img src="../images/prof_pics/ltg.jpg" width="75px" height="75px" class="post_profpic">
-                            <div class = "hori" style="justify-content: center;">
-                                <div id="upvote_icon"></div>
-                                <div ><p class=post_score>9.9k</p></div>
-                                <div id="downvote_icon"></div>
+                            <div class = "hori" style="justify-content: space-between;">
+                                <div class="upvote"></div>
+                                <div class="vote">3600</div>
+                                <div class="downvote"></div>
                             </div>
                         </div>
                         <div class="vert">
-                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by HighTierHuman:</p></a></div>
+                            <div><p class=post_author>Posted by HighTierHuman:</p></div>
                             <div><p class=post_title>You should exercise NOW!</p></div>
                             <div><p class=post_text>
                                 Regular exercise has been shown to help boost energy levels and enhance your mood. It may als…
@@ -136,11 +139,11 @@
                                 Being active has been shown to have many health benefits, both physically and mentally. It may even help you live longer
                             </p>
                             </div>
-                            <div class="hori">
-                                <div id="comment_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Comment</p></a></div>
-                                <div id="share_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Share</p></a></div>
-                                <div id="report_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Report</p></a></div>
-                            </div>
+                            <!--<div class="hori">
+                                <div id="comment_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Comment</p></a></div>
+                                <div id="share_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Share</p></a></div>
+                                <div id="report_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Report</p></a></div>!
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -150,23 +153,23 @@
                     <div class="hori">
                         <div class="vert">
                             <img src="../images/prof_pics/trick.jpg" width="75px" height="75px" class="post_profpic">
-                            <div class = "hori" style="justify-content: center;">
-                                <div id="upvote_icon"></div>
-                                <div ><p class=post_score>0</p></div>
-                                <div id="downvote_icon"></div>
+                            <div class = "hori" style="justify-content: space-between;">
+                                <div class="upvote"></div>
+                                <div class="vote">0</div>
+                                <div class="downvote"></div>
                             </div>
                         </div>
                         <div class="vert">
-                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by Trick1G:</p></a></div>
+                            <div><p class=post_author>Posted by Trick1G:</p></div>
                             <div><p class=post_title>Test Post #69</p></div>
                             <div><p class=post_text>
                                 Test
                             </p></div>
-                            <div class="hori">
-                                <div id="comment_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Comment</p></a></div>
-                                <div id="share_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Share</p></a></div>
-                                <div id="report_icon"></div> <div><a href="Home.html" target="self" ><p class=post_options>Report</p></a></div>
-                            </div>
+                            <!--<div class="hori">
+                                <div id="comment_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Comment</p></a></div>
+                                <div id="share_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Share</p></a></div>
+                                <div id="report_icon"></div> <div><a href="homelogged.html" target="self" ><p class=post_options>Report</p></a></div>!
+                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -185,5 +188,6 @@
 
             </div>
         </div>
+        <script src="home.js"></script> 
 </body>
 </html>
