@@ -30,8 +30,8 @@ function add_comment_enter(e){
                         </div>
                         <div class="vert comment-proper">
                             <div class="user">
-                                <img src="../images/pfp.png" class="pfp">
-                                <div>Lorem ipsum</div>
+                                <img src="../images/prof_pics/anya.jpg" class="pfp">
+                                <div>Anyalover69</div>
                             </div>
                             <div class="content">${add_comment.value}</div>
                             <textarea class="add-reply" placeholder="Add a reply..."></textarea>
