@@ -5,23 +5,29 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="../stylesheets/noire.css">
 	<link rel="stylesheet" type="text/css" href="../stylesheets/profiles.css">
+    <link rel="stylesheet" type="text/css" meda="all" href="../stylesheets/navbar.css">
+    <script src=“https://code.jquery.com/jquery-3.6.0.min.js” type=“text/javascript”></script>
 
 	<title>User Profile</title>
 </head>
 <body>
 
-	<div class="hori" style="justify-content: center;">
+    <!-- Navbar -->
+    <nav>
+        <div id="logo"><a href="home.html"><img src="../images/logo.png"></a></div>
+        <div class="filler"></div>
+        <input type="text" placeholder="Search...">
+        <div class="filler"></div>
+        <a href="HomeLogged.html"><div class="button">Login</div></a>
+        <a href="login.html" style="margin-left: -20px;"><div class="button">Register</div></a>
+    </nav>
+
+
+	<div class="hori" style="justify-content: center; padding-top: 20px;">
 		<!-- post -->
 		<div class= "vert block">
 
-			<!-- new post -->
-			<div class = forum_post>
-				<div class="hori">
-                        <div class="vert">
-                        	<p>UPLOAD NEW POST</p>
-                        </div>
-                </div>
-			</div>
+			
 
 			<div class = forum_post>
                     <div class="hori">
@@ -112,16 +118,14 @@
 		</div>
 
 		<!-- profile -->
-		<div class= "vert block">
+		<div class= "vert block" style="padding-top: 25px;" id="profile_div">
 				<div class="side_element profile_bio">
 					<img src="../images/profilepicture.jpg" class="profile_picture">
 					<div class="profile_title">
-						<p>LiveJesusInOurHeartsAmen</p>
+						<p id="profile_username">LiveJesusInOurHeartsAmen</p>
 					</div>
 					<p id="profile_bio">
-						Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
-						Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
-						Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum 
+						Casual FreedomWall Poster 
 					</p>
 					<div class="profile_center">
 						<span id="profile_posts_num">100</span><span> Posts</span>
@@ -131,11 +135,55 @@
 						<span class="center">Created July 07 2004</span>
 					</div>
 					<div class="profile_center">
-						<a href="editprofile.html" id="profile_edit"><span>Edit Profile</span></a>
+						<button id="profile_edit_button" onclick="editProfile()">Edit Profile</button>
 					</div>
 				</div>
-		</div>
+
+                <div class="side_element profile_bio" id="profile_bio_edit">
+                    <form id="edit_bio">
+                        <label for="username">Change Username</label>
+                        <input type="text" id="username" name="username">
+                        <br>
+                        <label for="bio">Change Bio</label>
+                        <input type="text" id="bio" name="bio" style="height: 100px;">
+                        <br>
+                        <br>
+                        <button type="submit" form="edit_bio" value="Submit">Apply Changes</button>
+                    </form>
+                    
+                </div>
+        </div>
 	</div>
 
+    <!-- JS Function To Apply Text Changes -->
+    <script type="text/javascript">
+        const form = document.querySelector('form');
+        var x = document.getElementById("profile_bio_edit");
+        var y = document.getElementById("profile_edit_button");
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fd = new FormData(form);
+            const obj = Object.fromEntries(fd);
+            if (obj.username != "")
+                document.getElementById("profile_username").innerHTML = obj.username;
+            if (obj.bio != "")
+                document.getElementById("profile_bio").innerHTML = obj.bio;
+            y.style.display = "block";
+            x.style.display = "none";
+            console.log(obj.username);
+        });
+    </script>
+
+    <script>
+        function editProfile() {
+            var x = document.getElementById("profile_bio_edit");
+            var y = document.getElementById("profile_edit_button");
+
+            y.style.display = "none";
+            x.style.display = "block";
+
+        }
+    </script>
 </body>
 </html>

@@ -36,4 +36,38 @@ div.profile_title {
 .profile_bio {
 	text-align: center;
 	margin: 5px 5px 5px 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+#profile_bio_edit {
+	display: none;
+}
+
+#profile_edit_button {
+	text-align: center;
+	margin-left: auto;
+    margin-right:auto;
+}
+
+form {
+	margin-left: 25%;
+    margin-right:25%;
+    width: 50%;
+	display: table;
+}
+
+label {
+	display: table-row;
+}
+
+input {
+	display: table-row;
+}
+
+#profile_div {
+	max-width: 40%;
+	max-height: 30%;
+	overflow:auto;
+	display:table;
 }
