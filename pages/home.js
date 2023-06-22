@@ -92,16 +92,16 @@ function upvote(e){
     e.stopPropagation();
     parent = e.target.parentElement;
     if(e.target.className.includes("active")){
-        e.target.className = 'upvote'           // Icon Change
+        //e.target.className = 'upvote'           // Icon Change
         e.target.classList.remove("active");
         parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 1).toString();
     }else if(parent.children[2].className.includes("active")){
-        e.target.className = 'upvote'           // Icon Change
+        //e.target.className = 'upvote'           // Icon Change
         parent.children[2].classList.remove("active");
         e.target.classList.add("active");
         parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 2).toString();
     }else{
-        e.target.className = 'upvote_filled'    // Icon Change
+        //e.target.className = 'upvote_filled'    // Icon Change
         e.target.classList.add("active");
         parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 1).toString();
     }
@@ -110,16 +110,16 @@ function downvote(e){
     e.stopPropagation();
     parent = e.target.parentElement;
     if(e.target.className.includes("active")){
-        e.target.className = 'downvote'         // Icon Change
+        //e.target.className = 'downvote'         // Icon Change
         e.target.classList.remove("active");
         parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 1).toString();
     }else if(parent.children[0].className.includes("active")){
-        e.target.className = 'downvote'         // Icon Change
+        //e.target.className = 'downvote'         // Icon Change
         parent.children[0].classList.remove("active");
         e.target.classList.add("active");
         parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 2).toString();
     }else{
-        e.target.className = 'downvote_filled'  // Icon Change
+        //e.target.className = 'downvote_filled'  // Icon Change
         e.target.classList.add("active");
         parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 1).toString();
     }
