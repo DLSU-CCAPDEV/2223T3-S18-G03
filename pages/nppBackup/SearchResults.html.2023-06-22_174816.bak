@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../stylesheets/noire.css">
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <title>Search Results</title>
+</head>
+<body>
+    <nav class="hori">
+        <div id="logo"><a href="home.html"><img src="../images/logo.png"></a></div>
+        <div class="filler"></div>
+        <input type="text" placeholder="Search..." id="searchbar">
+        <div class="filler"></div>
+        <a href="CreatePostLogged.html"><div class="button">Create Post</div></a>
+        <div><img src="../images/prof_pics/anya.jpg"></div>
+        <div class="username vert">
+            <div>Anyalover69</div>
+            <a href="EditProfile.html"><div class="button2">Edit Profile</div></a>
+            <a href="ExpandedPost.html"><div class="button3">Log Out</div></a>
+            <div class="bg"></div>
+        </div>
+        
+    </nav>
+	<div class="container" style ="display: flex; justify-content: center;">
+        <!-- Container for Posts and the Sidebar -->
+        <div class="hori" style="justify-content: center;">
+            <!-- Posts -->                  
+            <div class="vert block">
+				<h1>Search Results for Hotdog</h1>
+                <!-- Sample Post -->
+				<a href="ExpandedPostLogged.html">
+                <div class = forum_post >
+                    <div class="hori">
+                        <div class="vert">
+                            <img src="../images/prof_pics/anya.jpg" width="75px" height="75px" class="post_profpic">
+                        </div>
+                        <div class="vert">
+                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by Anyalover69:</p></a></div>
+                            <div><p class=post_title>I love Hotdogs</p></div>
+                            <div><p class=post_text>
+                                I bought 3 hotdogs.
+                                I ate 1.
+                                I had 2 hotdogs left.
+                                I ate another hotdog.
+                                I fed the other hotdog to my dog.
+                                We love hotdogs.</p></div>
+                        </div>
+                    </div>
+                </div>
+				</a>
+
+                <!-- Sample Post -->
+				<a href="ExpandedPostLogged.html">
+                <div class = forum_post>
+                    <div class="hori">
+                        <div class="vert">
+                            <img src="../images/prof_pics/lmao.jpg" width="75px" height="75px" class="post_profpic">
+                        </div>
+                        <div class="vert">
+                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by dankmeemer:</p></a></div>
+                            <div><p class=post_title>MFW when I see Hotdogs</p></div>
+                            <div><p class=post_text>
+                                <img src="resources/post_pics/ambatu.png" width="100%" height="100%">
+                            </p></div>
+                        </div>
+                    </div>
+                </div>
+				</a>
+                
+                <!-- Sample Post -->
+				<a href="ExpandedPostLogged.html">
+                <div class = forum_post>
+                    <div class="hori">
+                        <div class="vert">
+                            <img src="../images/prof_pics/egril.jpg" width="75px" height="75px" class="post_profpic">
+                        </div>
+                        <div class="vert">
+                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by totallynotacatfish:</p></a></div>
+                            <div><p class=post_title>What is the best snack to eat while playing league?</p></div>
+                            <div><p class=post_text>
+                                I am very hungry and tilted because I am on a lose streak.
+                                bi dont like pancit canton and want something with rice. someone suggested hotdogs. thoughts?
+                            </p></div>
+                        </div>
+                    </div>
+                </div>
+				</a>
+
+                <!-- Sample Post -->
+				<a href="ExpandedPostLogged.html">
+                <div class = forum_post>
+                    <div class="hori">
+                        <div class="vert">
+                            <img src="../images/prof_pics/ltg.jpg" width="75px" height="75px" class="post_profpic">
+                        </div>
+                        <div class="vert">
+                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by HighTierHuman:</p></a></div>
+                            <div><p class=post_title>HOTDOGS are the key to SUCCESS!</p></div>
+                            <div><p class=post_text>
+                                Hotdogs sizzle on the grill, a taste divine,<br>
+								A path to triumph, their secret we find.<br>
+								Fuel for champions, they never cease,<br>
+								Hotdogs lead to success, a savory feast.
+                            </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				</a>
+
+                <!-- Sample Post -->
+                <div class = forum_post>
+                    <div class="hori">
+                        <div class="vert">
+                            <img src="../images/prof_pics/trick.jpg" width="75px" height="75px" class="post_profpic">
+                            </div>
+                        </div>
+                        <div class="vert">
+                            <div><a href="Home.html" target="self" ><p class=post_author>Posted by Trick1G:</p></a></div>
+                            <div><p class=post_title>Hotdog Post #1</p></div>
+                            <div><p class=post_text>
+                                HOTDOGS ARE SO MID I HATE HOTDOGS ALL THE HOMIES HATE HOTDOGS.
+                            </p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+		<script src="script.js"></script> 
+		</div>
+</body>
+</html>
