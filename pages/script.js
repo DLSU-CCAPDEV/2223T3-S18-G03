@@ -2,7 +2,7 @@ const search_bar = document.getElementById("searchbar");
 search_bar.addEventListener("keydown", search, false);
 function search(e){
     if(e.keyCode == "13"){
-        location.href = "SearchResultsLogged.html";
+        location.href = "SearchResults.html";
     }
 }
 
