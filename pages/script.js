@@ -6,12 +6,6 @@ function search(e){
     }
 }
 
-function searchUnlogged(e){
-    if(e.keyCode == "13"){
-        location.href = "SearchResultsUnlogged.html";
-    }
-}
-
 const users = document.getElementsByClassName("pfp");
 for(var i = 0; i < users.length; i++) {
     var user = users[i];
