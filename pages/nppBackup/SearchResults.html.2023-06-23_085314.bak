@@ -13,7 +13,7 @@
             <div class="vert block">
 				<h1>Search Results for Hotdog</h1>
                 <!-- Sample Post -->
-				<a href="ExpandedPostLogged.html">
+				<a href="../ExpandedPostLogged.html">
                 <div class = forum_post >
                     <div class="hori">
                         <div class="vert">
@@ -144,7 +144,7 @@
             </div>
         </div>
 	</div>
-    <form action="HomeLogged.html">
+    <form action="Home.html">
         <input type="submit" value="Back to Home">
        </form>
 </body>
