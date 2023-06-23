@@ -10,7 +10,7 @@ const users = document.getElementsByClassName("pfp");
 for(var i = 0; i < users.length; i++) {
     var user = users[i];
     user.onclick = function() {
-        location.href = "Profile.html";
+        location.href = "../Profile.html";
     }
 }
 

@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" meda="all" href="../stylesheets/noire.css">
     <link rel="stylesheet" type="text/css" meda="all" href="../stylesheets/navbar.css">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,11 +19,12 @@
         <input type="text" placeholder="Search..." id="searchbar">
         <div class="filler"></div>
         <a href="CreatePostLogged.html"><div class="button">Create Post</div></a>
-        <div><img src="../images/profilepicture.jpg"></div>
-        <div class="username vert">
-            <div>LiveJesusInOurHeartsAmen</div>
-            <a href="Profile.html"><div class="button2">Edit Profile</div></a>
-            <a href="HomeUnlogged.html"><div class="button3">Log Out</div></a>
+
+        <div><img src="../images/profilepicture.jpg" id="prof-pic"></div>
+        <div class="username-container vert">
+            <div class="username" id="username">LiveJesusInOurHeartsAmen</div>
+            <div id="edit-profile" class="button2"><a href="Profile.html">Edit Profile</a> </div>
+            <div id="logout" class="button2"><a href="HomeUnlogged.html">Log out</a></div>
             <div class="bg"></div>
         </div>
     </nav>
@@ -189,7 +191,7 @@
 
             </div>
         </div>
-        <script src="home.js"></script> 
-        <script src="grab_text.js"></script>
+        <script src="./javascript/home.js"></script> 
+        <script src="./javascript/grab_text.js"></script>
 </body>
 </html>

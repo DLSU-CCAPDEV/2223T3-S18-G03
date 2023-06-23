@@ -2,7 +2,7 @@ const search_bar = document.getElementById("searchbar");
 search_bar.addEventListener("keydown", search, false);
 function search(e){
     if(e.keyCode == "13"){
-        location.href = "SearchResults.html";
+        location.href = "../SearchResults.html";
     }
 }
 
@@ -10,7 +10,7 @@ const users = document.getElementsByClassName("pfp");
 for(var i = 0; i < users.length; i++) {
     var user = users[i];
     user.onclick = function() {
-        location.href = "Profile.html";
+        location.href = "../Profile.html";
     }
 }
 

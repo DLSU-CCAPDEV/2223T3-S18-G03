@@ -1,4 +1,11 @@
 // Borrowed from Tristan's script.js <3
+const search_bar = document.getElementById("searchbar");
+search_bar.addEventListener("keydown", search, false);
+function search(e){
+    if(e.keyCode == "13"){
+        location.href = "/pages/searchresults.html";
+    }
+}
 
 refresh();
 function refresh(){

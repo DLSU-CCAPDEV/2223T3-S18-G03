@@ -19,7 +19,7 @@ nav{
     padding-top: 2px;
     padding-bottom: 1px;
 }
-img{
+nav img{
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -31,6 +31,11 @@ nav div{
 #logo{
     margin-right: 15px;
 }
+
+#logo:hover{
+    cursor: pointer;
+}
+
 input{
     padding: 7px;
     margin: 1px;
@@ -58,9 +63,11 @@ nav .filler{
     border-radius: 20px;
 }
 a .button{
+
     color:white;
 }
 .button:hover{
+    cursor: pointer;
     background-color: #44b93b;
 }
 .username-container .button2{
@@ -77,12 +84,14 @@ a .button{
     padding: 5px 0 5px 0;
 }
 .username-container:hover .button2{
+    cursor: pointer;
     display: inline-block;
     position: fixed;
     top: 40px;
     color: white;
 }
 .username-container:hover #logout{
+    
     top: 70px;
 }
 .username-container:hover div:hover{

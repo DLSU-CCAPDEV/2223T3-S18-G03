@@ -19,6 +19,52 @@ nav{
     padding-top: 2px;
     padding-bottom: 1px;
 }
+a .button{
+
+    color:white;
+}
+.button:hover{
+    cursor: pointer;
+    background-color: #44b93b;
+}
+.username-container .button2{
+    display: none;
+}
+.bg{
+    display: none;
+}
+.username-container{
+    margin-right: 5px;
+    align-items: start;
+}
+.username-container div{
+    padding: 5px 0 5px 0;
+}
+.username-container:hover .button2{
+    cursor: pointer;
+    display: inline-block;
+    position: fixed;
+    top: 40px;
+    color: white;
+}
+.username-container:hover #logout{
+    
+    top: 70px;
+}
+.username-container:hover div:hover{
+    color:#C62828;
+}
+.username-container:hover .bg{
+    display: inline-block;
+    position: fixed;
+    height: 100px;
+    width: 130px;
+    top: 0;
+    right: 0;
+    background-color: #1a1a1b;
+    z-index: -1;
+}
+
 nav img{
     width: 40px;
     height: 40px;
@@ -47,6 +93,8 @@ input::placeholder{
 nav .filler{
     width: 12.5%;
 }
+
+
 .button{
     padding: 7px;
     padding-left: 12px;
@@ -80,21 +128,26 @@ a .button{
     padding: 5px 0 5px 0;
 }
 .username:hover a div{
+    cursor: pointer;
     display: inline-block;
     position: fixed;
     top: 40px;
     color: white;
 }
 .username:hover a .button3{
+    cursor: pointer;
     top: 70px;
 }
 .username:hover .button2:hover{
+    cursor: pointer;
     color:#C62828;
 }
 .username:hover .button3:hover{
+    cursor: pointer;
     color:#C62828;
 }
 .username:hover .bg{
+    cursor: pointer;
     display: inline-block;
     position: fixed;
     height: 100px;

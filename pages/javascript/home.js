@@ -1,4 +1,12 @@
 // Borrowed from Tristan's script.js
+const search_bar = document.getElementById("searchbar");
+search_bar.addEventListener("keydown", search, false);
+function search(e){
+    if(e.keyCode == "13"){
+        location.href = "/pages/searchresults.html";
+    }
+}
+
 function showPost(){
     const main = document.getElementById("all_posts");
     const main_copy = main.innerHTML;
@@ -7,7 +15,7 @@ function showPost(){
     <div class = forum_post>
     <div class="hori">
         <div class="vert">
-            <img src="../images/pfp.png" width="75px" height="75px" class="post_profpic">
+            <img src="../images/profilepicture.jpg" width="75px" height="75px" class="post_profpic">
             <div class = "hori" style="justify-content: space-between;">
                 <div class="upvote"></div>
                 <div class="vote">0</div>
@@ -15,7 +23,7 @@ function showPost(){
             </div>
         </div>
         <div class="vert">
-            <div><p class=post_author>Posted by Lorem Ipsum:</p></div>
+            <div><p class=post_author>Posted by LiveJesusInOurHeartsAmen:</p></div>
             <div><p class=post_title>${localStorage.created_title}</p></div>
             <div><p class=post_text>
                 ${localStorage.created_text}
