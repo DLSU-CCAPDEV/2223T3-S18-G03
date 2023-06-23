@@ -143,25 +143,7 @@ a .button{
     align-items: center;
     padding-right: 8px;
 }
-.upvote{
-    background-image:url(../images/sprite_sheets/post-sprites.png);
-    margin: 0;
-    width:24px;
-    height:24px;
-    background-position: 0px 0px;
-}
-.vote{
-    font-size: 0.75em;
-    padding-top: 3px;
-    padding-bottom: 3px;
-}
-.downvote{
-    background-image:url(../images/sprite_sheets/post-sprites.png);
-    margin: 0;
-    width:24px;
-    height:24px;
-    background-position: -24px 0px;
-}
+
 #add-comment{
     padding: 7px;
     margin: 1px;
