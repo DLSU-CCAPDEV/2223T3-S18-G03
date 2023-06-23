@@ -8,7 +8,7 @@ div.profile_title {
     text-align: center;
 }
 
-.profile_picture {
+#profile_picture {
 	border-radius: 50%;
 	height: 100px;
 	width: 100px;
@@ -51,8 +51,8 @@ div.profile_title {
 }
 
 form {
-	margin-left: 25%;
-    margin-right:25%;
+	margin-left: auto;
+    margin-right:auto;
     width: 50%;
 	display: table;
 }
@@ -70,4 +70,14 @@ input {
 	max-height: 30%;
 	overflow:auto;
 	display:table;
+}
+
+.profile_picture:hover {
+	opacity: 0.5;
+}
+
+input[type="file"] {
+    display: block;
+	margin: auto;
+	
 }

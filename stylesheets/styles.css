@@ -63,35 +63,32 @@ a .button{
 .button:hover{
     background-color: #44b93b;
 }
-.username a{
-    padding-left: 0;
-}
-.username a div{
+.username-container .button2{
     display: none;
 }
 .bg{
     display: none;
 }
-.username{
+.username-container{
     margin-right: 5px;
     align-items: start;
 }
-.username div{
+.username-container div{
     padding: 5px 0 5px 0;
 }
-.username:hover a div{
+.username-container:hover .button2{
     display: inline-block;
     position: fixed;
     top: 40px;
     color: white;
 }
-.username:hover a .button3{
+.username-container:hover #logout{
     top: 70px;
 }
-.username:hover .button2:hover{
+.username-container:hover div:hover{
     color:#C62828;
 }
-.username:hover .bg{
+.username-container:hover .bg{
     display: inline-block;
     position: fixed;
     height: 100px;
