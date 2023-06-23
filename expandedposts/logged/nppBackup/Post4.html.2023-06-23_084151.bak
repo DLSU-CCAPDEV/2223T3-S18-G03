@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../../../stylesheets/noire.css">
+    <link rel="stylesheet" href="../../../stylesheets/styles.css">
+    <title>Expanded Post</title>
+</head>
+<body>
+    <nav class="hori">
+        <div id="logo"><a href="../../homelogged.html"><img src="../../../images/logo.png"></a></div>
+        <div class="filler"></div>
+        <input type="text" placeholder="Search..." id="searchbar">
+        <div class="filler"></div>
+        <a href="../../createpostlogged.html"><div class="button">Create Post</div></a>
+        <div><img src="../../../images/prof_pics/anya.jpg" id="prof-pic"></div>
+        <div class="username-container vert">
+            <div class="username" id="username">Anyalover69</div>
+            <div id="edit-profile" class="button2">Edit Profile</div>
+            <div id="logout" class="button2">Log Out</div>
+            <div class="bg"></div>
+        </div>
+        
+    </nav>
+
+    <div class="post vert">
+        <div class="hori">
+            <div class="vert rate">
+                <div class="upvote"></div>
+                <div class="vote">3600</div>
+                <div class="downvote"></div>
+            </div>
+            <div class=vert>
+                <div class="header">You should exercise NOW!</div>
+                <div class="user">
+                    <img src="../../../images/prof_pics/ltg.jpg" class="pfp op">
+                    <div class="username">HighTierHuman</div>
+                </div>
+                <div class="content">Regular exercise has been shown to help boost energy levels and enhance your mood. It may als… Exercise is defined as any movement that makes your muscles work and requires your body to burn calories. There are many types of physical activity, including swimming, running, jogging, walking, and da… Being active has been shown to have many health benefits, both physically and mentally. It may even help you live longer</div>
+            </div>
+        </div>
+        <textarea placeholder="Add a comment..." id="add-comment"></textarea>
+        <div class="header">Comments:</div>
+        <div id="comments">
+            <div class="vert main comment">
+                <div class="hori">
+                    <div class="vert rate">
+                        <div class="upvote"></div>
+                        <div class="vote">10</div>
+                        <div class="downvote"></div>
+                    </div>
+                    <div class="vert comment-proper">
+                        <div class="user">
+                            <img src="../../../images/pfp.png" class="pfp">
+                            <div class="username">Anyahater96</div>
+                        </div>
+                        <div class="content">I don't care what you said.</div>
+                        <textarea class="add-reply" placeholder="Add a reply..."></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="vert main comment">
+                <div class="hori">
+                    <div class="vert rate">
+                        <div class="upvote"></div>
+                        <div class="vote">0</div>
+                        <div class="downvote"></div>
+                    </div>
+                    <div class="vert comment-proper">
+                        <div class="user">
+                            <img src="../../../images/pfp.png" class="pfp">
+                            <div class="username">Lorem ipsum</div>
+                        </div>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+                        <textarea class="add-reply" placeholder="Add a reply..."></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+    <script src="../expanded_post_logged.js"></script> 
+</body>
+</html>
+</html>
