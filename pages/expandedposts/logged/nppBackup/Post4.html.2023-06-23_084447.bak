@@ -26,16 +26,16 @@
         <div class="hori">
             <div class="vert rate">
                 <div class="upvote"></div>
-                <div class="vote">-53</div>
+                <div class="vote">3600</div>
                 <div class="downvote"></div>
             </div>
             <div class=vert>
-                <div class="header">looking for pro ADC duo in LoL</div>
+                <div class="header">You should exercise NOW!</div>
                 <div class="user">
-                    <img src="../../../images/prof_pics/egril.jpg" class="pfp op">
-                    <div class="username">totallynotacatfish</div>
+                    <img src="../../../images/prof_pics/ltg.jpg" class="pfp op">
+                    <div class="username">HighTierHuman</div>
                 </div>
-                <div class="content">need an adc player (atleast Challenger) to boost me to diamond in league of legends please. i am bronze IV right now but its because my adc is always shit. i will meow for you everytime you get a kill. uWu</div>
+                <div class="content">Regular exercise has been shown to help boost energy levels and enhance your mood. It may als… Exercise is defined as any movement that makes your muscles work and requires your body to burn calories. There are many types of physical activity, including swimming, running, jogging, walking, and da… Being active has been shown to have many health benefits, both physically and mentally. It may even help you live longer</div>
             </div>
         </div>
         <textarea placeholder="Add a comment..." id="add-comment"></textarea>
@@ -68,9 +68,9 @@
                     <div class="vert comment-proper">
                         <div class="user">
                             <img src="../../../images/pfp.png" class="pfp">
-                            <div class="username">k3u</div>
+                            <div class="username">Lorem ipsum</div>
                         </div>
-                        <div class="content">who let him cook!!!!</div>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                         <textarea class="add-reply" placeholder="Add a reply..."></textarea>
                     </div>
                 </div>

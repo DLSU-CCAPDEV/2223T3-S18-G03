@@ -12,9 +12,9 @@
         <input type="text" placeholder="Search..." id="searchbar">
         <div class="filler"></div>
         <a href="../../createpostlogged.html"><div class="button">Create Post</div></a>
-        <div><img src="../../../images/profilepicture.jpg" id="prof-pic"></div>
+        <div><img src="../../../images/prof_pics/anya.jpg" id="prof-pic"></div>
         <div class="username-container vert">
-            <div class="username" id="username">LiveJesusInOurHeartsAmen</div>
+            <div class="username" id="username">Anyalover69</div>
             <div id="edit-profile" class="button2">Edit Profile</div>
             <div id="logout" class="button2">Log Out</div>
             <div class="bg"></div>
@@ -26,16 +26,16 @@
         <div class="hori">
             <div class="vert rate">
                 <div class="upvote"></div>
-                <div class="vote">-53</div>
+                <div class="vote">100</div>
                 <div class="downvote"></div>
             </div>
             <div class=vert>
-                <div class="header">looking for pro ADC duo in LoL</div>
+                <div class="header">Wtf is wrong with Spy X Family</div>
                 <div class="user">
-                    <img src="../../../images/prof_pics/egril.jpg" class="pfp op">
-                    <div class="username">totallynotacatfish</div>
+                    <img src="../../../images/prof_pics/anya.jpg" class="pfp op">
+                    <div class="username">Anyalover69</div>
                 </div>
-                <div class="content">need an adc player (atleast Challenger) to boost me to diamond in league of legends please. i am bronze IV right now but its because my adc is always shit. i will meow for you everytime you get a kill. uWu</div>
+                <div class="content">When Anya received her first bolt, Henderson had stated that violence automatically gets 3 bolts. But, because of him, it was only 1. It doesn't change the fact that “Violence = 3 bolt”... But, what about that time she saved Ken? She saved a literally life. Loosing a life is more major, than a swollen cheek. (No hate. I love Damian.) Punching Damian for no justified reason would have cost her 3 bolts. But, saving the life of a drowning boy was only worth 1 Stella?</div>
             </div>
         </div>
         <textarea placeholder="Add a comment..." id="add-comment"></textarea>
@@ -68,9 +68,9 @@
                     <div class="vert comment-proper">
                         <div class="user">
                             <img src="../../../images/pfp.png" class="pfp">
-                            <div class="username">k3u</div>
+                            <div class="username">Lorem ipsum</div>
                         </div>
-                        <div class="content">who let him cook!!!!</div>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                         <textarea class="add-reply" placeholder="Add a reply..."></textarea>
                     </div>
                 </div>

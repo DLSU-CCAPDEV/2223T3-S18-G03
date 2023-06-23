@@ -12,7 +12,7 @@
         <input type="text" placeholder="Search..." id="searchbar">
         <div class="filler"></div>
         <a href="../../createpostlogged.html"><div class="button">Create Post</div></a>
-        <div><img src="../../../images/profilepicture.jpg" id="prof-pic"></div>
+        <div><img src="../../../images/prof_pics/anya.jpg" id="prof-pic"></div>
         <div class="username-container vert">
             <div class="username" id="username">LiveJesusInOurHeartsAmen</div>
             <div id="edit-profile" class="button2">Edit Profile</div>
@@ -68,9 +68,9 @@
                     <div class="vert comment-proper">
                         <div class="user">
                             <img src="../../../images/pfp.png" class="pfp">
-                            <div class="username">k3u</div>
+                            <div class="username">Lorem ipsum</div>
                         </div>
-                        <div class="content">who let him cook!!!!</div>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                         <textarea class="add-reply" placeholder="Add a reply..."></textarea>
                     </div>
                 </div>
