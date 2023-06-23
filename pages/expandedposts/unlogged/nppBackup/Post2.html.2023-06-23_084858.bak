@@ -19,16 +19,16 @@
         <div class="hori">
             <div class="vert rate">
                 <div class="upvote"></div>
-                <div class="vote">0</div>
+                <div class="vote">4243</div>
                 <div class="downvote"></div>
             </div>
             <div class=vert>
-                <div class="header">Test Post #69</div>
+                <div class="header">Ambatukam</div>
                 <div class="user">
-                    <img src="../../../images/prof_pics/trick.jpg" class="pfp op">
-                    <div class="username">Trick1G</div>
+                    <img src="../../../images/prof_pics/lmao.jpg" class="pfp op">
+                    <div class="username">dankmeemer</div>
                 </div>
-                <div class="content">Test</div>
+                <div class="content">Dreamybull's real name is Perrell Laquarius Brown and he lives in North Carolina where he has a wife and two kids. He was born in 1992, making him 30 years old as of 2022.</div>
             </div>
         </div>
         <div class="header">Comments:</div>
@@ -59,9 +59,9 @@
                     <div class="vert comment-proper">
                         <div class="user">
                             <img src="../../../images/pfp.png" class="pfp">
-                            <div class="username">k3u</div>
+                            <div class="username">Lorem ipsum</div>
                         </div>
-                        <div class="content">who let him cook!!!!</div>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                     </div>
                 </div>
             </div>

@@ -19,16 +19,16 @@
         <div class="hori">
             <div class="vert rate">
                 <div class="upvote"></div>
-                <div class="vote">0</div>
+                <div class="vote">100</div>
                 <div class="downvote"></div>
             </div>
             <div class=vert>
-                <div class="header">Test Post #69</div>
+                <div class="header">Wtf is wrong with Spy X Family</div>
                 <div class="user">
-                    <img src="../../../images/prof_pics/trick.jpg" class="pfp op">
-                    <div class="username">Trick1G</div>
+                    <img src="../../../images/prof_pics/anya.jpg" class="pfp op">
+                    <div>Anyalover69</div>
                 </div>
-                <div class="content">Test</div>
+                <div class="content">When Anya received her first bolt, Henderson had stated that violence automatically gets 3 bolts. But, because of him, it was only 1. It doesn't change the fact that “Violence = 3 bolt”... But, what about that time she saved Ken? She saved a literally life. Loosing a life is more major, than a swollen cheek. (No hate. I love Damian.) Punching Damian for no justified reason would have cost her 3 bolts. But, saving the life of a drowning boy was only worth 1 Stella?</div>
             </div>
         </div>
         <div class="header">Comments:</div>
@@ -43,7 +43,7 @@
                     <div class="vert comment-proper">
                         <div class="user">
                             <img src="../../../images/pfp.png" class="pfp">
-                            <div class="username">Anyahater96</div>
+                            <div>Anyahater96</div>
                         </div>
                         <div class="content">I don't care what you said.</div>
                     </div>
@@ -59,9 +59,9 @@
                     <div class="vert comment-proper">
                         <div class="user">
                             <img src="../../../images/pfp.png" class="pfp">
-                            <div class="username">k3u</div>
+                            <div>Lorem ipsum</div>
                         </div>
-                        <div class="content">who let him cook!!!!</div>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                     </div>
                 </div>
             </div>
@@ -71,5 +71,4 @@
     </div>
     <script src="../expanded_post.js"></script> 
 </body>
-</html>
 </html>

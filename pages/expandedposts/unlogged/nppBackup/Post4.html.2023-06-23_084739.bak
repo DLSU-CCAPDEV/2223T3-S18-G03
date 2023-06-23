@@ -3,7 +3,7 @@
 <head>
     <link rel="stylesheet" href="../../../stylesheets/noire.css">
     <link rel="stylesheet" href="../../../stylesheets/styles.css">
-    <title>Expanded Post</title>
+    <title>Wtf is wrong with Spy X Family</title>
 </head>
 <body>
     <nav class="hori">
@@ -19,16 +19,16 @@
         <div class="hori">
             <div class="vert rate">
                 <div class="upvote"></div>
-                <div class="vote">0</div>
+                <div class="vote">3600</div>
                 <div class="downvote"></div>
             </div>
             <div class=vert>
-                <div class="header">Test Post #69</div>
+                <div class="header">You should exercise NOW!</div>
                 <div class="user">
-                    <img src="../../../images/prof_pics/trick.jpg" class="pfp op">
-                    <div class="username">Trick1G</div>
+                    <img src="../../../images/prof_pics/ltg.jpg" class="pfp op">
+                    <div class="username">HighTierHuman</div>
                 </div>
-                <div class="content">Test</div>
+                <div class="content">Regular exercise has been shown to help boost energy levels and enhance your mood. It may als… Exercise is defined as any movement that makes your muscles work and requires your body to burn calories. There are many types of physical activity, including swimming, running, jogging, walking, and da… Being active has been shown to have many health benefits, both physically and mentally. It may even help you live longer</div>
             </div>
         </div>
         <div class="header">Comments:</div>
@@ -59,9 +59,9 @@
                     <div class="vert comment-proper">
                         <div class="user">
                             <img src="../../../images/pfp.png" class="pfp">
-                            <div class="username">k3u</div>
+                            <div class="username">Lorem ipsum</div>
                         </div>
-                        <div class="content">who let him cook!!!!</div>
+                        <div class="content">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
                     </div>
                 </div>
             </div>
