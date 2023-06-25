@@ -8,28 +8,38 @@ function search(e){
 }
 
 function showPost(){
+
+    if(localStorage.created_title === "del") return;
     const main = document.getElementById("all_posts");
     const main_copy = main.innerHTML;
     //alert(localStorage.created_title);
     new_post = `
+
     <div class = forum_post>
     <div class="hori">
         <div class="vert">
             <img src="../images/profilepicture.jpg" width="75px" height="75px" class="post_profpic">
-            <div class = "hori" style="justify-content: space-between;">
+            <div class = "hori" style="justify-content: space-around;">
                 <div class="upvote"></div>
                 <div class="vote">0</div>
                 <div class="downvote"></div>
             </div>
+            
         </div>
         <div class="vert">
-            <div><p class=post_author>Posted by LiveJesusInOurHeartsAmen:</p></div>
+                <div class="hori" style="justify-content:space-between; width:600px">
+                    <p class=post_author>Posted by LiveJesusInOurHeartsAmen:</p>
+                    <div class="delete_icon"> </p></div>
+                </div>
             <div><p class=post_title>${localStorage.created_title}</p></div>
             <div><p class=post_text>
                 ${localStorage.created_text}
             </p></div>
+
         </div>
+
     </div>
+    
     </div>
     `
 
@@ -61,6 +71,19 @@ function refresh(){
         var homepost = home_posts[i];
         homepost.addEventListener("click", postshow);
     }
+    var deletes = document.getElementsByClassName("delete_icon");
+    for(var i = 0; i < deletes.length; i++) {
+        var deleter = deletes[i];
+        deleter.addEventListener("click", deletepost);
+    }
+}
+
+function deletepost(e){
+    var home_posts = document.getElementsByClassName("forum_post");
+    alert('Post deleted!');
+    localStorage.clear();
+    localStorage.created_title = "del";
+   location.reload();
 }
 
 function postshow(e){

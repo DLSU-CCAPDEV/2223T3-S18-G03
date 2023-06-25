@@ -291,7 +291,20 @@ input[type="file"]{
     margin-top: -3px;
 }
 
+.delete_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    margin-top: 10px;
+    margin-right: 20px;
+    width:24px;
+    height:24px;
+    background-position: -170px 0px;
+}
 
+
+.self_post {
+    background-color: #37383a;
+}
 
 
 

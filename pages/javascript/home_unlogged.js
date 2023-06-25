@@ -7,6 +7,50 @@ function search(e){
     }
 }
 
+function showPost(){
+
+    if(localStorage.created_title === "del") return;
+    const main = document.getElementById("all_posts");
+    const main_copy = main.innerHTML;
+    //alert(localStorage.created_title);
+    new_post = `
+
+    <div class = forum_post>
+    <div class="hori">
+        <div class="vert">
+            <img src="../images/profilepicture.jpg" width="75px" height="75px" class="post_profpic">
+            <div class = "hori" style="justify-content: space-around;">
+                <div class="upvote"></div>
+                <div class="vote">0</div>
+                <div class="downvote"></div>
+            </div>
+            
+        </div>
+        <div class="vert">
+                <div class="hori" style="justify-content:space-between; width:600px">
+                    <p class=post_author>Posted by LiveJesusInOurHeartsAmen:</p>
+                </div>
+            <div><p class=post_title>${localStorage.created_title}</p></div>
+            <div><p class=post_text>
+                ${localStorage.created_text}
+            </p></div>
+
+        </div>
+
+    </div>
+    
+    </div>
+    `
+
+
+
+        main.innerHTML -= main_copy;
+        main.innerHTML += new_post;
+        main.innerHTML += main_copy;
+
+    refresh();
+}
+
 refresh();
 function refresh(){
     var upvotes = document.getElementsByClassName("upvote");

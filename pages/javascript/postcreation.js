@@ -7,8 +7,8 @@ function submitPost(){
         localStorage.created_text = document.getElementById("created_text").value;
         //localStorage.attached_image = document.getElementById("attached_image").files[0].name;
     }
-
-    document.getElementById("post_template").submit();
+    if(localStorage.created_title === "" || localStorage.created_text === "") return;
+    else document.getElementById("post_template").submit();
 }
 
 
