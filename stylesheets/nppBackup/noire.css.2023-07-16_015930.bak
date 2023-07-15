@@ -1,0 +1,442 @@
+/*  Jetbrains Mono font */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/*  Whole site */
+body, textarea, button {
+    background-color: #181a1d;
+    color: aliceblue;
+    font-family: 'Rubik', monospace;
+    text-align: justify;
+}
+
+a{
+    all:unset;
+
+}
+
+h1{
+	text-align: center;
+}
+/* Register Page */
+.container {
+  margin: 0 auto;
+  max-width: 70%;
+  padding: 20px;
+  background-color: #21594A;
+  border-radius: 5px;
+  margin-top: 100px;
+}
+
+.container2 {
+  margin: 0 auto;
+  max-width: 70%;
+  padding: 20px;
+  background-color: #21594A;
+  border-radius: 5px;
+  margin-top: 100px;
+}
+.container input[type="click"] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  margin: 10px 0;
+  cursor: pointer;
+  border: none;
+}
+.container h2 {
+  text-align: center;
+}
+.container img {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 100px;
+  height: auto;
+}
+.container input[type="text"],
+.container input[type="password"] {
+  font: Verdana;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid gray;
+  box-sizing: border-box;
+}
+.container input[type="submit"] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  cursor: pointer;
+  border: none;
+}
+
+.container input[type="submit"]:hover {
+  background-color: #45a049;
+}
+/* Horizontal flex container */
+.hori {
+    display:flex;
+    flex-direction:row;
+    align-content:flex-start;
+}
+
+/* Vertical flex container */
+.vert {
+    display:flex;
+    flex-direction:column;
+    align-content:flex-start;
+}
+
+/* Adds margin and padding to a flex container */
+.block {
+    margin:5px;
+    padding:10px;
+}
+
+/* Class for posts */
+.forum_post{
+    margin-top:20px;
+    min-height:75px;
+    border-radius: 5px;
+    background-color: #37383a;
+    border: 2px solid black;
+    max-width:700px;
+    padding:10px;
+
+}
+.forum_post:hover{
+    border: 2px solid aliceblue;
+    cursor: pointer;
+}
+
+.forum_header{
+    margin-top:20px;
+    margin-bottom: -20px;
+    font-size:24px;
+    font-weight: 400;
+    padding-left:20px;
+    color:#9398a0;
+}
+
+/* Class for side bar */
+.side_element{
+    margin-top:20px;
+    border-radius: 5px;
+    background-color: #37383a;
+    max-width:350px;
+    padding-right:30px;
+    line-height: 1.45em;
+}
+
+/* Normal text style*/
+p , a { 
+    padding-left:20px;
+}
+
+#all_posts{
+    margin:5px;
+    padding:10px;
+    font-size: 0em;
+}
+
+.post_title { 
+    margin-top: -8px;
+    font-size:24px;
+    font-weight: 700;
+    padding-left:20px;
+}
+
+.post_options { 
+    margin-top: -16px;
+    font-size:15px;
+    padding-left:20px;
+    color:#9398a0;
+    font-style: italic;
+}
+
+.post_author {
+    margin-top: 10px;
+    font-size:14px;
+    padding-left:20px;
+    color:#9398a0;
+}
+
+.post_profpic {
+    border-color: #EFEFEF; 
+    border-radius:50%; 
+    margin-left: 2px;
+    margin-top: 10px;
+    border: 3px solid #E8EAED;
+
+}
+
+.post_score {
+    margin-top: 12px;
+    font-size:17px;
+    padding-left:11px;
+    color:#E8EAED;
+
+}
+
+.post_text { 
+    margin-top: -15px;
+    font-weight: 200;
+    font-size:17px;
+    padding-left:20px;
+    padding-right:20px;
+    line-height: 1.45em;
+}
+
+.post_image { 
+    padding-top: 10px;
+    height: 100%;
+    width: 100%;
+    border-radius: 5%;
+}
+
+/* Classes for creating a post */
+input[type="text"].post_title {
+    min-width: 550px;
+    height: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    color:#E8EAED;
+    background-color:#37383a;
+}
+
+textarea[type="text"].post_text {
+    max-width: 700px;
+    height: 400px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    color:#E8EAED;
+    background-color:#37383a;
+    padding-top: 10px;
+}
+
+input[type="file"]{
+    display:none;
+}
+
+.attach_button{
+    border: 2px solid #ccc;
+    display: inline-block;
+    padding: 10px 20px 10px;
+    cursor: pointer;
+    max-width: 190px;
+    margin-left:20px;
+    margin-bottom:20px;
+    background-color: #2a2b2c;
+}
+
+#post_template{
+    display:flex;
+    flex-direction:column;
+    align-content:flex-start;
+}
+.create_button{
+    margin-top: 20px;
+    margin-right: 20px;
+    color:#E8EAED;
+    background-color:#2a2b2c;
+    text-align: center;
+    font-size: 2em;
+    padding:0.5em;
+    font-weight: 500;
+    letter-spacing: 0em;
+    border-radius: 5px;
+}
+
+
+
+/* Icons */
+#upvote_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 8px;
+    margin-right: -7px;
+    margin-top: 10px;
+    width:24px;
+    height:24px;
+    background-position: 0px 0px;
+}
+
+#downvote_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-top: 10px;
+    margin-left: 3px;
+    width:24px;
+    height:24px;
+    background-position: -24px 0px;
+}
+
+#comment_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 22px;
+    margin-right: -16px;
+    width:24px;
+    height:24px;
+    background-position: -48px 0px;
+}
+
+#share_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 22px;
+    margin-right: -16px;
+    width:24px;
+    height:24px;
+    background-position: -72px 0px;
+}
+
+#report_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin-left: 22px;
+    margin-right: -16px;
+    width:24px;
+    height:24px;
+    background-position: -96px 0px;
+}
+
+#image_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    width:24px;
+    height:24px;
+    background-position: -72px 0px;
+    margin-right: 15px;
+    margin-top: -3px;
+}
+
+.delete_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    margin-top: 10px;
+    margin-right: 20px;
+    width:24px;
+    height:24px;
+    background-position: -170px 0px;
+}
+
+
+.self_post {
+    background-color: #37383a;
+}
+
+
+
+/* Borrowed from Styles.css for upvote/downvote functionality */
+.upvote{
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 0px;
+    width:24px;
+    height:24px;
+    background-position: 0px 0px;
+}
+.upvote:hover{
+    cursor: pointer;
+}
+
+.vote{
+    margin-top: 5px;
+    font-size: 16px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+.downvote{
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    margin-top: 5px;
+    width:24px;
+    height:24px;
+    background-position: -24px 0px;
+}
+.downvote:hover{
+    cursor: pointer;
+}
+
+.upvote_filled{
+    background-image:url(../images/sprite_sheets/post-sprites_filled.png);
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 7px;
+    width:24px;
+    height:24px;
+    background-position: 0px 0px;
+}
+.upvote_filled:hover{
+    cursor: pointer;
+}
+
+.downvote_filled{
+    background-image:url(../images/sprite_sheets/post-sprites_filled.png);
+    margin: 0;
+    margin-top: 5px;
+    width:24px;
+    height:24px;
+    background-position: -24px 0px;
+}
+.downvote_filled:hover{
+    cursor: pointer;
+}
+
+
+/* Popup container from w3schools */
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* The actual popup */
+  .popup .popuptext {
+    visibility: hidden;
+    width: 160px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  /* Popup arrow */
+  .popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+  }
+  
+  /* Toggle this class - hide and show the popup */
+  .popup .show {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+  }
+  
+  /* Add animation (fade in the popup) */
+  @-webkit-keyframes fadeIn {
+    from {opacity: 0;} 
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+  }

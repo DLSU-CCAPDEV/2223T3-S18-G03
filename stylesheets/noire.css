@@ -26,6 +26,15 @@ h1{
   border-radius: 5px;
   margin-top: 100px;
 }
+
+.container input[type="click"] {
+  width: 10%;
+  background-color: #4CAF50;
+  color: white;
+  margin: 10px 0;
+  cursor: pointer;
+  border: none;
+}
 .container h2 {
   text-align: center;
 }
@@ -54,6 +63,7 @@ h1{
   cursor: pointer;
   border: none;
 }
+
 .container input[type="submit"]:hover {
   background-color: #45a049;
 }
