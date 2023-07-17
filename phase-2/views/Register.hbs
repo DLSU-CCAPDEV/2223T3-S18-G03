@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" meda="all" href="../stylesheets/noire.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kahit Ano | Register</title>
+</head>
+<body>
+  <div class="container">
+    <img src="../images/logo.png" alt="Logo">
+    <h2>Register</h2>
+    <form action="HomeLogged.html">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <input type="submit" value="Register">
+      <button onclick="window.location.href = 'Login.html';">Already Have an Account?</button>
+    </form>
+  </div>
+
+  <script id="template" type="text/x-handlebars-template">
+    <div class="container">
+      <img src="../images/logo.png" alt="Logo">
+      <h2>Register</h2>
+      <form action="HomeLogged.html">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+        <input type="submit" value="Register">
+        <button onclick="window.location.href = 'Login.html';">Already Have an Account?</button>
+      </form>
+    </div>
+  </script>
+
+  <script src="handlebars.js"></script>
+  <script>
+    var templateSource = document.getElementById('template').innerHTML;
+    var template = Handlebars.compile(templateSource);
+    var renderedHTML = template();
+    document.body.innerHTML = renderedHTML;
+  </script>
+</body>
+</html>
