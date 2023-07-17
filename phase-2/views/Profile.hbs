@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/noire.css">
+	<link rel="stylesheet" type="text/css" href="../stylesheets/profiles.css">
+    <link rel="stylesheet" type="text/css" meda="all" href="../stylesheets/navbar.css">
+
+    <script src=“https://code.jquery.com/jquery-3.6.0.min.js” type=“text/javascript”></script>
+
+	<title>Kahit Ano | Profile</title>
+</head>
+<body>
+    {{> header}}
+    <div class="hori" style="justify-content: center; padding-top: 20px;">
+		<!-- posts -->
+		<div class="vert block"id="all_posts">
+        {{#each post}}
+            {{> Post-body vote=vote username=username post_title=post_title post_text=post_text}}
+        {{/each}}
+        </div>
+
+        <!-- profile -->
+        <div class= "vert block" style="padding-top: 25px;" id="profile_div">
+            <div class="side_element profile_bio">
+					<img src="../images/profilepicture.jpg" id="profile_picture">
+					<div class="profile_title">
+						<p id="profile_username">{{profile_username}}</p>
+					</div>
+					<p id="profile_bio">
+						{{profile_bio}}
+					</p>
+					<div class="profile_center">
+						<span id="profile_posts_num">{{posts_num}}</span><span> Posts</span>
+						<span id="profile_comments_num">{{comments_num}}</span><span> Comments</span>
+					</div>
+					<div class="profile_center">
+						<span class="center">Created July 07 2004</span>
+					</div>
+					<div class="profile_center">
+						<button id="profile_edit_button" onclick="editProfile()">Edit Profile</button>
+					</div>
+				</div>
+        </div>
+    </div>
+
+</body>
+</html>
