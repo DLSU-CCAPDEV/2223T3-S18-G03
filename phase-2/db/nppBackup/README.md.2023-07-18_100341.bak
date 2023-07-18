@@ -1,0 +1,8 @@
+# 2223T3-S18-G03\phase-2\db
+
+This folder contains the files needed for the MongoDB Database Creation.
+
+### Contents:
+- [database schema](https://github.com/2223T3-S18-G03\phase-2\db\database_schema.json) - this file contains the schema for the database and all entries will follow this schema.
+- [dependencies](https://github.com/arvention/ccapdev-mongoose/tree/master/public/images) - this folder contains image files.
+- [database loader](https://github.com/arvention/ccapdev-mongoose/tree/master/public/js) - this folder contains JavaScript files.
