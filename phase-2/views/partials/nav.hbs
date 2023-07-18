@@ -1,0 +1,19 @@
+<nav class="hori">
+    <div id="logo"><a href="../Home.hbs"><img src="../../../images/logo.png"></a></div>
+    <div class="filler"></div>
+    <input type="text" placeholder="Search..." id="searchbar">
+    <div class="filler"></div>
+    {{#if logged}}
+    <a href="../../createpostlogged.html"><div class="button">Create Post</div></a>
+    <div><img src="../../../images/profilepicture.jpg" id="prof-pic"></div>
+    <div class="username-container vert">
+        <div class="username" id="username">{{username}}</div>
+        <div id="edit-profile" class="button2">Edit Profile</div>
+        <div id="logout" class="button2">Log Out</div>
+        <div class="bg"></div>
+    </div>
+    {{else}}
+    <div class="button" id="login">Login</div>
+    <div class="button" id="register">Register</div>
+    {{/if}}
+</nav>

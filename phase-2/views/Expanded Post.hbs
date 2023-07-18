@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../../../stylesheets/noire.css">
-    <link rel="stylesheet" href="../../../stylesheets/styles.css">
+    <link rel="stylesheet" href="../../stylesheets/noire.css">
+    <link rel="stylesheet" href="../../stylesheets/styles.css">
     <title>Expanded Post</title>
 </head>
 <body>
     <nav class="hori">
-        <div id="logo"><a href="../../homelogged.html"><img src="../../../images/logo.png"></a></div>
+        <div id="logo"><a href="Home.hbs"><img src="../../images/logo.png"></a></div>
         <div class="filler"></div>
         <input type="text" placeholder="Search..." id="searchbar">
         <div class="filler"></div>
         {{#if logged}}
         <a href="../../createpostlogged.html"><div class="button">Create Post</div></a>
-        <div><img src="../../../images/profilepicture.jpg" id="prof-pic"></div>
+        <div><img src="../../images/profilepicture.jpg" id="prof-pic"></div>
         <div class="username-container vert">
             <div class="username" id="username">{{username}}</div>
             <div id="edit-profile" class="button2">Edit Profile</div>
@@ -36,7 +36,7 @@
             <div class=vert>
                 <div class="header">{{title}}</div>
                 <div class="user">
-                    <img src="../../../images/prof_pics/anya.jpg" class="pfp op">
+                    <img src="../../images/prof_pics/anya.jpg" class="pfp op">
                     <div class="username">{{poster}}</div>
                 </div>
                 <div class="content">{{content}}</div>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="vert comment-proper">
                         <div class="user">
-                            <img src="../../../images/pfp.png" class="pfp">
+                            <img src="../../images/pfp.png" class="pfp">
                             <div class="username">{{username}}</div>
                         </div>
                         <div class="content">{{comment}}</div>
@@ -69,7 +69,7 @@
     </div>
 </div>
     </div>
-    <script src="../../public/js/expanded_post.js"></script> 
+    <script src="../public/js/expanded_post.js"></script> 
 </body>
 </html>
 </html>
