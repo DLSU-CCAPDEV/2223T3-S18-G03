@@ -1,0 +1,52 @@
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
+public class MongoDBExample {
+    public static void main(String[] args) {
+        // Connect to MongoDB
+        MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");
+        try (MongoClient mongoClient = new MongoClient(connectionString)) {
+            // Access the database
+            MongoDatabase database = mongoClient.getDatabase("mydatabase");
+
+            // Access the users collection
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+
+            // Example entries to add
+            Document user1 = new Document("username", "user1")
+                    .append("password", "pass1")
+                    .append("dp", "user1.jpg")
+                    .append("post", new String[]{"post1", "post2"})
+                    .append("comment", new String[]{"comment1", "comment2"});
+
+            Document user2 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+					
+            Document user3 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+					
+            Document user4 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+					
+            Document user5 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+            // Insert the entries into the users collection
+            usersCollection.insertMany(List.of(user1, user2));
+        }
+    }
+}

@@ -1,0 +1,53 @@
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
+public class MongoDBExample {
+    public static void main(String[] args) {
+        // Connect to MongoDB
+        MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");
+        try (MongoClient mongoClient = new MongoClient(connectionString)) {
+            // Access the database
+            MongoDatabase database = mongoClient.getDatabase("mydatabase");
+
+            // Access the users collection
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+
+            // Example entries to add
+            Document user1 = new Document("username", "Anyalover69")
+                    .append("password", "123123")
+                    .append("dp", "anya.jpg")
+					.append("title", new String[]{"Wtf is wrong with Spy X Family"})
+                    .append("post", new String[]{"When Anya received her first bolt, Henderson had stated that violence automatically gets 3 bolts. But, because of him, it was only 1. It doesn't change the fact that “Violence = 3 bolt”... But, what about that time she saved Ken? She saved a literally life. Loosing a life is more major, than a swollen cheek. (No hate. I love Damian.) Punching Damian for no justified reason would have cost her 3 bolts. But, saving the life of a drowning boy was only worth 1 Stella?"})
+                    .append("comment", new String[]{"comment1"});
+
+            Document user2 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+					
+            Document user3 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+					
+            Document user4 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+					
+            Document user5 = new Document("username", "user2")
+                    .append("password", "pass2")
+                    .append("dp", "user2.jpg")
+                    .append("post", new String[]{"post3", "post4"})
+                    .append("comment", new String[]{"comment3", "comment4"});
+            // Insert the entries into the users collection
+            usersCollection.insertMany(List.of(user1, user2));
+        }
+    }
+}

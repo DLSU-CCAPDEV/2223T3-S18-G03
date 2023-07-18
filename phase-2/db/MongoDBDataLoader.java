@@ -1,0 +1,62 @@
+import com.mongodb.MongoClient;
+import com.mongodb.MongoClientURI;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import org.bson.Document;
+
+public class MongoDBExample {
+    public static void main(String[] args) {
+        // Connect to MongoDB
+        MongoClientURI connectionString = new MongoClientURI("mongodb://localhost:27017");
+        try (MongoClient mongoClient = new MongoClient(connectionString)) {
+            // Access the database
+            MongoDatabase database = mongoClient.getDatabase("mydatabase");
+
+            // Access the users collection
+            MongoCollection<Document> usersCollection = database.getCollection("users");
+
+            // Example entries to add
+            Document user1 = new Document("username", "Anyalover69")
+                    .append("password", "123123")
+                    .append("dp", "anya.jpg")
+					.append("title", new String[]{"Wtf is wrong with Spy X Family"})
+                    .append("post", new String[]{"When Anya received her first bolt, Henderson had stated that violence automatically gets 3 bolts. But, because of him, it was only 1. It doesn't change the fact that “Violence = 3 bolt”... But, what about that time she saved Ken? She saved a literally life. Loosing a life is more major, than a swollen cheek. (No hate. I love Damian.) Punching Damian for no justified reason would have cost her 3 bolts. But, saving the life of a drowning boy was only worth 1 Stella?"});
+
+            Document user2 = new Document("username", "dankmeemer")
+                    .append("password", "8700")
+                    .append("dp", "lmao.jpg")
+					.append("title", new String[]{"Ambatukam"})
+                    .append("post", new String[]{"Dreamybull's real name is Perrell Laquarius Brown and he lives in North Carolina where he has a wife and two kids. He was born in 1992, making him 30 years old as of 2022."});
+					
+            Document user3 = new Document("username", "totallynotacatfish")
+                    .append("password", "catgirl123")
+                    .append("dp", "egril.jpg")
+					.append("title", new String[]{"need an adc player (atleast Challenger) to boost me to diamond in league of legends please. i am bronze IV right now but its because my adc is always shit. i will meow for you everytime you get a kill. uWu"})
+                    .append("post", new String[]{"Test"});
+					
+            Document user4 = new Document("username", "HighTierHuman")
+                    .append("password", "ALPHAMALE")
+                    .append("dp", "ltg.jpg")
+					.append("title", new String[]{"You should exercise NOW!"})
+                    .append("post", new String[]{"Regular exercise has been shown to help boost energy levels and enhance your mood. It may als… Exercise is defined as any movement that makes your muscles work and requires your body to burn calories. There are many types of physical activity, including swimming, running, jogging, walking, and da… Being active has been shown to have many health benefits, both physically and mentally. It may even help you live longer"});
+					
+            Document user5 = new Document("username", "Trick1G")
+                    .append("password", "ILOVELEAGUE")
+                    .append("dp", "trick.jpg")
+					.append("title", new String[]{"Test Post #69"})
+                    .append("post", new String[]{"Test"});
+            // Insert the entries into the users collection
+            usersCollection.insertMany(List.of(user1, user2, user3, user4, user5));
+			
+            // Create the new user document
+            Document newUser = new Document("username", username)
+                    .append("password", password)
+                    .append("dp", dp)
+                    .append("title", new ArrayList<>())
+                    .append("post", new ArrayList<>());
+
+            // Insert the new user into the users collection
+            usersCollection.insertOne(newUser);
+        }
+    }
+}
