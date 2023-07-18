@@ -1,0 +1,49 @@
+<div class = "side_element">
+    <p>Welcome to "Kahit Ano," the online forum that celebrates the spirit of open conversation and diverse opinions. As a platform rooted in the Philippines, we invite users from all walks of life to engage in discussions about anything under the sun. By Intervalo, Ladrido, Tan, Rosario</p>
+</div>
+
+<div class = "side_element" id = "clock">
+    <p></p>
+</div>
+
+<div class = "side_element">
+    <p>Rules to be followed:</p>
+        <ol>
+            <li>No advertising</li>
+            <li>No spamming</li>
+            <li>No NSFW content</li>
+            <li>No disrespectful comments</li>
+            <li>No drama</li>
+        </ol>
+</div>
+
+<div class = "side_element">
+    <p>Current users online:</p>
+</div>
+
+<div class = "side_element">
+    <p>Total posts posted:</p>
+</div>
+
+<div class = "side_element">
+    <p>Total comments comemented:</p>
+</div>
+
+<script>
+
+    document.getElementById("clock").innerHTML = getToday();
+    function getToday() { // Returns the current date today
+    var d = new Date(),
+        minutes = d.getMinutes().toString().length == 1 ? '0'+d.getMinutes() : d.getMinutes(),
+        hours = d.getHours().toString().length == 1 ? '0'+d.getHours() : d.getHours(),
+        ampm = d.getHours() >= 12 ? 'pm' : 'am',
+        months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    return days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm;
+    }
+
+</script>
+<!-- 
+TODO:
+1. Add more useful info, if any
+-->
