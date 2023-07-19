@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="../stylesheets/noire.css">
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <title>Kahit Ano | Search Results</title>
+</head>
+<body>
+	<div class="container" style ="display: flex; justify-content: center;">
+        <!-- Container for Posts and the Sidebar -->
+        <div class="hori" style="justify-content: center;">
+            <!-- Posts -->                  
+            <div class="vert block">
+				<h1>Search Results for {{search_input}}</h1>
+                <!-- Sample Post -->
+				{{#each post}}
+                    {{> Post-body vote=vote username=username post_title=post_title post_text=post_text}}
+                {{/each}}
+            </div>
+        </div>
+	</div>
+    <form action="HomeLogged.html">
+        <input type="submit" value="Back to Home">
+       </form>
+</body>
+</html>

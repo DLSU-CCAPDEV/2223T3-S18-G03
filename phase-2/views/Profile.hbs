@@ -12,7 +12,7 @@
 	<title>Kahit Ano | Profile</title>
 </head>
 <body>
-    {{> header}}
+    {{> nav}}
     <div class="hori" style="justify-content: center; padding-top: 20px;">
 		<!-- posts -->
 		<div class="vert block"id="all_posts">
@@ -24,26 +24,83 @@
         <!-- profile -->
         <div class= "vert block" style="padding-top: 25px;" id="profile_div">
             <div class="side_element profile_bio">
-					<img src="../images/profilepicture.jpg" id="profile_picture">
-					<div class="profile_title">
-						<p id="profile_username">{{profile_username}}</p>
-					</div>
-					<p id="profile_bio">
-						{{profile_bio}}
-					</p>
-					<div class="profile_center">
-						<span id="profile_posts_num">{{posts_num}}</span><span> Posts</span>
-						<span id="profile_comments_num">{{comments_num}}</span><span> Comments</span>
-					</div>
-					<div class="profile_center">
-						<span class="center">Created July 07 2004</span>
-					</div>
-					<div class="profile_center">
-						<button id="profile_edit_button" onclick="editProfile()">Edit Profile</button>
-					</div>
+				<img src="../images/profilepicture.jpg" id="profile_picture">
+				<div class="profile_title">
+					<p id="profile_username">{{profile_username}}</p>
 				</div>
+				<p id="profile_bio">
+					{{profile_bio}}
+				</p>
+				<div class="profile_center">
+					<span id="profile_posts_num">{{posts_num}}</span><span> Posts</span>
+					<span id="profile_comments_num">{{comments_num}}</span><span> Comments</span>
+				</div>
+				<div class="profile_center">
+					<span class="center">Created {{account_date}}</span>
+				</div>
+				<div class="profile_center">
+					<button id="profile_edit_button" onclick="editProfile()">Edit Profile</button>
+				</div>
+			</div>
+
+			<div class="side_element profile_bio" id="profile_bio_edit">
+                    <form id="edit_bio">
+                        <label for="username">Change Username</label>
+                        <input type="text" id="username" name="username">
+                        <br>
+                        <label for="bio">Change Bio</label>
+                        <input type="text" id="bio" name="bio" style="height: 100px;">
+                        <label for="pic">Change Profile Picture</label>
+                        <input type="file" id="pic" name="pic" accept="image/png, image/jpeg">
+                        <br>
+                        <br>
+                        <button type="submit" form="edit_bio" value="Submit">Apply Changes</button>
+                    </form>
+                    
+                </div>
         </div>
     </div>
 
+	<script type="text/javascript">
+
+        const form = document.querySelector('form');
+        var x = document.getElementById("profile_bio_edit");
+        var y = document.getElementById("profile_edit_button");
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const fd = new FormData(form);
+            const obj = Object.fromEntries(fd);
+            if (obj.username != "")
+                document.getElementById("profile_username").innerHTML = obj.username;
+            if (obj.bio != "")
+                document.getElementById("profile_bio").innerHTML = obj.bio;
+            if (obj.pic != null)
+                document.getElementById("img.profile_pic").src = URL.createObjectURL(obj.pic);
+            
+                
+
+
+            y.style.display = "block";
+            x.style.display = "none";
+            console.log(obj.username);
+            console.log(obj.bio);
+            console.log(document.getElementById("profile_picture"));
+            console.log(URL.createObjectURL(obj.pic));
+        });
+    </script>
+
+    <script>
+        function editProfile() {
+            var x = document.getElementById("profile_bio_edit");
+            var y = document.getElementById("profile_edit_button");
+
+            y.style.display = "none";
+            x.style.display = "block";
+
+        }
+    </script>
+
+    <script src="./javascript/home.js"></script>
 </body>
 </html>
