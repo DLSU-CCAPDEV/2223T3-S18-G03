@@ -1,0 +1,17 @@
+// import module `mongoose`
+var mongoose = require('mongoose');
+{
+  "database": "mydatabase",
+  "collections": [
+    {
+      "name": "users",
+      "fields": [
+        { "name": "username", "type": "string" },
+        { "name": "password", "type": "string" },
+        { "name": "dp", "type": "string" },
+        { "name": "post", "type": "array" },
+        { "name": "comment", "type": "array" }
+      ]
+    }
+  ]
+}
