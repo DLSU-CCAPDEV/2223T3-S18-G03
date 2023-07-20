@@ -19,14 +19,6 @@ var userSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-    commenterId: {
-        type: String,
-        required: true
-    }
-    posterId: {
-        type: String,
-        required: true
-    }
 });
 
 var postSchema = new mongoose.Schema({

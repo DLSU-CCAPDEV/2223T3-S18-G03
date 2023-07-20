@@ -15,18 +15,6 @@ var userSchema = new mongoose.Schema({
         type: Image,
         required: true
     },
-    bio: {
-        type: String,
-        required: true
-    }
-    commenterId: {
-        type: String,
-        required: true
-    }
-    posterId: {
-        type: String,
-        required: true
-    }
 });
 
 var postSchema = new mongoose.Schema({
@@ -41,7 +29,7 @@ var postSchema = new mongoose.Schema({
     posterId: {
         type: String,
         required: true
-    }
+    },
 });
 
 var commentSchema = new mongoose.Schema({
@@ -56,7 +44,7 @@ var commentSchema = new mongoose.Schema({
     commenterId: {
         type: String,
         required: true
-    }
+    },
 });
 
 /*

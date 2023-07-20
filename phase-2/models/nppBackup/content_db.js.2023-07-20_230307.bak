@@ -11,19 +11,11 @@ var userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dp: {
+    pw: {
         type: Image,
         required: true
     },
     bio: {
-        type: String,
-        required: true
-    }
-    commenterId: {
-        type: String,
-        required: true
-    }
-    posterId: {
         type: String,
         required: true
     }
