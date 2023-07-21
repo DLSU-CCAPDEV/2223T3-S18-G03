@@ -1,0 +1,111 @@
+/*
+    This script creates the database
+    and inserts 5 user posts in the collection `posts`
+*/
+
+// import module from `./models/db.js`
+const db = require('./models/db.js');
+
+/*
+    name of the collection (table)
+    to perform CRUD (Create, Read, Update, Delete) operations
+*/
+const collection = 'posts';
+
+/*
+    calls the function createDatabase()
+    defined in the `database` object in `./models/db.js`
+*/
+db.createDatabase();
+
+/*
+    creates an object
+    containing first name, last name, title, and bio of a user
+*/
+var postSchema = {
+    title: 'Wtf is wrong with Spy X Family',
+    content: 'When Anya received her first bolt, Henderson had stated that violence automatically gets 3 bolts. But, because of him, it was only 1. It doesn't change the fact that “Violence = 3 bolt”... But, what about that time she saved Ken? She saved a literally life. Loosing a life is more major, than a swollen cheek. (No hate. I love Damian.) Punching Damian for no justified reason would have cost her 3 bolts. But, saving the life of a drowning boy was only worth 1 Stella?',
+	commenterId: '1',
+	posterId: '1'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `posts`
+*/
+db.insertOne(collection, postSchema);
+
+/*
+    creates an object
+    containing first name, last name, title, and bio of a user
+*/
+var postSchema = {
+    title: 'Ambatukam',
+    content: 'Dreamybull's real name is Perrell Laquarius Brown and he lives in North Carolina where he has a wife and two kids. He was born in 1992, making him 30 years old as of 2022.',
+	commenterId: '2',
+	posterId: '2'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `posts`
+*/
+db.insertOne(collection, postSchema);
+
+/*
+    creates an object
+    containing first name, last name, title, and bio of a user
+*/
+var postSchema = {
+    title: 'looking for pro ADC duo in LoL',
+    content: 'catgirl123',
+	commenterId: '3',
+	posterId: '3'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `posts`
+*/
+db.insertOne(collection, postSchema);
+
+/*
+    creates an object
+    containing first name, last name, title, and bio of a user
+*/
+var postSchema = {
+    title: 'HighTierHuman',
+    content: 'ALPHAMALE',
+	commenterId: '4',
+	posterId: '4'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `posts`
+*/
+db.insertOne(collection, postSchema);
+
+/*
+    creates an object
+    containing first name, last name, title, and bio of a user
+*/
+var postSchema = {
+    title: 'Trick1G',
+    content: 'ILOVELEAGUE',
+	commenterId: '5',
+	posterId: '5'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `posts`
+*/
+db.insertOne(collection, postSchema);
+
+

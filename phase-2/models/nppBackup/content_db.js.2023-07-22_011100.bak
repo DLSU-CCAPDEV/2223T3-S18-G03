@@ -30,11 +30,7 @@ var userSchema = new mongoose.Schema({
 });
 
 var postSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-    },
-	content: {
+    content: {
         type: String,
         required: true
     },
@@ -49,15 +45,11 @@ var postSchema = new mongoose.Schema({
 });
 
 var commentSchema = new mongoose.Schema({
-    comment: {
+    content: {
         type: String,
         required: true
     },
     commentId: {
-        type: String,
-        required: true
-    },
-    postId: {
         type: String,
         required: true
     },
@@ -68,7 +60,7 @@ var commentSchema = new mongoose.Schema({
 });
 
 /*
-    exports a mongoose.models object based on `userSchema`, `postSchema`, and `commentSchema` (defined above)
+    exports a mongoose.model object based on `UserSchema` (defined above)
     when another script exports from this file
     This model executes CRUD operations
     to collection `users` -> plural of the argument `User`

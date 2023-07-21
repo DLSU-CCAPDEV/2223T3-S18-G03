@@ -49,7 +49,7 @@ var postSchema = new mongoose.Schema({
 });
 
 var commentSchema = new mongoose.Schema({
-    comment: {
+    content: {
         type: String,
         required: true
     },

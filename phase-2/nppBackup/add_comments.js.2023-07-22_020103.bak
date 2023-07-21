@@ -1,0 +1,111 @@
+/*
+    This script creates the database
+    and inserts 5 user comments in the collection `comments`
+*/
+
+// import module from `./models/db.js`
+const db = require('./models/db.js');
+
+/*
+    name of the collection (table)
+    to perform CRUD (Create, Read, Update, Delete) operations
+*/
+const collection = 'comments';
+
+/*
+    calls the function createDatabase()
+    defined in the `database` object in `./models/db.js`
+*/
+db.createDatabase();
+
+/*
+    creates an object
+    containing first name, last name, comment, and bio of a user
+*/
+var userSchema = {
+    comment: 'Anyalover69',
+    commentId: '123123',
+	postId: '1',
+	commentId: '1'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `comments`
+*/
+db.insertOne(collection, userSchema);
+
+/*
+    creates an object
+    containing first name, last name, comment, and bio of a user
+*/
+var userSchema = {
+    comment: 'dankmeemer',
+    commentId: '8700',
+	postId: '2',
+	commentId: '2'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `comments`
+*/
+db.insertOne(collection, userSchema);
+
+/*
+    creates an object
+    containing first name, last name, comment, and bio of a user
+*/
+var userSchema = {
+    comment: 'totallynotacatfish',
+    commentId: 'catgirl123',
+	postId: '3',
+	commentId: '3'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) ` `
+*/
+db.insertOne(collection, userSchema);
+
+/*
+    creates an object
+    containing first name, last name, comment, and bio of a user
+*/
+var userSchema = {
+    comment: 'HighTierHuman',
+    commentId: 'ALPHAMALE',
+	postId: '4',
+	commentId: '4'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `comments`
+*/
+db.insertOne(collection, userSchema);
+
+/*
+    creates an object
+    containing first name, last name, comment, and bio of a user
+*/
+var userSchema = {
+    comment: 'Trick1G',
+    commentId: 'ILOVELEAGUE',
+	postId: '5',
+	commentId: '5'
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `user` in the collection (table) `comments`
+*/
+db.insertOne(collection, userSchema);
+
+
