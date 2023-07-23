@@ -1,45 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="../../stylesheets/noire.css">
-    <link rel="stylesheet" href="../../stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="/css/noire.css">
+    <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <title>Expanded Post</title>
 </head>
 <body>
-    <nav class="hori">
-        <div id="logo"><a href="Home.hbs"><img src="../../images/logo.png"></a></div>
-        <div class="filler"></div>
-        <input type="text" placeholder="Search..." id="searchbar">
-        <div class="filler"></div>
-        {{#if logged}}
-        <a href="../../createpostlogged.html"><div class="button">Create Post</div></a>
-        <div><img src="../../images/profilepicture.jpg" id="prof-pic"></div>
-        <div class="username-container vert">
-            <div class="username" id="username">{{username}}</div>
-            <div id="edit-profile" class="button2">Edit Profile</div>
-            <div id="logout" class="button2">Log Out</div>
-            <div class="bg"></div>
-        </div>
-        {{else}}
-        <div class="button" id="login">Login</div>
-        <div class="button" id="register">Register</div>
-        {{/if}}
-    </nav>
+    {{> nav }}
 
     <div class="post vert">
         <div class="hori">
             <div class="vert rate">
                 <div class="upvote"></div>
-                <div class="vote">{{votes}}</div>
+                <div class="vote">{{post.score}}</div>
                 <div class="downvote"></div>
             </div>
             <div class=vert>
-                <div class="header">{{title}}</div>
+                <div class="header">{{post.title}}</div>
                 <div class="user">
-                    <img src="../../images/prof_pics/anya.jpg" class="pfp op">
-                    <div class="username">{{poster}}</div>
+                    <img src="data:{{post.dpType}};base64, {{post.dpBuffer}}" class="pfp op">
+                    <div class="username">{{post.poster}}</div>
                 </div>
-                <div class="content">{{content}}</div>
+                <div class="content">{{post.content}}</div>
             </div>
         </div>
         <textarea placeholder="Add a comment..." id="add-comment"></textarea>
@@ -50,13 +33,13 @@
                 <div class="hori">
                     <div class="vert rate">
                         <div class="upvote"></div>
-                        <div class="vote">{{votes}}</div>
+                        <div class="vote">{{score}}</div>
                         <div class="downvote"></div>
                     </div>
                     <div class="vert comment-proper">
                         <div class="user">
-                            <img src="../../images/pfp.png" class="pfp">
-                            <div class="username">{{username}}</div>
+                            <img src="data:{{dpType}};base64, {{dpBuffer}}" class="pfp">
+                            <div class="username">{{postUsername}}</div>
                         </div>
                         <div class="content">{{comment}}</div>
                         <textarea class="add-reply" placeholder="Add a reply..."></textarea>
@@ -67,9 +50,6 @@
 
         </div>
     </div>
-</div>
-    </div>
-    <script src="../public/js/expanded_post.js"></script> 
 </body>
 </html>
 </html>
