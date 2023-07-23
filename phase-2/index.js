@@ -41,5 +41,5 @@ db.connect();
 
 // binds the server to a specific port
 app.listen(port, function () {
-    console.log('app listening at port ' + port);
+    console.log('Kahit-Ano now running at: http://localhost:' + port);
 });

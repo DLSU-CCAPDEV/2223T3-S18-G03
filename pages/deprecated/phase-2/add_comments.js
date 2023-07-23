@@ -1,6 +1,6 @@
 /*
     This script creates the database
-    and inserts 5 user comments in the collection `comments`
+    and inserts 5 comment comments in the collection `comments`
 */
 
 // import module from `./models/db.js`
@@ -21,7 +21,7 @@ db.createDatabase();
 /*
     creates an object
 */
-var userSchema = {
+var commentSchema = {
     comment: 'ano daw',
     commentId: '1',
 	postId: '3',
@@ -31,14 +31,14 @@ var userSchema = {
 /*
     calls the function insertOne()
     defined in the `database` object in `./models/db.js`
-    stores the object `user` in the collection (table) `comments`
+    stores the object `comment` in the collection (table) `comments`
 */
-db.insertOne(collection, userSchema);
+db.insertOne(collection, commentSchema);
 
 /*
     creates an object
 */
-var userSchema = {
+var commentSchema = {
     comment: 'WAT',
     commentId: '2',
 	postId: '1',
@@ -48,14 +48,14 @@ var userSchema = {
 /*
     calls the function insertOne()
     defined in the `database` object in `./models/db.js`
-    stores the object `user` in the collection (table) `comments`
+    stores the object `comment` in the collection (table) `comments`
 */
-db.insertOne(collection, userSchema);
+db.insertOne(collection, commentSchema);
 
 /*
     creates an object
 */
-var userSchema = {
+var commentSchema = {
     comment: 'bruh moment',
     commentId: '3',
 	postId: '4',
@@ -65,14 +65,14 @@ var userSchema = {
 /*
     calls the function insertOne()
     defined in the `database` object in `./models/db.js`
-    stores the object `user` in the collection (table) ` `
+    stores the object `comment` in the collection (table) ` `
 */
-db.insertOne(collection, userSchema);
+db.insertOne(collection, commentSchema);
 
 /*
     creates an object
 */
-var userSchema = {
+var commentSchema = {
     comment: 'xdd',
     commentId: '4',
 	postId: '2',
@@ -82,14 +82,14 @@ var userSchema = {
 /*
     calls the function insertOne()
     defined in the `database` object in `./models/db.js`
-    stores the object `user` in the collection (table) `comments`
+    stores the object `comment` in the collection (table) `comments`
 */
-db.insertOne(collection, userSchema);
+db.insertOne(collection, commentSchema);
 
 /*
     creates an object
 */
-var userSchema = {
+var commentSchema = {
     comment: 'WOW',
     commentId: '5',
 	postId: '1',
@@ -99,8 +99,8 @@ var userSchema = {
 /*
     calls the function insertOne()
     defined in the `database` object in `./models/db.js`
-    stores the object `user` in the collection (table) `comments`
+    stores the object `comment` in the collection (table) `comments`
 */
-db.insertOne(collection, userSchema);
+db.insertOne(collection, commentSchema);
 
 

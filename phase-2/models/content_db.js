@@ -1,7 +1,7 @@
 // import module `mongoose`
 var mongoose = require('mongoose');
 
-// defines the schema for collection `users`
+// defines the schema for forum users
 var userSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -12,23 +12,20 @@ var userSchema = new mongoose.Schema({
         required: true
     },
     dp: {
-        type: Image,
-        required: true
+        data: Buffer,
+        contentType: String,
     },
     bio: {
         type: String,
-        required: true
-    }
-    commenterId: {
-        type: String,
-        required: true
-    }
-    posterId: {
-        type: String,
+    },
+    userId: {
+        type: Number,
         required: true
     }
 });
 
+
+// defines the schema for forum posts
 var postSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -38,31 +35,44 @@ var postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    score: {
+        type: Number,
+        required: true
+    },
     postId: {
-        type: String,
+        type: Number,
         required: true
     },
     posterId: {
-        type: String,
+        type: Number,
         required: true
-    }
+    },
+    postDate: {
+        type: Date,
+        required: true
+    },
 });
 
+// defines the schema for forum comments
 var commentSchema = new mongoose.Schema({
     comment: {
         type: String,
         required: true
     },
     commentId: {
-        type: String,
+        type: Number,
+        required: true
+    },
+    score: {
+        type: Number,
         required: true
     },
     postId: {
-        type: String,
+        type: Number,
         required: true
     },
     commenterId: {
-        type: String,
+        type: Number,
         required: true
     }
 });
@@ -73,6 +83,7 @@ var commentSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `users` -> plural of the argument `User`
 */
-module.exports = mongoose.model('User', userSchema);
-module.exports = mongoose.model('Post', postSchema);
-module.exports = mongoose.model('Comment', commentSchema);
+const User = mongoose.model('User', userSchema);            // Automatically creates collection called "users" in database
+const Post = mongoose.model('Post', postSchema);            // Automatically creates collection called "posts" in database
+const Comment = mongoose.model('Comment', commentSchema);   // Automatically creates collection called "comments" in database
+module.exports = { User, Post, Comment };
