@@ -35,6 +35,39 @@ const controller = {
             res.render('Home', { AllPosts });                                       // render `../views/Home.hbs with posts from database`
         }, 5);
     },
+    redirectLogin: function (req, res) {
+        res.render('Login');
+    },
+    redirectRegister: function (req, res) {
+        res.render('Register');
+    },
+    redirectCreatePost: function (req, res) {
+        res.render('Create');
+    },
+    redirectProfile: function (req, res) {
+        res.render('Profile');
+    },
+    getExpandedPost: function (req, res) {
+        setTimeout(async () => {
+            let postcoll = connection.db.collection("posts");
+            let usercoll = connection.db.collection("users");
+            let commcoll = connection.db.collection("comments");
+            let id = parseInt(req.query.id);
+            let post = await postcoll.findOne({'postId': id});
+            let user = await usercoll.findOne({'userId': post.posterId});
+            post.poster = user.username;
+            post.dpType = user.dp.contentType;
+            post.dpBuffer = user.dp.data.toString('base64');
+            let comments = await commcoll.find({'postId': id}).toArray();
+            for (const comment of comments){
+                let founduser = await usercoll.findOne({'userId': comment.commenterId});
+                comment.postUsername = founduser.username;
+                comment.dpType = founduser.dp.contentType;
+                comment.dpBuffer = founduser.dp.data.toString('base64');
+            }
+            res.render('Expanded Post', {post, comments});
+        }, 5);
+    },
 
     /*
         for adding new posts
