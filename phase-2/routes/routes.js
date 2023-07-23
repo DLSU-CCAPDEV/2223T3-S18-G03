@@ -22,4 +22,7 @@ app.get('/favicon.ico', controller.getFavicon);
 */
 app.get('/', controller.getIndex);
 
+app.get('/login', controller.getLogin);
+
+
 module.exports = app;

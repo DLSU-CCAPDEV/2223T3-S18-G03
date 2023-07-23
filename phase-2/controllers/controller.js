@@ -56,7 +56,22 @@ const controller = {
                 })
             })
         },
-    
+        
+        getLogin: function(req, res) {
+            res.render('Login');
+        },
+
+        getUser: function (req, res) {
+            setTimeout(async () => {
+                let usercoll = connection.db.collection("users");
+                let username = req.params.username;
+                let password = req.params.password;
+
+                let result = await usercoll.findOne({username: username, password: password});
+
+                res.send(result);
+            }, 5);
+        },
         /*
             for deleting a users own posts
         */
