@@ -22,7 +22,8 @@ app.get('/favicon.ico', controller.getFavicon);
 */
 app.get('/', controller.getIndex);
 
-app.get('/login', controller.getLogin);
-
-
+app.get('/login', controller.redirectLogin);
+app.get('/register', controller.redirectRegister);
+app.get('/post', controller.getExpandedPost);
+app.get('/create', controller.redirectCreatePost);
 module.exports = app;
