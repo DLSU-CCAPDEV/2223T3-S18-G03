@@ -30,5 +30,5 @@ app.get('/create', controller.redirectCreatePost);
 app.get('/profile', controller.redirectProfile);
 // app.post('/createprofile', controller.createProfile);        Not yet implemented
 app.get('/getUser', controller.getUser);
-app.get('/profile', controller.redirectProfile);
+
 module.exports = app;

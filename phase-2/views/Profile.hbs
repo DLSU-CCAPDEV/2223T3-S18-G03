@@ -16,8 +16,8 @@
     <div class="hori" style="justify-content: center; padding-top: 20px;">
 		<!-- posts -->
 		<div class="vert block"id="all_posts">
-        {{#each post}}
-            {{> Post-body vote=vote username=username post_title=post_title post_text=post_text}}
+        {{#each posts}}
+            {{> Postbody posterId=user.userId imgtype=user.dp.dpType imgbuffer=user.content vote=post.score username=user.username postId=post.postId post_title=post.title post_text=post.content}}
         {{/each}}
         </div>
 

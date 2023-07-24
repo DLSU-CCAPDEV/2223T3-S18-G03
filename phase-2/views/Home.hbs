@@ -23,7 +23,7 @@
                  <!-- Right side of equals are the properties of each post in AllPosts (passed in from controller.js) --> 
                  <!-- Left side of equals are html elements in Post-body that will be replaced --> 
                 {{#each AllPosts}}
-                    {{> Postbody vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content}}
+                    {{> Postbody posterId=posterId vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content}}
                 {{/each}}
 
             </div> 
