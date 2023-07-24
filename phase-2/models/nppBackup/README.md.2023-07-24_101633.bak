@@ -1,0 +1,9 @@
+# 2223T3-S18-G03\phase-2\db
+
+This folder contains the files needed for the MongoDB Database Creation. Before anything, make sure to have the MongoDB Java Driver added. 
+You can include it by adding the following dependencies in dependencies.txt to your pom.xml if you are using Maven.
+
+### Contents:
+- [database schema](https://github.com/2223T3-S18-G03\phase-2\db\database_schema.json) - this file contains the schema for the database and all entries will follow this schema.
+- [dependencies](https://github.com/2223T3-S18-G03\phase-2\db\dependencies.txt) - this file contains the needed dependencies needed for the MongoDB Java Driver.
+- [database loader](https://github.com/2223T3-S18-G03\phase-2\db\MongoDBDataLoader.java) - this file contains the user information that will be loaded into the database.

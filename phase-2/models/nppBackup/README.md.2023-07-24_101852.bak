@@ -4,4 +4,4 @@ This folder contains the files needed for the database Creation.
 
 ### Contents:
 - [content_db.js](https://github.com/2223T3-S18-G03\phase-2\models\content_db.js) - this file contains the schema for the users, posts, and comments.
-- [db.js](https://github.com/2223T3-S18-G03\phase-2\models\db.js) - this file creates the database.
+- [db.js](https://github.com/2223T3-S18-G03\phase-2\models\db.js) - this file contains the needed dependencies needed for the MongoDB Java Driver.

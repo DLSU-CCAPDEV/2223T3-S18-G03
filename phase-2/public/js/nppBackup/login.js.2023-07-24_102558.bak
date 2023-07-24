@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $('#loginForm').submit(function(e){
         
-        /*e.preventDefault();  */                   // Prevent screen refresh
+        e.preventDefault();                     // Prevent screen refresh
         var username = $('username').val();     // Get username and password from form
         var password = $('password').val();
 
