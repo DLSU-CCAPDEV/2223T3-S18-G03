@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
 const connection = mongoose.connection;             // Store database as a variable
-
+const db = require('../models/db.js');
 const {Post} = require('../models/content_db.js');
 //var logger = require('../logger.json');              // Get logged in condition
 /*
@@ -39,6 +39,9 @@ const controller = {
                     post.postUsername = founduser.username;                             // Attach a postUsername attribute to the post for rendering purposes only (does not appear in database)
                     post.dpType = founduser.dp.contentType;                             // Attach a dpType attribute to the post for rendering purposes only (does not appear in database)
                     post.dpBuffer = founduser.dp.data.toString('base64');               // Attach a dpBuffer attribute to the post for rendering purposes only (does not appear in database)
+                    if(post.posterId === logger.loggeduserId){
+                            post.delete = '<div class="delete_icon"> </div>';
+                    }else   post.delete = '<div> </div>';
                 }
     
                 // The following 3 lines might be useful for rendering the 'Header' partial everywhere
@@ -212,6 +215,22 @@ const controller = {
         */
             editComment: function (req, res) {
 
+            },
+            
+            getVote: function (req, res) {
+                setTimeout(async () => {
+
+                }, 5);
+            },
+
+            getDelete: function (req, res) {
+                setTimeout(async () => {
+                    let loggercoll = connection.db.collection("loggers");                     
+                    let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
+                    let logger = loggerarr[0];
+                    db.deleteOne(Post,{'posterId':logger.loggeduserId});
+                    res.redirect('/');
+                }, 5);
             },
 }
 

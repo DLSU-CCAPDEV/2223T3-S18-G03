@@ -9,7 +9,7 @@
     <title>Kahit Ano | Home</title>
 
 </head>
-<body onload="showPost()">
+<body>
 
         {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer }}
         <!--   Placeholder for the searchbar/header -->
@@ -23,7 +23,7 @@
                  <!-- Right side of equals are the properties of each post in AllPosts (passed in from controller.js) --> 
                  <!-- Left side of equals are html elements in Post-body that will be replaced --> 
                 {{#each AllPosts}}
-                    {{> Postbody posterId=posterId vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content}}
+                    {{> Postbody postredId=postId posterId=posterId vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content del=delete}}
                 {{/each}}
 
             </div> 
@@ -36,7 +36,7 @@
             </div>
 
         </div>
-        <script src="/js/script.js"></script> 
+        <script src="/js/home.js"></script> 
         <script src="/js/grab_text.js"></script>
 
 </body>

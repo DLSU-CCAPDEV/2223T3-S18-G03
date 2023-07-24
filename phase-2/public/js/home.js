@@ -84,11 +84,8 @@ function refresh(){
 }
 
 function deletepost(e){
-    var home_posts = document.getElementsByClassName("forum_post");
     alert('Post deleted!');
-    localStorage.clear();
-    localStorage.created_title = "del";
-   location.reload();
+    location.href='/delete';
 }
 
 function postshow(e){
@@ -104,6 +101,7 @@ function upvote(e){
         //e.target.className = 'upvote'           // Icon Change
         e.target.classList.remove("active");
         parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 1).toString();
+        //location.href = '/vote?query=-1';
     }else if(parent.children[2].className.includes("active")){
         //e.target.className = 'upvote'           // Icon Change
         parent.children[2].classList.remove("active");

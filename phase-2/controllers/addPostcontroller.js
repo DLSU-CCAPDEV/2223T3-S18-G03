@@ -34,7 +34,7 @@ const addPostcontroller = {
             setTimeout(async () => {
                 let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
                 let logger = loggerarr[0];
-                let lastpost = await postcoll.find({}, {limit:1, sort:{postDate:1}}).toArray(); // Returns latest post
+                let lastpost = await postcoll.find({}, {limit:1, sort:{postId:-1}}).toArray(); // Returns latest post
                 
                 var postNew = {
                     title: req.body.created_title,

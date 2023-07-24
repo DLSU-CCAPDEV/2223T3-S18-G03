@@ -31,7 +31,6 @@ const addCommentcontroller = {
                     commenterId: logger.loggeduserId
                 };
 
-                console.log(newComment);
                 await db.insertOne(Comment, newComment);  // Then add post to database
             }, 5);
         

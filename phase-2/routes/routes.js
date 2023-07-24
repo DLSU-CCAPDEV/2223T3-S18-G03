@@ -48,4 +48,7 @@ app.post('/register', userAccountcontroller.postRegister); // Register user (and
 
 app.get('/results', controller.getSearchPosts);
 
+app.get('/vote', controller.getVote);
+app.get('/delete', controller.getDelete);
+
 module.exports = app;
