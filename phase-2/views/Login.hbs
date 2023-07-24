@@ -11,7 +11,7 @@
   <div class="container">
     <img src="../images/logo.png" alt="Logo">
     <h2>Login</h2>
-    <form action="HomeLogged.html">
+    <form id="loginForm">
       <label for="username">Username:</label>
       <input type="text" id="username" name="username" placeholder="Enter your username" required>
 
@@ -22,6 +22,8 @@
 	  <button onclick="window.location.href = 'Register.html';">Don't Have an Account?</button>
     </form>
   </div>
+
+  <p id="invalid_login"></p>
 
   <script id="template" type="text/x-handlebars-template">
     <div class="container">

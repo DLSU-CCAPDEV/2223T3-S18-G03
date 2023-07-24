@@ -29,4 +29,6 @@ app.get('/post', controller.getExpandedPost);
 app.get('/create', controller.redirectCreatePost);
 app.get('/profile', controller.redirectProfile);
 app.post('/createprofile', controller.createProfile);
+app.get('/getUser', controller.getUser);
+app.get('/profile', controller.getProfile);
 module.exports = app;
