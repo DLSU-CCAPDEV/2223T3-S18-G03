@@ -51,5 +51,22 @@
         </div>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script type="text/javascript">
+    const add_comment = document.getElementById("add-comment");
+    const comments_container = document.getElementById("comments");
+    add_comment.addEventListener("keydown", add_comment_enter, false);
+    function add_comment_enter(e){
+        if(e.keyCode == "13"){
+            e.preventDefault();
+            add_comment.value = add_comment.value.trim()
+            if(add_comment.value === ""){
+                return;
+            }
+            $.post(window.location.href,{comment: add_comment.value});
+            window.location.reload();
+        }
+    }
+</script>
 </html>
-</html>
+

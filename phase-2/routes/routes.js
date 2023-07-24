@@ -6,6 +6,7 @@ const express = require('express');
 const controller = require('../controllers/controller.js');
 const addPostcontroller = require('../controllers/addPostcontroller.js');
 const userAccountcontroller = require('../controllers/userAccountcontroller.js');
+const addCommentcontroller = require('../controllers/addCommentcontroller.js');
 
 const app = express();
 
@@ -35,6 +36,8 @@ app.get('/profile', controller.redirectProfile);
 
 app.get('/createpost', addPostcontroller.getAdd);   // Redirect to Create Post page
 app.post('/createpost', addPostcontroller.postAdd); // Creates a post
+
+app.post('/post', addCommentcontroller.commentAdd);
 
 app.get('/login', userAccountcontroller.getLogin);  // Redirect to login page
 app.post('/login', userAccountcontroller.postLogin); // Login user
