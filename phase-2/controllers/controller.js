@@ -64,8 +64,40 @@ const controller = {
         res.render('Create');
     },
     redirectProfile: function (req, res) {
-        res.render('Profile');
+        setTimeout(async () => {
+            let userId = req.query.id;      // userId parameter when entering profile page (/profile?id=0000)
+            // inserting database into function
+            let postcoll = connection.db.collection("posts");
+            let usercoll = connection.db.collection("users");
+            let commcoll = connection.db.collection("comments");
+
+            // collecting data associated with userId
+            let user = await usercoll.findOne({'userId': userId});
+
+            // error handler if the user is not found -- (testing)
+            if (!user) {
+                res.render('error', {error: 'user not found'});
+            }
+
+            let post = await postcoll.findOne({'posterId': userId});
+            let comment = await commcoll.findOne({'posterId': userId});
+
+            // inserting user values into post
+            post.poster = user.username;
+            post.dpType = user.dp.contentType;
+            post.dpBuffer = user.dp.data.toString('base64');
+            user.content = user.dp.data.toString('base64');
+
+            // creating variables for count statistics
+            let countPost = post.length;
+            let countComment = comment.length;
+            let stat = {countPost, countComment}
+
+            res.render('Profile', {user, post, stat});
+
+        }, 5);
     },
+
     getExpandedPost: function (req, res) {
         setTimeout(async () => {
             let postcoll = connection.db.collection("posts");
