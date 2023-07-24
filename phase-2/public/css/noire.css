@@ -123,8 +123,12 @@ h1{
 }
 
 /* Normal text style*/
-p , a { 
+p { 
     padding-left:20px;
+}
+
+a { 
+    padding-left:0px;
 }
 
 #all_posts{
