@@ -5,13 +5,16 @@
     <link rel="stylesheet" href="/css/styles.css">
     <title>Kahit Ano | Search Results</title>
 </head>
-<body>
+<body onload="showPost()">
+
+    {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer }}
 	<div class="container" style ="display: flex; justify-content: center;">
         <!-- Container for Posts and the Sidebar -->
         <div class="hori" style="justify-content: center;">
+			<h1>Search Results</h1>
             <!-- Posts -->                  
-            <div class="vert block">
-				<h1>Search Results for {{search_input}}</h1>
+            <div class="vert block"id="all_posts">
+
                 <!-- Sample Post -->
 				{{#each post}}
                     {{> Post-body vote=vote username=username post_title=post_title post_text=post_text}}
@@ -19,8 +22,8 @@
             </div>
         </div>
 	</div>
-    <form action='/'>
-        <input type="submit" value="Back to Home">
-       </form>
+	   
+	<script src="/js/script.js"></script> 
+	<script src="/js/grab_text.js"></script>
 </body>
 </html>

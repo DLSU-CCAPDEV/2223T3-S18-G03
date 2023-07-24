@@ -54,6 +54,8 @@ const controller = {
             }, 5);
         },
 
+
+
     redirectLogin: function (req, res) {
         res.render('Login');
     },
@@ -145,8 +147,35 @@ const controller = {
             res.render('Login');
         },
 
-        getSearch: function(req, res) {
-            res.render('SearchResults');
+        getSearchPosts: function (req, res) {
+            setTimeout(async () => {
+                let loggercoll = connection.db.collection("loggers"); // TTHIS
+                
+                let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
+                let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
+                                       
+                let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
+                let logger = loggerarr[0];
+
+                let AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+                for (const post of AllPosts){                                           // For each post...
+                    let founduser = await usercoll.findOne({'userId': post.posterId});  // Find a userId that matches the post's posterId, returns the user
+                    post.postUsername = founduser.username;                             // Attach a postUsername attribute to the post for rendering purposes only (does not appear in database)
+                    post.dpType = founduser.dp.contentType;                             // Attach a dpType attribute to the post for rendering purposes only (does not appear in database)
+                    post.dpBuffer = founduser.dp.data.toString('base64');               // Attach a dpBuffer attribute to the post for rendering purposes only (does not appear in database)
+                }
+    
+                // The following 3 lines might be useful for rendering the 'Header' partial everywhere
+                let loggeduser = await usercoll.findOne({'userId': logger.loggeduserId})    // Find a userId that matches the logged user's Id, returns the user
+                if(logger.loggedIn){
+                    loggeduser.loggedIn = logger.loggedIn                                       // Attach logger data to loggeduser (for rendering in hbs)
+                    loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+                }
+                
+                
+                
+                res.render('SearchResults', { AllPosts, loggeduser });                               // render `../views/SearchResults.hbs with posts from database and the logged in user`
+            }, 5);
         },
 
         getUser: function (req, res) {

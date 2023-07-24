@@ -43,6 +43,6 @@ app.get('/logout', userAccountcontroller.logOut)    // Log out user
 app.get('/register', userAccountcontroller.getRegister);  // Redirect to login page
 app.post('/register', userAccountcontroller.postRegister); // Register user (and log them in)
 
-app.get('/results', controller.getSearch);
+app.get('/results', controller.getSearchPosts);
 
 module.exports = app;

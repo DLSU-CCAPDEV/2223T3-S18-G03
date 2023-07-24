@@ -1,9 +1,13 @@
 // Borrowed from Tristan's script.js
 const search_bar = document.getElementById("searchbar");
 search_bar.addEventListener("keydown", search, false);
-function search(e){
-    if(e.keyCode == "13"){
-        location.href = "../pages/searchresults.html";
+
+function search(e) {
+    if (e.keyCode === 13) {
+        const searchInputValue = search_bar.value; // Get the value of the search input
+        if (searchInputValue.trim() !== "") { // Check if the search input is not empty
+            location.href = '/results?query=' + encodeURIComponent(searchInputValue);
+        }
     }
 }
 
