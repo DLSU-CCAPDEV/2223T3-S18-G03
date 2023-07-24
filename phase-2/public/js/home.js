@@ -7,6 +7,7 @@ function search(e){
     }
 }
 
+/*
 function showPost(){
 
     if(localStorage.created_title === "del") return;
@@ -50,7 +51,7 @@ function showPost(){
         main.innerHTML += main_copy;
 
     refresh();
-}
+}*/
 
 
 
