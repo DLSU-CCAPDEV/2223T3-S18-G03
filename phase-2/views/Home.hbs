@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kahit Ano | Home</title>
-    
-</head>
-<body>
 
-        {{> nav }}
+</head>
+<body onload="showPost()">
+
+        {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer }}
         <!--   Placeholder for the searchbar/header -->
 
         <!-- Container for Posts and the Sidebar -->
@@ -36,9 +36,12 @@
             </div>
 
         </div>
-        
+        <script src="./javascript/home.js"></script> 
+        <script src="./javascript/grab_text.js"></script>
+
 </body>
 </html>
+
 <!-- 
 TODO:
 1. change img source to accomodate database

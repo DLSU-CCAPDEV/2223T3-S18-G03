@@ -77,6 +77,16 @@ var commentSchema = new mongoose.Schema({
     }
 });
 
+var loggerSchema = new mongoose.Schema({
+    loggedIn: {
+        type: Boolean,
+        required: true
+    },
+    loggeduserId: {
+        type: Number,
+        required: true
+    }
+});
 /*
     exports a mongoose.models object based on `userSchema`, `postSchema`, and `commentSchema` (defined above)
     when another script exports from this file
@@ -86,4 +96,5 @@ var commentSchema = new mongoose.Schema({
 const User = mongoose.model('User', userSchema);            // Automatically creates collection called "users" in database
 const Post = mongoose.model('Post', postSchema);            // Automatically creates collection called "posts" in database
 const Comment = mongoose.model('Comment', commentSchema);   // Automatically creates collection called "comments" in database
-module.exports = { User, Post, Comment };
+const Logger = mongoose.model('Logger', loggerSchema);   // Automatically creates collection called "comments" in databas
+module.exports = { User, Post, Comment, Logger };

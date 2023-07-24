@@ -4,7 +4,8 @@ const express = require('express');
 
 // import module `controller` from `../controllers/controller.js`
 const controller = require('../controllers/controller.js');
-
+const addPostcontroller = require('../controllers/addPostcontroller.js');
+const userAccountcontroller = require('../controllers/userAccountcontroller.js');
 
 const app = express();
 
@@ -31,4 +32,15 @@ app.get('/profile', controller.redirectProfile);
 // app.post('/createprofile', controller.createProfile);        Not yet implemented
 app.get('/getUser', controller.getUser);
 app.get('/profile', controller.redirectProfile);
+
+app.get('/createpost', addPostcontroller.getAdd);   // Redirect to Create Post page
+app.post('/createpost', addPostcontroller.postAdd); // Creates a post
+
+app.get('/login', userAccountcontroller.getLogin);  // Redirect to login page
+app.post('/login', userAccountcontroller.postLogin); // Login user
+app.get('/logout', userAccountcontroller.logOut)    // Log out user
+
+app.get('/register', userAccountcontroller.getRegister);  // Redirect to login page
+app.post('/register', userAccountcontroller.postRegister); // Register user (and log them in)
+
 module.exports = app;

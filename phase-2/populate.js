@@ -10,7 +10,7 @@ var fs = require('fs');
     name of the collection (table)
     to perform CRUD (Create, Read, Update, Delete) operations
 */
-const {User, Post, Comment} = require('./models/content_db.js');
+const {User, Post, Comment, Logger} = require('./models/content_db.js');
 
 /*
     calls the function createDatabase()
@@ -254,7 +254,7 @@ await db.insertOne(Post, postNew);
 */
 var commentNew = {
     comment: 'ano daw',
-    commentId: 9000000000000001,
+    commentId: 5000000000000001,
     score: 234,
 	postId: 9000000000000003,
 	commenterId: 90000001,
@@ -273,7 +273,7 @@ await db.insertOne(Comment, commentNew);
 */
 var commentNew = {
     comment: 'WAT',
-    commentId: 9000000000000002,
+    commentId: 5000000000000002,
     score: 3,
 	postId: 9000000000000001,
 	commenterId: 90000002,
@@ -292,7 +292,7 @@ await db.insertOne(Comment, commentNew);
 */
 var commentNew = {
     comment: 'bruh moment',
-    commentId: 9000000000000003,
+    commentId: 5000000000000003,
     score: 877,
 	postId: 9000000000000004,
 	commenterId: 90000003,
@@ -311,7 +311,7 @@ await db.insertOne(Comment, commentNew);
 */
 var commentNew = {
     comment: 'xdd',
-    commentId: 9000000000000004,
+    commentId: 5000000000000004,
     score: 5,
 	postId: 9000000000000002,
 	commenterId: 90000004,
@@ -330,7 +330,7 @@ await db.insertOne(Comment, commentNew);
 */
 var commentNew = {
     comment: 'WOW',
-    commentId: 9000000000000005,
+    commentId: 5000000000000005,
     score: 2,
 	postId: 9000000000000001,
 	commenterId: 90000005,
@@ -344,5 +344,24 @@ var commentNew = {
 */
 await db.insertOne(Comment, commentNew);
 
+/*
+    creates an object
+*/
+var loggerNew = {
+    loggedIn: true,
+    loggeduserId: 90000001
+};
+
+/*
+    calls the function insertOne()
+    defined in the `database` object in `./models/db.js`
+    stores the object `comment` in the collection (table) `comments`
+*/
+await db.insertOne(Logger, loggerNew);
+
 }
+
+
+
+
 
