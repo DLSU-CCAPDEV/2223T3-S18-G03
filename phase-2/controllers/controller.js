@@ -145,6 +145,10 @@ const controller = {
             res.render('Login');
         },
 
+        getSearch: function(req, res) {
+            res.render('SearchResults');
+        },
+
         getUser: function (req, res) {
             setTimeout(async () => {
                 let usercoll = connection.db.collection("users");
