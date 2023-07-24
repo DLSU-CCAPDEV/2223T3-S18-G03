@@ -7,7 +7,7 @@ $(document).ready(function () {
         var password = $('password').val();
 
             
-        $.get('/getUser', {username: username, password: password}, function (result){  // Pass values to /getUser which checks if it exists in the User database
+        $.get('/getUser', {username: username, pw: password}, function (result){  // Pass values to /getUser which checks if it exists in the User database
             if (result != null) {                           
                 $.get('/profile', result);
             }
