@@ -32,7 +32,7 @@ const addPostcontroller = {
                 let lastuser = await usercoll.find({}, { sort:{userId:-1}}).toArray(); // Returns latest post
                 if(await usercoll.findOne({'username': req.body.username})){
                     // Username already exists
-                    console.log("Username already exists!");
+                    res.render('Register', {error: "Username already exists, try another one!"});
                     return;
                 } else
                 {
@@ -79,7 +79,7 @@ const addPostcontroller = {
                 } else
                 {
                     
-                    console.log("Error!");
+                    res.render('Login', {error: "That Username/Password combination does not exist, try again!"});
                     
                     return;
                 }
