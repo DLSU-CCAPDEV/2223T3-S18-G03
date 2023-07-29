@@ -78,7 +78,6 @@ const controller = {
 
             // collecting data associated with userId
             let user = await usercoll.findOne({'userId': userId});
-
             // error handler if the user is not found -- (testing)
             if (!user) {
                 res.render('error', {error: 'user not found'});
