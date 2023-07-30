@@ -4,6 +4,7 @@
     <link rel="stylesheet" type="text/css" meda="all" href="/css/noire.css">
 	<link rel="stylesheet" href="/css/styles.css">
 	<link rel="stylesheet" href="/css/navbar.css">
+    <link rel="icon" href="/images/logo.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +25,6 @@
                         <div class="vert">
                             <img src="data:{{loggeduser.dp.contentType}};base64, {{loggeduser.dpBuffer}}" width="75px" height="75px" class="post_profpic">
                             <div class = "hori" style="justify-content: center;">
-                                <div id="upvote_icon"></div>
-                                <div ><p class="post_score">0</p></div>
-                                <div id="downvote_icon"></div>
                             </div>
                         </div>
                         <div class="vert">
@@ -47,8 +45,6 @@
 
             <!-- Sidebar Elements -->
             <div class="vert block">
-
-                {{> Sidebar }}
 
             </div>
 

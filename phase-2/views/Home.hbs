@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="/css/noire.css">
     <link rel="stylesheet" type="text/css" href="/css/navbar.css">
+        <link rel="icon" href="/images/logo.png">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +24,7 @@
                  <!-- Right side of equals are the properties of each post in AllPosts (passed in from controller.js) --> 
                  <!-- Left side of equals are html elements in Post-body that will be replaced --> 
                 {{#each AllPosts}}
-                    {{> Postbody postredId=postId posterId=posterId vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content del=delete}}
+                    {{> Postbody commentnum=commentnum postSpan=span postredId=postId posterId=posterId vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content del=delete}}
                 {{/each}}
 
             </div> 
@@ -31,7 +32,7 @@
             <!-- Sidebar -->
             <div class="vert block">
 
-                {{> Sidebar }}
+                {{> Sidebar usercount=stats.usercount postcount=stats.postcount commcount=stats.commcount}}
 
             </div>
 

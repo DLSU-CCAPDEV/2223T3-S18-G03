@@ -26,6 +26,7 @@ a .button{
 .button:hover{
     cursor: pointer;
     background-color: #44b93b;
+    transition: 0.3s;
 }
 .username-container .button2{
     display: none;
@@ -52,13 +53,14 @@ a .button{
     top: 70px;
 }
 .username-container:hover div:hover{
-    color:#C62828;
+    color:#28c635;
+    cursor: pointer;
 }
 .username-container:hover .bg{
     display: inline-block;
     position: fixed;
     height: 100px;
-    width: 130px;
+    width: 185px;
     top: 0;
     right: 0;
     background-color: #1a1a1b;
@@ -90,6 +92,8 @@ input{
 input::placeholder{
     font-size: 18px;
 }
+
+
 nav .filler{
     width: 12.5%;
 }

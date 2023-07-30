@@ -69,6 +69,7 @@ a .button{
 .button:hover{
     cursor: pointer;
     background-color: #44b93b;
+
 }
 .username-container .button2{
     display: none;

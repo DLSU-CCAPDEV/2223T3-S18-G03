@@ -24,6 +24,7 @@ app.get('/favicon.ico', controller.getFavicon);
 */
 
 app.get('/', controller.getIndex);
+//app.post('/', controller.sortIndex);
 
 app.get('/login', controller.redirectLogin);
 app.get('/register', controller.redirectRegister);

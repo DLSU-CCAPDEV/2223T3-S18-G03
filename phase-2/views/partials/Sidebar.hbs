@@ -1,4 +1,17 @@
 <div class = "side_element">
+    <form action="/">
+    <p></p>
+    <select name="sorted" id="sorted">
+        <option value="newest">Newest Posts First</option>
+        <option value="oldest">Oldest Posts First</option>
+        <option value="best">Top Posts First</option>
+    </select>     <input class="sort_button" type="submit" value="Sort">
+    <br><br>
+
+    </form>
+</div>
+
+<div class = "side_element">
     <p>Welcome to "Kahit Ano," the online forum that celebrates the spirit of open conversation and diverse opinions. As a platform rooted in the Philippines, we invite users from all walks of life to engage in discussions about anything under the sun. By Intervalo, Ladrido, Tan, Rosario</p>
 </div>
 
@@ -12,22 +25,15 @@
             <li>No advertising</li>
             <li>No spamming</li>
             <li>No NSFW content</li>
-            <li>No disrespectful comments</li>
-            <li>No drama</li>
         </ol>
 </div>
 
 <div class = "side_element">
-    <p>Current users online:</p>
+    <p>Total Users Registered: {{usercount}}</p>
+        <p>Total Posts Posted: {{postcount}}</p>
+            <p>Total Comments Commented: {{commcount}}</p>
 </div>
 
-<div class = "side_element">
-    <p>Total posts posted:</p>
-</div>
-
-<div class = "side_element">
-    <p>Total comments comemented:</p>
-</div>
 
 <script>
 
@@ -39,7 +45,7 @@
         ampm = d.getHours() >= 12 ? 'pm' : 'am',
         months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
         days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-    return '<p>Current date is: </p><p> '+days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm+'</p>';
+    return '<p>'+days[d.getDay()]+' '+months[d.getMonth()]+' '+d.getDate()+' '+d.getFullYear()+' '+hours+':'+minutes+ampm+'</p>';
     }
 
 </script>

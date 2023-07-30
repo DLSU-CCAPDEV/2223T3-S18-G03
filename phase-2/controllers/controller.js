@@ -29,19 +29,37 @@ const controller = {
                 
                 let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
                 let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
-                                       
+                let commcoll = connection.db.collection("comments");                       // Store the "comments" collection as a variable 
+
                 let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
                 let logger = loggerarr[0];
 
-                let AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+                var AllPosts;
+
+                if(req.query.sorted === "oldest" ) AllPosts = await postcoll.find({}, {sort:{postDate:1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+                else if(req.query.sorted === "best" ) AllPosts = await postcoll.find({}, {sort:{score:-1}}).toArray(); 
+                else AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+                
+                
+                //let AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
                 for (const post of AllPosts){                                           // For each post...
                     let founduser = await usercoll.findOne({'userId': post.posterId});  // Find a userId that matches the post's posterId, returns the user
                     post.postUsername = founduser.username;                             // Attach a postUsername attribute to the post for rendering purposes only (does not appear in database)
                     post.dpType = founduser.dp.contentType;                             // Attach a dpType attribute to the post for rendering purposes only (does not appear in database)
                     post.dpBuffer = founduser.dp.data.toString('base64');               // Attach a dpBuffer attribute to the post for rendering purposes only (does not appear in database)
+                    
+                    post.commentnum = (await commcoll.find({'postId':post.postId}, {sort:{score:-1}}).toArray()).length; 
+                    
+                    var endDate = new Date();
+                    var startDate = post.postDate;
+                    var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                    post.span= TimeCalculator(interval)         
+                    
+                    /* If post is edited, do this
                     if(post.posterId === logger.loggeduserId){
-                            post.delete = '<div class="delete_icon"> </div>';
+                        post.delete = '<p class="post_options" style="margin-right:-8px; font-style:italic"> Edited </p>';
                     }else   post.delete = '<div> </div>';
+                    */
                 }
     
                 // The following 3 lines might be useful for rendering the 'Header' partial everywhere
@@ -51,11 +69,20 @@ const controller = {
                     loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
                 }
                 
+                let usercount = (await postcoll.find({}, {sort:{postDate:-1}}).toArray()).length; 
+                let commcount = (await commcoll.find({}, {sort:{postDate:-1}}).toArray()).length; 
+                let postcount = AllPosts.length;
+
+                let stats={
+                    usercount: usercount,
+                    postcount: postcount,
+                    commcount: commcount,
+                }
                 
-                
-                res.render('Home', { AllPosts, loggeduser });                               // render `../views/Home.hbs with posts from database and the logged in user`
+                res.render('Home', { AllPosts, loggeduser, stats });                               // render `../views/Home.hbs with posts from database and the logged in user`
             }, 5);
         },
+
 
 
 
@@ -165,6 +192,7 @@ const controller = {
                     post.postUsername = founduser.username;                             // Attach a postUsername attribute to the post for rendering purposes only (does not appear in database)
                     post.dpType = founduser.dp.contentType;                             // Attach a dpType attribute to the post for rendering purposes only (does not appear in database)
                     post.dpBuffer = founduser.dp.data.toString('base64');               // Attach a dpBuffer attribute to the post for rendering purposes only (does not appear in database)
+
                 }
     
                 // The following 3 lines might be useful for rendering the 'Header' partial everywhere
@@ -240,3 +268,43 @@ const controller = {
 */
 module.exports = controller;
 
+// Helper function to convert seconds to a date
+function TimeCalculator(seconds) {
+    let y = Math.floor(seconds / 31536000);
+    let mo = Math.floor((seconds % 31536000) / 2628000);
+    let d = Math.floor(((seconds % 31536000) % 2628000) / 86400);
+    let h = Math.floor((seconds % (3600 * 24)) / 3600);
+    let m = Math.floor((seconds % 3600) / 60);
+    let s = Math.floor(seconds % 60);
+    var yDisplay;
+    var moDisplay;
+    var dDisplay;
+    var hDisplay;
+    var mDisplay;
+    var sDisplay;
+
+    if(y) {
+        yDisplay = y > 0 ? y + (y === 1 ? " year " : " years ") : "";
+        return yDisplay+" ago";
+    }
+    else if(mo) {
+        moDisplay = mo > 0 ? mo + (mo === 1 ? " month " : " months ") : "";
+        return moDisplay + " ago";
+    }
+    else if(d) {
+        dDisplay = d > 0 ? d + (d === 1 ? " day " : " days ") : "";
+        return dDisplay + " ago";
+    }
+    else if(h) {
+        hDisplay = h > 0 ? h + (h === 1 ? " hour, " : " hours, ") : "";
+        mDisplay = m > 0 ? m + (m === 1 ? " minute " : " minutes ") : "";
+        return hDisplay + mDisplay + " ago";
+    }
+    else if(m) {
+        mDisplay = m > 0 ? m + (m === 1 ? " minute " : " minutes ") : "";
+        return mDisplay + " ago";
+    }
+    else return "recently";
+    //else if(s) sDisplay = s > 0 ? s + (s === 1 ? " second" : " seconds ") : "";
+    //return yDisplay + moDisplay + dDisplay + hDisplay + mDisplay + sDisplay + " ago";
+  }
