@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
+//mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
 const connection = mongoose.connection;             // Store database as a variable
 
 const {User, Post, Logger} = require('../models/content_db.js');
 //var logger = require('../logger.json');              // Get logged in condition
+
+// import module `bcrypt`
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const db = require('../models/db.js');
 
@@ -20,9 +24,8 @@ const addPostcontroller = {
         for registering
     */
         getRegister: function(req,res){
-            res.render('Register');
-
-
+            if(req.session.userId) res.redirect('/');
+            else res.render('Register');
         },
 
         postRegister: function(req,res){
@@ -34,11 +37,22 @@ const addPostcontroller = {
                     // Username already exists
                     res.render('Register', {error: "Username already exists, try another one!"});
                     return;
-                } else
+                } else if(req.body.password.length < 8){
+                        // Not enough characters for password
+                        res.render('Register', {error: "Passwords should have atleast 8 characters!"});
+                        return;
+                }
+                    
+                    else
                 {
+                
+                var unhashedpass = req.body.password;
+
+                bcrypt.hash(unhashedpass, saltRounds, async function(err,hash){
+
                     var userNew = {
                         username: req.body.username,
-                        pw: req.body.password,
+                        pw: hash,
                         bio: "Hello!",
                         dp:{
                             data: 1,
@@ -50,16 +64,22 @@ const addPostcontroller = {
                     userNew.dp.data = fs.readFileSync('./public/images/pfp.png')
                     userNew.dp.contentType = 'image/png';
 
-                    await db.insertOne(User, userNew);
-                    await db.updateOne(Logger, ({}), {loggedIn: true,loggeduserId: userNew.userId});
+                    await db.insertOne(User, userNew);  // Then add post to database
+
+                    req.session.username = userNew.username;
+                    req.session.userId = userNew.userId;
                     res.redirect('/');
+
+                });
+
                 }
                 
             }, 100);
         },
 
         getLogin: function(req,res){
-            res.render('Login');
+            if(req.session.userId) res.redirect('/');
+            else res.render('Login');
         },
 
 
@@ -69,17 +89,30 @@ const addPostcontroller = {
             
             setTimeout(async () => {
                 let usercoll = connection.db.collection("users");     // Store the "user" collection as a variable 
-                var legituser =await usercoll.findOne({'username': req.body.username, 'pw':req.body.password})
+                //var legituser =await usercoll.findOne({'username': req.body.username, 'pw':req.body.password})
+                
+                var legituser =await usercoll.findOne({'username': req.body.username})
                 if( legituser) {
                     // User exists
                     
-                
-                    await db.updateOne(Logger, ({}), {loggedIn: true,loggeduserId: legituser.userId});
-                    res.redirect('/');
+                    bcrypt.compare(req.body.password, legituser.pw, async function(err, equal){
+
+                        if(equal){
+                            
+                            req.session.username = legituser.username;
+                            req.session.userId = legituser.userId;
+                            res.redirect('/');
+                        }
+                        else{
+                            res.render('Login', {error: "Your password is incorrect, try again!"});
+                        }
+
+
+
+                    })
                 } else
                 {
-                    
-                    res.render('Login', {error: "That Username/Password combination does not exist, try again!"});
+                    res.render('Login', {error: "That Username does not exist, try again!"});
                     
                     return;
                 }
@@ -95,9 +128,11 @@ const addPostcontroller = {
         logOut: function(req,res){
             setTimeout(async () => {
 
-            await db.updateOne(Logger, ({}), {loggedIn: false,loggeduserId: 0});
-            
-            res.redirect('/');
+                req.session.destroy(function(err){
+                    if(err) throw err;
+                    res.redirect('/');
+                })
+
         }, 100);
             //setInterval(res.redirect('/'), 1000);
         },
@@ -132,7 +167,7 @@ const addPostcontroller = {
                     content: req.body.created_text,
                     score: 0,
                     postId: lastpost[0].postId+1,   // Latest post's ID + 1
-                    posterId: logger.loggeduserId,
+                    posterId: req.session.userId,
                     postDate: new Date()
                 };
                 //console.log(postNew);
@@ -148,8 +183,8 @@ const addPostcontroller = {
             
             let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
             // The following 3 lines might be useful for rendering the 'Header' partial everywhere
-            let loggeduser = await usercoll.findOne({'userId': logger.loggeduserId})    // Find a userId that matches the logged user's Id, returns the user
-            loggeduser.loggedIn = logger.loggedIn                                       // Attach logger data to loggeduser (for rendering in hbs)
+            let loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+            loggeduser.loggedIn = true;                                    // Attach logger data to loggeduser (for rendering in hbs)
             loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
 
             res.render('Create', { loggeduser });                               // render `../views/Home.hbs with posts from database and the logged in user`

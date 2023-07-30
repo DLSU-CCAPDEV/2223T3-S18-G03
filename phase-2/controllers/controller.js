@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
+//mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
 const connection = mongoose.connection;             // Store database as a variable
 const db = require('../models/db.js');
 const {Post} = require('../models/content_db.js');
@@ -25,14 +25,12 @@ const controller = {
     */
         getIndex: function (req, res) {
             setTimeout(async () => {
-                let loggercoll = connection.db.collection("loggers"); // TTHIS
+
                 
                 let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
                 let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
                 let commcoll = connection.db.collection("comments");                       // Store the "comments" collection as a variable 
 
-                let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
-                let logger = loggerarr[0];
 
                 var AllPosts;
 
@@ -56,16 +54,17 @@ const controller = {
                     post.span= TimeCalculator(interval)         
                     
                     /* If post is edited, do this
-                    if(post.posterId === logger.loggeduserId){
+                    if(post.posterId === req.session.userId){
                         post.delete = '<p class="post_options" style="margin-right:-8px; font-style:italic"> Edited </p>';
                     }else   post.delete = '<div> </div>';
                     */
                 }
     
                 // The following 3 lines might be useful for rendering the 'Header' partial everywhere
-                let loggeduser = await usercoll.findOne({'userId': logger.loggeduserId})    // Find a userId that matches the logged user's Id, returns the user
-                if(logger.loggedIn){
-                    loggeduser.loggedIn = logger.loggedIn                                       // Attach logger data to loggeduser (for rendering in hbs)
+                var loggeduser;
+                if(req.session.userId){
+                    loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+                    loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
                     loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
                 }
                 
@@ -147,7 +146,17 @@ const controller = {
                 comment.dpType = founduser.dp.contentType;
                 comment.dpBuffer = founduser.dp.data.toString('base64');
             }
-            res.render('Expanded Post', {post, comments});
+
+            // For rendering navbar
+            var loggeduser;
+            if(req.session.userId){
+                loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+                loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
+                loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+            }
+
+
+            res.render('Expanded Post', {post, comments, loggeduser});
         }, 5);
     },
 
@@ -178,13 +187,11 @@ const controller = {
 
         getSearchPosts: function (req, res) {
             setTimeout(async () => {
-                let loggercoll = connection.db.collection("loggers"); // TTHIS
                 
                 let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
                 let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
                                        
-                let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
-                let logger = loggerarr[0];
+
 
                 let AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
                 for (const post of AllPosts){                                           // For each post...
@@ -196,9 +203,9 @@ const controller = {
                 }
     
                 // The following 3 lines might be useful for rendering the 'Header' partial everywhere
-                let loggeduser = await usercoll.findOne({'userId': logger.loggeduserId})    // Find a userId that matches the logged user's Id, returns the user
-                if(logger.loggedIn){
-                    loggeduser.loggedIn = logger.loggedIn                                       // Attach logger data to loggeduser (for rendering in hbs)
+                let loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+                if(req.session.userId){
+                    loggeduser.loggedIn = true;                                  // Attach logger data to loggeduser (for rendering in hbs)
                     loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
                 }
                 
@@ -252,10 +259,7 @@ const controller = {
 
             getDelete: function (req, res) {
                 setTimeout(async () => {
-                    let loggercoll = connection.db.collection("loggers");                     
-                    let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
-                    let logger = loggerarr[0];
-                    db.deleteOne(Post,{'posterId':logger.loggeduserId});
+                    db.deleteOne(Post,{'posterId':req.session.userId});
                     res.redirect('/');
                 }, 5);
             },

@@ -5,6 +5,15 @@ const express = require('express');
 // import module `hbs`
 const hbs = require('hbs');
 
+// import module `express-session`
+const session = require('express-session');
+
+// import module `mongoose`
+const mongoose = require('mongoose');
+
+// import module `connect-mongo`
+const MongoStore = require('connect-mongo')(session);
+
 // import module `routes` from `./routes/routes.js`
 const routes = require('./routes/routes.js');
 
@@ -27,17 +36,27 @@ app.use(express.urlencoded({extended: true}));
 // such as css, js, and image files
 app.use(express.static('public'));
 
-// define the paths contained in `./routes/routes.js`
-app.use('/', routes);
-
-// if the route is not defined in the server, render `../views/error.hbs`
-// always define this as the last middleware
-app.use(function (req, res) {
-    res.render('error');
-});
 
 // connects to the database
 db.connect();
+
+// use `express-session`` middleware and set its options
+// use `MongoStore` as server-side session storage
+app.use(session({
+    'secret': 'kahit-ano',
+    'resave': false,
+    'saveUninitialized': false,
+    store: new MongoStore({mongooseConnection: mongoose.connection})
+}));
+
+// define the paths contained in `./routes/routes.js`
+app.use('/', routes);
+
+app.use(function (req, res) {
+
+    res.render('error');
+
+});
 
 // binds the server to a specific port
 app.listen(port, function () {

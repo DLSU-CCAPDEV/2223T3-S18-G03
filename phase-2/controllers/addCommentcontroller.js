@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
+//mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
 const connection = mongoose.connection;             // Store database as a variable
 
 
@@ -16,19 +16,18 @@ const {Comment, Logger} = require('../models/content_db.js');
 const addCommentcontroller = {
         commentAdd: function (req, res) {
 
-            let loggercoll = connection.db.collection("loggers"); // TTHIS
             let commentcoll = connection.db.collection("comments");
             post_id = parseInt(req.query.id);
 
             setTimeout(async () => {
-                let logger = await loggercoll.findOne({});
+
                 let lastcomment = await commentcoll.findOne({}, {sort:{commentId:-1}})
                 var newComment = {
                     comment: req.body.comment,
                     commentId: lastcomment.commentId+1, 
                     score: 0,
                     postId: post_id,
-                    commenterId: logger.loggeduserId
+                    commenterId: req.session.userId
                 };
 
                 await db.insertOne(Comment, newComment);  // Then add post to database

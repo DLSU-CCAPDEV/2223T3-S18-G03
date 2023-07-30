@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
+//mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
 const connection = mongoose.connection;             // Store database as a variable
 
 
@@ -21,7 +21,6 @@ const addPostcontroller = {
     */
         postAdd: function (req, res) {
 
-            let loggercoll = connection.db.collection("loggers"); // TTHIS
             let postcoll = connection.db.collection("posts");     // Store the "post" collection as a variable 
 
             if(req.body.created_title === null) {
@@ -32,8 +31,7 @@ const addPostcontroller = {
             }
 
             setTimeout(async () => {
-                let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
-                let logger = loggerarr[0];
+
                 let lastpost = await postcoll.find({}, {limit:1, sort:{postId:-1}}).toArray(); // Returns latest post
                 
                 var postNew = {
@@ -41,7 +39,7 @@ const addPostcontroller = {
                     content: req.body.created_text,
                     score: 0,
                     postId: lastpost[0].postId+1,   // Latest post's ID + 1
-                    posterId: logger.loggeduserId,
+                    posterId: req.session.userId,
                     postDate: new Date()
                 };
                 //console.log(postNew);
@@ -52,16 +50,14 @@ const addPostcontroller = {
         },
 
         getAdd: function (req, res) {   // Redirect to Creating Post page
-            
-            let loggercoll = connection.db.collection("loggers"); // TTHIS
+
 
             setTimeout(async () => {
-                let loggerarr = await loggercoll.find({}, {limit:1}).toArray(); // TTHIS
-                let logger = loggerarr[0];
+
             let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
             // The following 3 lines might be useful for rendering the 'Header' partial everywhere
-            let loggeduser = await usercoll.findOne({'userId': logger.loggeduserId})    // Find a userId that matches the logged user's Id, returns the user
-            loggeduser.loggedIn = logger.loggedIn                                       // Attach logger data to loggeduser (for rendering in hbs)
+            let loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+            loggeduser.loggedIn = true                                       // Attach logger data to loggeduser (for rendering in hbs)
             loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
 
             res.render('Create', { loggeduser });                               // render `../views/Home.hbs with posts from database and the logged in user`
