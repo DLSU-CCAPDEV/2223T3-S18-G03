@@ -104,6 +104,7 @@ const controller = {
     redirectProfile: function (req, res) {
         setTimeout(async () => {
             let userId = req.query.id;      // userId parameter when entering profile page (/profile?id=0000)
+
             // inserting database into function
             let postcoll = connection.db.collection("posts");
             let usercoll = connection.db.collection("users");
@@ -120,17 +121,38 @@ const controller = {
             let comment = await commcoll.findOne({'posterId': userId});
 
             // inserting user values into post
-            post.poster = user.username;
-            post.dpType = user.dp.contentType;
-            post.dpBuffer = user.dp.data.toString('base64');
-            user.content = user.dp.data.toString('base64');
+            let posts = await postcoll.find({'userId': userId}, {sort:{postDate:1}}).toArray();
+
+            for (const post of posts){                                              // For each post...
+                let founduser = await usercoll.findOne({'userId': post.posterId});  // Find a userId that matches the post's posterId, returns the user
+                post.postUsername = founduser.username;                             // Attach a postUsername attribute to the post for rendering purposes only (does not appear in database)
+                post.dpType = founduser.dp.contentType;                             // Attach a dpType attribute to the post for rendering purposes only (does not appear in database)
+                post.dpBuffer = founduser.dp.data.toString('base64');               // Attach a dpBuffer attribute to the post for rendering purposes only (does not appear in database)
+                
+                post.commentnum = (await commcoll.find({'postId':post.postId}, {sort:{score:-1}}).toArray()).length; 
+                
+                var endDate = new Date();
+                var startDate = post.postDate;
+                var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                post.span= TimeCalculator(interval);
+                
+                if(post.isEdited){ // Adds "Commented 34 minutes ago, etc."
+                    var endDate = new Date();
+                    var startDate = post.editDate;
+                    var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                    post.editSpan= TimeCalculator(interval);     
+                }
+            }
+
+            loggeduser = await usercoll.findOne({'userId': req.session.userId});
+
 
             // creating variables for count statistics
             let countPost = post.length;
             let countComment = comment.length;
             let stat = {countPost, countComment}
 
-            res.render('Profile', {user, post, stat});
+            res.render('Profile', {user, posts, stat, loggeduser});
 
         }, 100);
     },
@@ -153,7 +175,7 @@ const controller = {
             var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
             post.span= TimeCalculator(interval)     
 
-            let comments = await commcoll.find({'postId': id}).toArray();
+            var comments = await commcoll.find({'postId': id}).toArray();
 
                     if(post.posterId === req.session.userId){ // Adds edit and delete icons if poster is the post
                         post.delete = '<div class="delete_icon" style="margin-left:15px"> </div><div class="post_options" style=" font-weight:100">Delete your post </div>';
@@ -172,7 +194,7 @@ const controller = {
                         }
 
             
-            let comments = await commcoll.find({'postId': id, 'parentId': 0}).toArray();
+            var comments = await commcoll.find({'postId': id, 'parentId': 0}).toArray();
             for(var i=0; i<comments.length; i++){
                 comments[i].indent = 0;
             }
@@ -339,6 +361,17 @@ const controller = {
                 }, 100);
 
             },
+
+            updateProfile: function (req, res) {
+                setTimeout(async () => {
+                    let username = req.query.username;
+                    let bio = req.query.bio;
+                    let userid = req.session.userid;
+
+                    result = await db.updateOne(User, {'userId': userid}, {'username': username, 'bio': bio});
+                    res.send(result);
+                }, 100);
+            }
 }
 
 

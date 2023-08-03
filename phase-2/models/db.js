@@ -8,7 +8,7 @@ const Post = require('./content_db.js');
 const Comment = require('./content_db.js');
 
 // Kahit-Ano is the name of the database
-const url = 'mongodb://127.0.0.1/Kahit-Ano';
+const url = 'mongodb://127.0.0.1/Kahit-Ano-Testing';
 //const url = 'mongodb+srv://public:yCyyhAXVfK5gi8uB@kahitanoforum.kf9utsb.mongodb.net/?retryWrites=true&w=majority';
 
 // additional connection options

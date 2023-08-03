@@ -34,6 +34,7 @@ app.get('/profile', controller.redirectProfile);
 // app.post('/createprofile', controller.createProfile);        Not yet implemented
 app.get('/getUser', controller.getUser);
 app.get('/profile', controller.redirectProfile);
+app.get('/updateProfile', controller.updateProfile);
 
 app.get('/createpost', addPostcontroller.getAdd);   // Redirect to Create Post page
 app.post('/createpost', addPostcontroller.postAdd); // Creates a post
