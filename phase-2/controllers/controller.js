@@ -226,28 +226,50 @@ const controller = {
                 
                 let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
                 let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
-                                       
+                let commcoll = connection.db.collection("comments");
 
+                var title = req.query.title;
+				var query = req.query.query;
+				var found = {};
+				
+				let searchRes = await postcoll.find({'title': query}).toArray();
+				if(searchRes){
+					found.attribute = 1;
 
-                let AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+				}
+
+                let AllPosts = await postcoll.find({'title': query}).toArray();         // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
                 for (const post of AllPosts){                                           // For each post...
                     let founduser = await usercoll.findOne({'userId': post.posterId});  // Find a userId that matches the post's posterId, returns the user
                     post.postUsername = founduser.username;                             // Attach a postUsername attribute to the post for rendering purposes only (does not appear in database)
                     post.dpType = founduser.dp.contentType;                             // Attach a dpType attribute to the post for rendering purposes only (does not appear in database)
                     post.dpBuffer = founduser.dp.data.toString('base64');               // Attach a dpBuffer attribute to the post for rendering purposes only (does not appear in database)
 
+                                        
+                    post.commentnum = (await commcoll.find({'postId':post.postId}, {sort:{score:-1}}).toArray()).length; 
+                    
+                    var endDate = new Date();
+                    var startDate = post.postDate;
+                    var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                    post.span= TimeCalculator(interval)
+                    
+                    if(post.isEdited){ // Adds "Commented 34 minutes ago, etc."
+                        var endDate = new Date();
+                        var startDate = post.editDate;
+                        var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                        post.editSpan= TimeCalculator(interval)     
+                    }
+                    
+                    /* If post is edited, do this
+                    if(post.posterId === req.session.userId){
+                        post.delete = '<p class="post_options" style="margin-right:-8px; font-style:italic"> Edited </p>';
+                    }else   post.delete = '<div> </div>';
+                    */
+
                 }
-    
-                // The following 3 lines might be useful for rendering the 'Header' partial everywhere
-                let loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
-                if(req.session.userId){
-                    loggeduser.loggedIn = true;                                  // Attach logger data to loggeduser (for rendering in hbs)
-                    loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
-                }
                 
                 
-                
-                res.render('SearchResults', { AllPosts, loggeduser });                               // render `../views/SearchResults.hbs with posts from database and the logged in user`
+                res.render('SearchResults', { AllPosts });                               // render ../views/SearchResults.hbs with posts from database and the logged in user
             }, 100);
         },
 

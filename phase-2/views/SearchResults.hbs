@@ -13,12 +13,12 @@
         <!-- Container for Posts and the Sidebar -->
         <div class="hori" style="justify-content: center;">
             <!-- Posts -->   
-			{{#if found}}
+			{{#if AllPosts}}
 			<h1>Search Results</h1>
             <div class="vert block"id="all_posts">			
                 <!-- Sample Post -->
-				{{#each post}}
-                    {{> Post-body vote=vote username=username post_title=post_title post_text=post_text}}
+				{{#each AllPosts}}
+                    {{> Postbody commentnum=commentnum postSpan=span postredId=postId posterId=posterId vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content del=delete}}
                 {{/each}}
             </div>
 			{{else}}

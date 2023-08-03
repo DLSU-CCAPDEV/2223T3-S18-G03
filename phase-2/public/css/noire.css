@@ -368,7 +368,6 @@ select {
 
 .delete_icon:hover {
     cursor: pointer;
-    margin-top:5px;
 }
 
 .edit_icon {
@@ -384,7 +383,6 @@ select {
 
 .edit_icon:hover {
     cursor: pointer;
-    margin-top:5px;
 }
 
 
