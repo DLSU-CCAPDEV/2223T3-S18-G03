@@ -102,7 +102,7 @@
             if(add_comment.value === ""){
                 return;
             }
-            $.post(window.location.href,{comment: add_comment.value});
+            $.post(window.location.href,{comment: add_comment.value, parent: 0});
             window.location.reload();
         }
     }
@@ -137,7 +137,25 @@
         alert('Post deleted!');
         $.post('/delete',{id: id});
         window.location.replace('/');
+
+    const add_reply = document.getElementsByClassName("add-reply");
+    for(var i = 0; i < add_reply.length; i++) {
+        var reply = add_reply[i];
+        reply.addEventListener("keydown", add_reply_enter, false);
     }
+    function add_reply_enter(e){
+        if(e.keyCode == "13"){
+            e.preventDefault();
+            e.target.value = e.target.value.trim()
+            console.log(e.target.value);
+            console.log(e.target.id);
+            if(e.target.value === ""){
+                return;
+            }
+            $.post(window.location.href,{comment: e.target.value, parent: e.target.id});
+            window.location.reload();
+        }
+}
 </script>
 
 

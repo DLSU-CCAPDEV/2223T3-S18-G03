@@ -258,6 +258,7 @@ var commentNew = {
     score: 234,
 	postId: 9000000000000003,
 	commenterId: 90000001,
+    parentId: 0,
 
 };
 
@@ -277,7 +278,7 @@ var commentNew = {
     score: 3,
 	postId: 9000000000000001,
 	commenterId: 90000002,
-
+    parentId: 0,
 };
 
 /*
@@ -296,7 +297,7 @@ var commentNew = {
     score: 877,
 	postId: 9000000000000004,
 	commenterId: 90000003,
-
+    parentId: 0,
 };
 
 /*
@@ -315,7 +316,7 @@ var commentNew = {
     score: 5,
 	postId: 9000000000000002,
 	commenterId: 90000004,
-
+    parentId: 0,
 };
 
 /*
@@ -334,7 +335,7 @@ var commentNew = {
     score: 2,
 	postId: 9000000000000001,
 	commenterId: 90000005,
-
+    parentId: 0,
 };
 
 /*

@@ -1,0 +1,20 @@
+<div class="vert main comment" style="margin-left: {{indent}}px">
+    <div class="hori">
+        <div class="vert rate">
+            <div class="upvote"></div>
+            <div class="vote">{{score}}</div>
+            <div class="downvote"></div>
+        </div>
+        <div class="vert comment-proper">
+            <div class="user">
+                <a href="/profile?id={{commenterId}}"><img src="data:{{dpType}};base64, {{dpBuffer}}" class="pfp"></a>
+                <a href="/profile?id={{commenterId}}"><div class="username">{{postUsername}}</div></a>
+                <div style="font-size: 0.8em; color:grey; font-weight:100; font-style:italic">Commented {{span}}</div>
+            </div>
+            <div class="content">{{comment}}</div>
+    {{#if loggedIn}}
+        <textarea id="{{commentId}}" class="add-reply" placeholder="Add a reply..."></textarea>
+    {{/if}}
+        </div>
+    </div>
+</div>

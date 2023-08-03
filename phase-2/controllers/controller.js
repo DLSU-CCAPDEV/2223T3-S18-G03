@@ -171,6 +171,22 @@ const controller = {
                             loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
                         }
 
+            
+            let comments = await commcoll.find({'postId': id, 'parentId': 0}).toArray();
+            for(var i=0; i<comments.length; i++){
+                comments[i].indent = 0;
+            }
+            for(var i=0; i<comments.length; i++){
+                replies = await commcoll.find({'postId': id, 'parentId': comments[i].commentId}).toArray();
+                if (replies.length > 0){
+                    for(var reply of replies){
+                        reply.indent = comments[i].indent + 40;
+                    }
+                }
+                comments.splice(i+1, 0, ...replies);
+            }
+
+            console.log(comments);
             for (const comment of comments){
                 let founduser = await usercoll.findOne({'userId': comment.commenterId});
                 if(req.session.userId) comment.loggedIn = true;
@@ -229,14 +245,14 @@ const controller = {
                 let commcoll = connection.db.collection("comments");
 
                 var title = req.query.title;
-				var query = req.query.query;
-				var found = {};
-				
-				let searchRes = await postcoll.find({'title': query}).toArray();
-				if(searchRes){
-					found.attribute = 1;
+                var query = req.query.query;
+                var found = {};
+                
+                let searchRes = await postcoll.find({'title': query}).toArray();
+                if(searchRes){
+                    found.attribute = 1;
 
-				}
+                }
 
                 let AllPosts = await postcoll.find({'title': query}).toArray();         // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
                 for (const post of AllPosts){                                           // For each post...

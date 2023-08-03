@@ -18,7 +18,6 @@ const addCommentcontroller = {
 
             let commentcoll = connection.db.collection("comments");
             post_id = parseInt(req.query.id);
-
             setTimeout(async () => {
 
                 let lastcomment = await commentcoll.findOne({}, {sort:{commentId:-1}})
@@ -28,6 +27,7 @@ const addCommentcontroller = {
                     score: 0,
                     postId: post_id,
                     commenterId: req.session.userId,
+                    parentId: req.body.parent,
                     commentDate: new Date(),
                 };
 

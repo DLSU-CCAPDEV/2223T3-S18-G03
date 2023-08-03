@@ -37,7 +37,7 @@ var postSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-	content: {
+    content: {
         type: String,
         required: true
     },
@@ -84,6 +84,10 @@ var commentSchema = new mongoose.Schema({
         required: true
     },
     commenterId: {
+        type: Number,
+        required: true
+    },
+    parentId:{
         type: Number,
         required: true
     },
