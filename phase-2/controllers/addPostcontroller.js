@@ -62,7 +62,51 @@ const addPostcontroller = {
 
             res.render('Create', { loggeduser });                               // render `../views/Home.hbs with posts from database and the logged in user`
         }, 100);
+        },
+
+        postEdit: function (req, res) {   // Redirect to Creating Post page
+            setTimeout(async () => {
+            let postcoll = connection.db.collection("posts");     // Store the "post" collection as a variable 
+            let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
+            // The following 3 lines might be useful for rendering the 'Header' partial everywhere
+            let loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+            loggeduser.loggedIn = true                                       // Attach logger data to loggeduser (for rendering in hbs)
+            loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+ 
+                let postId = parseInt(req.query.id);
+                let origpost = await postcoll.findOne({'postId': postId});
+
+                res.render('Edit', {origpost, loggeduser})
+                //res.redirect(`/post?id=${id}`);                               // render `../views/Home.hbs with posts from database and the logged in user`
+        }, 100);
+        },
+
+        postEditsaved: function (req, res) {   // Redirect to Creating Post page
+            let postcoll = connection.db.collection("posts");     // Store the "post" collection as a variable 
+            let postId = parseInt(req.query.id);
+            
+            if(req.body.created_title === null) {
+                alert("Please add a Title!"); return;
+            }
+            if(req.body.created_text === null) {
+                alert("Please add some Content!"); return;
+            }
+
+            setTimeout(async () => {
+
+                await db.updateOne(Post,{'postId':postId},
+                {
+                    title: req.body.created_title,
+                    content:req.body.created_text,
+                    isEdited: true,
+                    editDate: new Date(),
+                })
+                
+                res.redirect(`/post?id=${postId}`);                  // Then redirect to post
+            }, 50);
         }
+
+
     
         
 }

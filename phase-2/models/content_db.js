@@ -57,6 +57,12 @@ var postSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    isEdited:{
+        type: Boolean
+    },
+    editDate:{
+        type: Date,
+    },
 });
 
 // defines the schema for forum comments

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" meda="all" href="/css/noire.css">
+	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="/css/navbar.css">
+    <link rel="icon" href="/images/logo.png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kahit Ano | Editing a Post</title>
+</head>
+<body>
+    
+    {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer }}    <!-- Placeholder for the searchbar/header -->
+
+    <div><p class="forum_header" style="padding-top: 50px;">EDIT A POST</p></div>
+
+        <div class="hori" style="justify-content: center; ">
+           
+            <div class="vert block">
+
+                <div class = forum_post>
+                    <div class="hori">
+                        <div class="vert">
+                            <img src="data:{{loggeduser.dp.contentType}};base64, {{loggeduser.dpBuffer}}" width="75px" height="75px" class="post_profpic">
+                            <div class = "hori" style="justify-content: center;">
+                            </div>
+                        </div>
+                        <div class="vert">
+                            <div><a href="" target="self" ><p class="post_author">Posted by {{loggeduser.username}}</p></a></div>
+                            <form class="vert" id="post_template" method ="post">
+                                    <input class="post_title" type="text" id="created_title" name="created_title" placeholder="Title..." value="{{origpost.title}}" required>
+                                <textarea class="post_text" type="text" id="created_text" name="created_text" placeholder="Text..." required>{{origpost.content}}</textarea>
+
+
+                                <button type="submit" class="create_button">EDIT</button>    
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+        
+            </div>
+
+            <!-- Sidebar Elements -->
+            <div class="vert block">
+
+            </div>
+
+        </div>
+</body>
+</html>
+
+
+<!-- 
+TODO:
+1. change img source to accomodate database
+2. change href to expanded post, or initialize an expanded post page
+3. Fix functionality (if broken)
+-->

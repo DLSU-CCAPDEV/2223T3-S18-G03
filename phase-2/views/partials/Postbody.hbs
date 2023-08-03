@@ -34,7 +34,11 @@
                     <div id="comment_icon" style="margin-left:15px"> </div><div class="post_options">Comments: {{commentnum}}</div>
                 </div>
             <div class = "hori" >
-                <div class="post_options">Posted {{postSpan}}</div>
+                        {{#if isEdited}}
+                            <div class="post_options"  style=" font-weight:100">Posted {{postSpan}}, edited {{editSpan}}</div>
+                        {{else}}
+                             <div class="post_options"  style=" font-weight:100">Posted {{postSpan}}</div>
+                        {{/if}}
             </div>
         </div>
     </a>

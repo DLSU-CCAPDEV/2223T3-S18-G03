@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 //mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
 const connection = mongoose.connection;             // Store database as a variable
 const db = require('../models/db.js');
-const {Post} = require('../models/content_db.js');
+const {Post, Comment} = require('../models/content_db.js');
 //var logger = require('../logger.json');              // Get logged in condition
 /*
     defines an object which contains functions executed as callback
@@ -51,7 +51,14 @@ const controller = {
                     var endDate = new Date();
                     var startDate = post.postDate;
                     var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
-                    post.span= TimeCalculator(interval)         
+                    post.span= TimeCalculator(interval)
+                    
+                    if(post.isEdited){ // Adds "Commented 34 minutes ago, etc."
+                        var endDate = new Date();
+                        var startDate = post.editDate;
+                        var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                        post.editSpan= TimeCalculator(interval)     
+                    }
                     
                     /* If post is edited, do this
                     if(post.posterId === req.session.userId){
@@ -150,7 +157,7 @@ const controller = {
 
                     if(post.posterId === req.session.userId){ // Adds edit and delete icons if poster is the post
                         post.delete = '<div class="delete_icon" style="margin-left:15px"> </div><div class="post_options" style=" font-weight:100">Delete your post </div>';
-                        post.edit = '<div class="edit_icon"></div><div class="post_options" style=" font-weight:100"> Edit your post</div>';
+                        post.edit = `<a href="/editpost?id=${post.postId}"><div class="edit_icon"></div></a><div class="post_options" style=" font-weight:100"> Edit your post</div>`;
                     }else {
                         post.delete = '<div> </div>';
                         post.edit = '<div> </div>';
@@ -178,8 +185,12 @@ const controller = {
                 }
             }
 
-
-
+            if(post.isEdited){ // Adds "Edited 34 minutes ago, etc."
+                var endDate = new Date();
+                var startDate = post.editDate;
+                var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                post.editSpan= TimeCalculator(interval)     
+            }
 
             res.render('Expanded Post', {post, comments, loggeduser });
         }, 100);
@@ -284,9 +295,11 @@ const controller = {
 
             getDelete: function (req, res) {
                 setTimeout(async () => {
-                    db.deleteOne(Post,{'posterId':req.session.userId});
+                    await db.deleteOne(Post,{'postId':req.body.id});
+                    await db.deleteMany(Comment,{'postId':req.body.id});
                     res.redirect('/');
                 }, 100);
+
             },
 }
 

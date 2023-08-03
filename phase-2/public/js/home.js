@@ -83,10 +83,12 @@ function refresh(){
     }
 }
 
+/*
 function deletepost(e){
     alert('Post deleted!');
     location.href='/delete';
 }
+*/
 
 function postshow(e){
     //alert('Post click');

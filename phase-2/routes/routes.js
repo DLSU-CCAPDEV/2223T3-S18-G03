@@ -37,6 +37,8 @@ app.get('/profile', controller.redirectProfile);
 
 app.get('/createpost', addPostcontroller.getAdd);   // Redirect to Create Post page
 app.post('/createpost', addPostcontroller.postAdd); // Creates a post
+app.get('/editpost', addPostcontroller.postEdit);   // Redirect to edit page
+app.post('/editpost', addPostcontroller.postEditsaved); // Edits the post frfr
 
 app.post('/post', addCommentcontroller.commentAdd);
 
@@ -50,6 +52,6 @@ app.post('/register', userAccountcontroller.postRegister); // Register user (and
 app.get('/results', controller.getSearchPosts);
 
 app.get('/vote', controller.getVote);
-app.get('/delete', controller.getDelete);
+app.post('/delete', controller.getDelete);
 
 module.exports = app;

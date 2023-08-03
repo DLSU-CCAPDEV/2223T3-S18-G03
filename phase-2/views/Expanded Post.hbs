@@ -38,7 +38,11 @@
         {{/if}}
                 <div class = "hori" style="margin-top:-15px; margin-bottom:15px; justify-content:space-between;">
                     <div class = "hori" >
-                        <div class="post_options"  style=" font-weight:100">Posted {{post.span}}</div>
+                        {{#if post.isEdited}}
+                            <div class="post_options"  style=" font-weight:100">Posted {{post.span}}, edited {{post.editSpan}}</div>
+                        {{else}}
+                             <div class="post_options"  style=" font-weight:100">Posted {{post.span}}</div>
+                        {{/if}}
                     </div>
                     <div class="hori">
                         {{#if loggeduser.loggedIn}}
@@ -103,5 +107,41 @@
         }
     }
 </script>
+
+<script type="text/javascript">
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    var deletes = document.getElementsByClassName("delete_icon");
+    for(var i = 0; i < deletes.length; i++) {
+        var deleter = deletes[i];
+        deleter.addEventListener("click", deletepost);
+    }
+    function deletepost(e){
+        alert('Post deleted!');
+        $.post('/delete',{id: id});
+        window.location.replace('/');
+    }
+</script>
+
+<script type="text/javascript"> // Deleting
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get('id');
+
+    var deletes = document.getElementsByClassName("delete_icon");
+    for(var i = 0; i < deletes.length; i++) {
+        var deleter = deletes[i];
+        deleter.addEventListener("click", deletepost);
+    }
+    function deletepost(e){
+        alert('Post deleted!');
+        $.post('/delete',{id: id});
+        window.location.replace('/');
+    }
+</script>
+
+
+
+
 </html>
 
