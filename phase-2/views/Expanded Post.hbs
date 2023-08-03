@@ -18,36 +18,69 @@
                 <div class="downvote"></div>
             </div>
             <div class=vert>
-                <div class="header">{{post.title}}</div>
+                <div class="hori" style="justify-content:space-between; width: 720px;"> 
+                    <div class="header">{{post.title}}</div>
+                    <div>                    
+
+                        
+                    </div>
+
+                </div>
                 <div class="user">
-                    <img src="data:{{post.dpType}};base64, {{post.dpBuffer}}" class="pfp op">
-                    <div class="username">{{post.poster}}</div>
+                    <a href="/profile?id={{post.posterId}}"><img src="data:{{post.dpType}};base64, {{post.dpBuffer}}" class="pfp op"></a>
+                    <a href="/profile?id={{post.posterId}}"><div class="username">{{post.poster}}</div></a>
                 </div>
                 <div class="content">{{post.content}}</div>
             </div>
         </div>
-        <textarea placeholder="Add a comment..." id="add-comment"></textarea>
-        <div class="header">Comments:</div>
-        <div id="comments">
-            {{#each comments}}
-            <div class="vert main comment">
-                <div class="hori">
-                    <div class="vert rate">
-                        <div class="upvote"></div>
-                        <div class="vote">{{score}}</div>
-                        <div class="downvote"></div>
+        {{#if loggeduser.loggedIn}}
+                    <textarea placeholder="Add a comment..." id="add-comment"></textarea>
+        {{/if}}
+                <div class = "hori" style="margin-top:-15px; margin-bottom:15px; justify-content:space-between;">
+                    <div class = "hori" >
+                        <div class="post_options"  style=" font-weight:100">Posted {{post.span}}</div>
                     </div>
-                    <div class="vert comment-proper">
-                        <div class="user">
-                            <a href="/profile?id={{commenterId}}"><img src="data:{{dpType}};base64, {{dpBuffer}}" class="pfp"></a>
-                            <div class="username">{{postUsername}}</div>
-                        </div>
-                        <div class="content">{{comment}}</div>
-                        <textarea class="add-reply" placeholder="Add a reply..."></textarea>
+                    <div class="hori">
+                        {{#if loggeduser.loggedIn}}
+                            {{{post.edit}}}
+                            {{{post.delete}}}
+                        {{/if}}
                     </div>
                 </div>
-            </div>
-            {{/each}}
+        
+
+
+        <div class="header" style="margin-bottom:20px">
+                <hr class="separator">
+            {{#if comments}}
+                <p style="margin-left:-20px; margin-top:0px; margin-bottom:0px">Comments:</p>
+            {{else}}
+                <p style="margin-left:-20px; text-align:center; color:gray; font-weight:100;">No comments yet, be the first!</p>
+            {{/if}}
+        </div>
+        <div id="comments">
+                {{#each comments}}
+                <div class="vert main comment">
+                    <div class="hori">
+                        <div class="vert rate">
+                            <div class="upvote"></div>
+                            <div class="vote">{{score}}</div>
+                            <div class="downvote"></div>
+                        </div>
+                        <div class="vert comment-proper">
+                            <div class="user">
+                                <a href="/profile?id={{commenterId}}"><img src="data:{{dpType}};base64, {{dpBuffer}}" class="pfp"></a>
+                                <a href="/profile?id={{commenterId}}"><div class="username">{{postUsername}}</div></a>
+                                <div  style="font-size: 0.8em; color:grey; font-weight:100; font-style:italic">Commented {{span}}</div>
+                            </div>
+                            <div class="content">{{comment}}</div>
+                    {{#if loggedIn}}
+                        <textarea class="add-reply" placeholder="Add a reply..."></textarea>
+                    {{/if}}
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
 
         </div>
     </div>

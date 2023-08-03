@@ -362,6 +362,29 @@ select {
     width:24px;
     height:24px;
     background-position: -170px 0px;
+    font-size: 0.5em;
+    transition: 0.3s;
+}
+
+.delete_icon:hover {
+    cursor: pointer;
+    margin-top:5px;
+}
+
+.edit_icon {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    margin-top: 10px;
+    margin-right: 0px;
+    width:24px;
+    height:24px;
+    background-position: -72px 0px;
+    transition: 0.3s;
+}
+
+.edit_icon:hover {
+    cursor: pointer;
+    margin-top:5px;
 }
 
 
@@ -381,9 +404,6 @@ select {
     height:24px;
     background-position: 0px 0px;
 }
-.upvote:hover{
-    cursor: pointer;
-}
 
 .vote{
     margin-top: 5px;
@@ -398,9 +418,6 @@ select {
     width:24px;
     height:24px;
     background-position: -24px 0px;
-}
-.downvote:hover{
-    cursor: pointer;
 }
 
 .upvote_filled{

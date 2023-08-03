@@ -21,6 +21,12 @@ var userSchema = new mongoose.Schema({
     userId: {
         type: Number,
         required: true
+    },
+    upvoted: {
+        type: Array,
+    },
+    downvoted: {
+        type: Array,
     }
 });
 
@@ -74,7 +80,10 @@ var commentSchema = new mongoose.Schema({
     commenterId: {
         type: Number,
         required: true
-    }
+    },
+    commentDate: {
+        type: Date,
+    },
 });
 
 var loggerSchema = new mongoose.Schema({

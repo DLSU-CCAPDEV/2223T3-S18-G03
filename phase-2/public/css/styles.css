@@ -113,21 +113,24 @@ a .button{
     margin: auto;
     margin-top: 100px;
     background-color: #37383a;
-    padding: 10px;
+    padding: 20px;
     border-color: #000000;
     border-style: solid;
     border-radius: 10px;
     border-width: 2px;
 }
-.post:hover{
-    border-color: aliceblue;
-}
+
 .pfp{
     height: 24px;
     width: 24px;
     border-radius: 50%;
     vertical-align: middle;
 }
+
+.pfp:hover{
+    cursor: pointer;
+}
+
 .op{
     height: 30px;
     width: 30px;
@@ -142,16 +145,18 @@ a .button{
 .header{
     font-size: 30px;
     font-weight: 700;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 .content{
-    font-size: 24px;
-    font-weight: 200;
+    font-size: 21px;
+    font-weight: 100;
+    margin-top: 10px;
     margin-bottom: 15px;
+    margin-right: 15px;
 }
 .rate{
     align-items: center;
-    padding-right: 8px;
+    padding-right: 18px;
 }
 .upvote{
     background-image:url(../images/sprite_sheets/post-sprites.png);
@@ -159,7 +164,18 @@ a .button{
     width:24px;
     height:24px;
     background-position: 0px 0px;
+    transition: 0.2s;
 }
+.upvote:hover{
+    background-image:url(../images/sprite_sheets/post-sprites_filled.png);
+    cursor: pointer;
+}
+
+.upvote.active{
+    background-image:url(../images/sprite_sheets/post-sprites_filled.png);
+}
+
+
 .vote{
     font-size: 0.75em;
     padding-top: 3px;
@@ -171,7 +187,16 @@ a .button{
     width:24px;
     height:24px;
     background-position: -24px 0px;
+    transition: 0.2s;
 }
+.downvote:hover{
+    background-image:url(../images/sprite_sheets/post-sprites_filled.png);
+    cursor: pointer;
+}
+.downvote.active{
+    background-image:url(../images/sprite_sheets/post-sprites_filled.png);
+}
+
 #add-comment{
     padding: 7px;
     margin: 1px;
@@ -185,6 +210,7 @@ a .button{
 }
 .comment-proper{
     flex-grow: 9999;
+    margin-bottom: 30px;
 }
 .reply{
     margin-left: 40px;

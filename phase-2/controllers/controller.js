@@ -139,24 +139,49 @@ const controller = {
             post.poster = user.username;
             post.dpType = user.dp.contentType;
             post.dpBuffer = user.dp.data.toString('base64');
+            
+            
+            var endDate = new Date();
+            var startDate = post.postDate;
+            var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+            post.span= TimeCalculator(interval)     
+
             let comments = await commcoll.find({'postId': id}).toArray();
+
+                    if(post.posterId === req.session.userId){ // Adds edit and delete icons if poster is the post
+                        post.delete = '<div class="delete_icon" style="margin-left:15px"> </div><div class="post_options" style=" font-weight:100">Delete your post </div>';
+                        post.edit = '<div class="edit_icon"></div><div class="post_options" style=" font-weight:100"> Edit your post</div>';
+                    }else {
+                        post.delete = '<div> </div>';
+                        post.edit = '<div> </div>';
+                    }
+
+                        // For rendering navbar
+                        var loggeduser;
+                        if(req.session.userId){
+                            loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+                            loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
+                            loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+                        }
+
             for (const comment of comments){
                 let founduser = await usercoll.findOne({'userId': comment.commenterId});
+                if(req.session.userId) comment.loggedIn = true;
                 comment.postUsername = founduser.username;
                 comment.dpType = founduser.dp.contentType;
                 comment.dpBuffer = founduser.dp.data.toString('base64');
+                if(comment.commentDate){ // Adds "Commented 34 minutes ago, etc."
+                    var endDate = new Date();
+                    var startDate = comment.commentDate;
+                    var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                    comment.span= TimeCalculator(interval)     
+                }
             }
 
-            // For rendering navbar
-            var loggeduser;
-            if(req.session.userId){
-                loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
-                loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
-                loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
-            }
 
 
-            res.render('Expanded Post', {post, comments, loggeduser});
+
+            res.render('Expanded Post', {post, comments, loggeduser });
         }, 100);
     },
 
@@ -308,7 +333,7 @@ function TimeCalculator(seconds) {
         mDisplay = m > 0 ? m + (m === 1 ? " minute " : " minutes ") : "";
         return mDisplay + " ago";
     }
-    else return "recently";
+    else return "just recently";
     //else if(s) sDisplay = s > 0 ? s + (s === 1 ? " second" : " seconds ") : "";
     //return yDisplay + moDisplay + dDisplay + hDisplay + mDisplay + sDisplay + " ago";
   }

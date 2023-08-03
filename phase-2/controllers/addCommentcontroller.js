@@ -27,7 +27,8 @@ const addCommentcontroller = {
                     commentId: lastcomment.commentId+1, 
                     score: 0,
                     postId: post_id,
-                    commenterId: req.session.userId
+                    commenterId: req.session.userId,
+                    commentDate: new Date(),
                 };
 
                 await db.insertOne(Comment, newComment);  // Then add post to database
