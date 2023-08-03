@@ -31,7 +31,7 @@ const addCommentcontroller = {
                 };
 
                 await db.insertOne(Comment, newComment);  // Then add post to database
-            }, 5);
+            }, 100);
         
         }
 }

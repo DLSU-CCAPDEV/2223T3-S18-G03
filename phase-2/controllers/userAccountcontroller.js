@@ -188,7 +188,7 @@ const addPostcontroller = {
             loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
 
             res.render('Create', { loggeduser });                               // render `../views/Home.hbs with posts from database and the logged in user`
-        }, 5);
+        }, 100);
         }
     
         

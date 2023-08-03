@@ -79,7 +79,7 @@ const controller = {
                 }
                 
                 res.render('Home', { AllPosts, loggeduser, stats });                               // render `../views/Home.hbs with posts from database and the logged in user`
-            }, 5);
+            }, 100);
         },
 
 
@@ -125,7 +125,7 @@ const controller = {
 
             res.render('Profile', {user, post, stat});
 
-        }, 5);
+        }, 100);
     },
 
     getExpandedPost: function (req, res) {
@@ -157,7 +157,7 @@ const controller = {
 
 
             res.render('Expanded Post', {post, comments, loggeduser});
-        }, 5);
+        }, 100);
     },
 
     /*
@@ -212,7 +212,7 @@ const controller = {
                 
                 
                 res.render('SearchResults', { AllPosts, loggeduser });                               // render `../views/SearchResults.hbs with posts from database and the logged in user`
-            }, 5);
+            }, 100);
         },
 
         getUser: function (req, res) {
@@ -224,7 +224,7 @@ const controller = {
                 let result = await usercoll.findOne({username: username, password: password});
 
                 res.send(result);
-            }, 5);
+            }, 100);
         },
         /*
             for deleting a users own posts
@@ -254,14 +254,14 @@ const controller = {
             getVote: function (req, res) {
                 setTimeout(async () => {
 
-                }, 5);
+                }, 100);
             },
 
             getDelete: function (req, res) {
                 setTimeout(async () => {
                     db.deleteOne(Post,{'posterId':req.session.userId});
                     res.redirect('/');
-                }, 5);
+                }, 100);
             },
 }
 
