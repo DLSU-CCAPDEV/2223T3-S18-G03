@@ -33,7 +33,7 @@ await db.connect();
 */
 var userNew = {
     username: 'Anyalover69',
-    pw: '123123',
+    pw: 'bfgbbgbsrgrtretr423568we90werhj324',
     bio: `anya anya anya`,
     dp:{
         data: 1,
@@ -56,7 +56,7 @@ await db.insertOne(User, userNew);
 */
 var userNew = {
     username: 'dankmeemer',
-    pw: '8700',
+    pw: 'strhysehbjsdfgl423568we90werhj324',
     bio: `XDXDXD MEMER!!!`,
     dp:{
         data: 1,
@@ -80,7 +80,7 @@ await db.insertOne(User, userNew);
 */
 var userNew = {
     username: 'totallynotacatfish',
-    pw: 'catgirl123',
+    pw: 'rqaaaatrhysehbjwyertyrtgxxerhj324',
     bio: `meow uwu`,
     dp:{
         data: 1,
@@ -104,7 +104,7 @@ await db.insertOne(User, userNew);
 */
 var userNew = {
     username: 'HighTierHuman',
-    pw: 'ALPHAMALE',
+    pw: 'r4w3eerddxczxzxhj7086546rsdfsdffe',
     bio: `GRAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH`,
     dp:{
         data: 1,
@@ -127,7 +127,7 @@ await db.insertOne(User, userNew);
 */
 var userNew = {
     username: 'Trick1G',
-    pw: 'ILOVELEAGUE',
+    pw: '67i78975urytgdfdxczxceeerqw543sdfswebbbawe',
     bio: `LEAGUE PLAYER`,
     dp:{
         data: 1,
@@ -259,7 +259,7 @@ var commentNew = {
 	postId: 9000000000000003,
 	commenterId: 90000001,
     parentId: 0,
-
+    postDate: new Date("2022-03-21"),
 };
 
 /*
@@ -279,6 +279,7 @@ var commentNew = {
 	postId: 9000000000000001,
 	commenterId: 90000002,
     parentId: 0,
+    postDate: new Date("2022-03-21"),
 };
 
 /*
@@ -298,6 +299,7 @@ var commentNew = {
 	postId: 9000000000000004,
 	commenterId: 90000003,
     parentId: 0,
+    postDate: new Date("2022-03-21"),
 };
 
 /*
@@ -317,6 +319,7 @@ var commentNew = {
 	postId: 9000000000000002,
 	commenterId: 90000004,
     parentId: 0,
+    postDate: new Date("2022-03-21"),
 };
 
 /*
@@ -336,6 +339,7 @@ var commentNew = {
 	postId: 9000000000000001,
 	commenterId: 90000005,
     parentId: 0,
+    postDate: new Date("2022-03-21"),
 };
 
 /*
