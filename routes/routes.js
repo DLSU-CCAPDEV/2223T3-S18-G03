@@ -41,6 +41,7 @@ app.post('/createpost', addPostcontroller.postAdd); // Creates a post
 app.get('/editpost', addPostcontroller.postEdit);   // Redirect to edit page
 app.post('/editpost', addPostcontroller.postEditsaved); // Edits the post frfr
 
+
 app.post('/post', addCommentcontroller.commentAdd);
 
 app.get('/login', userAccountcontroller.getLogin);  // Redirect to login page
