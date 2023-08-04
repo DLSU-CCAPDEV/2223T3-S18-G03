@@ -370,6 +370,22 @@ select {
     cursor: pointer;
 }
 
+.delete_icon2 {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    margin-top: 10px;
+    margin-right: 0px;
+    width:24px;
+    height:24px;
+    background-position: -170px 0px;
+    font-size: 0.5em;
+    transition: 0.3s;
+}
+
+.delete_icon2:hover {
+    cursor: pointer;
+}
+
 .edit_icon {
     background-image:url(../images/sprite_sheets/post-sprites.png);
     margin: 0;
@@ -384,6 +400,22 @@ select {
 .edit_icon:hover {
     cursor: pointer;
 }
+
+.edit_icon2 {
+    background-image:url(../images/sprite_sheets/post-sprites.png);
+    margin: 0;
+    margin-top: 10px;
+    margin-right: 0px;
+    width:24px;
+    height:24px;
+    background-position: -72px 0px;
+    transition: 0.3s;
+}
+
+.edit_icon2:hover {
+    cursor: pointer;
+}
+
 
 
 .self_post {

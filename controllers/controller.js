@@ -193,12 +193,13 @@ const controller = {
                 loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
                 loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
                 loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
-            
+                
+                var downindex = loggeduser.downvoted.indexOf(post.postId);
+                var upindex = loggeduser.upvoted.indexOf(post.postId);
             
             }
 
-            var downindex = loggeduser.downvoted.indexOf(post.postId);
-            var upindex = loggeduser.upvoted.indexOf(post.postId);
+
 
             if(downindex !== -1) post.down = "active"; // If user has downvoted this already..
             if(upindex !== -1) post.up = "active";       // If user has upvoted this already..
@@ -220,8 +221,10 @@ const controller = {
 
             console.log(comments);
             for (const comment of comments){
+                if(req.session.userId){
                 var downindex = loggeduser.downvoted.indexOf(comment.commentId);
                 var upindex = loggeduser.upvoted.indexOf(comment.commentId);
+                }
 
                 if(downindex !== -1) comment.down = "active"; // If user has downvoted this already..
                 if(upindex !== -1) comment.up = "active";       // If user has upvoted this already..
@@ -236,6 +239,22 @@ const controller = {
                     var startDate = comment.commentDate;
                     var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
                     comment.span= TimeCalculator(interval)     
+                }
+
+                if(comment.isEdited){ // Adds "Commented 34 minutes ago, etc."
+                    var endDate = new Date();
+                    var startDate = comment.editDate;
+                    var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
+                    comment.editSpan= TimeCalculator(interval)     
+                }
+
+                if(comment.commenterId === req.session.userId){ // Adds edit and delete icons if poster is the post
+                    
+                    comment.delete = '<div class="delete_icon2" style="margin-left:15px"> </div><div class="post_options" style=" font-weight:100">Delete your reply </div>';
+                    comment.edit = `<div class="edit_icon2"></div><div class="post_options" style=" font-weight:100"> Edit your reply</div>`;
+                }else {
+                    comment.delete = '<div> </div>';
+                    comment.edit = '<div> </div>';
                 }
             }
 

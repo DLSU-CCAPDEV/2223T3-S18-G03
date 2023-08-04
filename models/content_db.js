@@ -94,6 +94,12 @@ var commentSchema = new mongoose.Schema({
     commentDate: {
         type: Date,
     },
+    isEdited:{
+        type: Boolean
+    },
+    editDate:{
+        type: Date,
+    },
 });
 
 var loggerSchema = new mongoose.Schema({

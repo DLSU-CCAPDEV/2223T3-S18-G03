@@ -79,11 +79,21 @@
                             <div class="user">
                                 <a href="/profile?id={{commenterId}}"><img src="data:{{dpType}};base64, {{dpBuffer}}" class="pfp"></a>
                                 <a href="/profile?id={{commenterId}}"><div class="username">{{postUsername}}</div></a>
-                                <div  style="font-size: 0.8em; color:grey; font-weight:100; font-style:italic">Commented {{span}}</div>
+                                {{#if isEdited}}
+                                    <div  style="font-size: 0.8em; color:grey; font-weight:100; font-style:italic">Commented {{span}}, edited {{editSpan}}</div>
+                                {{else}}
+                                    <div  style="font-size: 0.8em; color:grey; font-weight:100; font-style:italic">Commented {{span}}</div>
+                                {{/if}}
+
                             </div>
                             <div class="content">{{comment}}</div>
                     {{#if loggedIn}}
                         <textarea class="add-reply" placeholder="Add a reply..."></textarea>
+                        <div class="hori">
+                            <p hidden>{{commentId}}</p>
+                                {{{edit}}}
+                                {{{delete}}}
+                        </div>
                     {{/if}}
                         </div>
                     </div>
@@ -113,8 +123,8 @@
 </script>
 
 <script type="text/javascript">
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    var urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get('id');
 
     var deletes = document.getElementsByClassName("delete_icon");
     for(var i = 0; i < deletes.length; i++) {
@@ -129,8 +139,8 @@
 </script>
 
 <script type="text/javascript"> // Deleting
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get('id');
+    var urlParams = new URLSearchParams(window.location.search);
+    var id = urlParams.get('id');
 
     var deletes = document.getElementsByClassName("delete_icon");
     for(var i = 0; i < deletes.length; i++) {
@@ -143,6 +153,49 @@
         window.location.replace('/');
     }
 </script>
+
+<script type="text/javascript"> // Deleting
+    var urlParams = new URLSearchParams(window.location.search);
+    var postid = urlParams.get('id');
+
+    var deletes = document.getElementsByClassName("delete_icon2");
+    for(var i = 0; i < deletes.length; i++) {
+        var deleter = deletes[i];
+        deleter.addEventListener("click", deletepost);
+    }
+    function deletepost(e){
+
+        var parent = e.target.parentElement;
+        var id = Number(parent.children[0].innerHTML); // Hidden element that contains the ID of the post!
+        console.log(id);
+
+        alert('Comment deleted!');
+        $.post('/deletecomment',{id: id, postid: postid});
+        window.location.replace(`/post?id=${postid}`);
+    }
+</script>
+
+<script type="text/javascript"> // Editing comments
+    var urlParams = new URLSearchParams(window.location.search);
+    var postid = urlParams.get('id');
+
+    var deletes = document.getElementsByClassName("edit_icon2");
+    for(var i = 0; i < deletes.length; i++) {
+        var deleter = deletes[i];
+        deleter.addEventListener("click", deletepost);
+    }
+    function deletepost(e){
+            console.log("Hello");
+
+        var parent = e.target.parentElement;
+        var id = Number(parent.children[0].innerHTML); // Hidden element that contains the ID of the comment!
+
+        window.location.replace(`/editcomment?id=${id}&postid=${postid}`);
+        //$.get('/editcomment?id',{id: id, postid: postid});
+        //window.location.replace(`/post?id=${postid}`);
+    }
+</script>
+
 
 <script>
     const add_reply = document.getElementsByClassName("add-reply");

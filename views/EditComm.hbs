@@ -8,13 +8,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kahit Ano | Editing a Post</title>
+    <title>Kahit Ano | Editing a Comment</title>
 </head>
 <body>
     
     {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer }}    <!-- Placeholder for the searchbar/header -->
 
-    <div><p class="forum_header" style="padding-top: 50px;">EDIT A POST</p></div>
+    <div><p class="forum_header" style="padding-top: 50px;">EDIT A COMMENT</p></div>
 
         <div class="hori" style="justify-content: center; ">
            
@@ -30,8 +30,7 @@
                         <div class="vert">
                             <div><a href="" target="self" ><p class="post_author">Posted by {{loggeduser.username}}</p></a></div>
                             <form class="vert" id="post_template" method ="post">
-                                    <input class="post_title" type="text" id="created_title" name="created_title" placeholder="Title..." value="{{origpost.title}}" maxlength="100"required>
-                                <textarea class="post_text" type="text" id="created_text" name="created_text" placeholder="Text..." required>{{origpost.content}}</textarea>
+                                <textarea class="post_text" type="text" id="created_text" name="created_text" placeholder="Text..." required>{{origpost.comment}}</textarea>
 
 
                                 <button type="submit" class="create_button">EDIT</button>    

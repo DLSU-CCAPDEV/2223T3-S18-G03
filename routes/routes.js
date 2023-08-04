@@ -41,6 +41,9 @@ app.post('/createpost', addPostcontroller.postAdd); // Creates a post
 app.get('/editpost', addPostcontroller.postEdit);   // Redirect to edit page
 app.post('/editpost', addPostcontroller.postEditsaved); // Edits the post frfr
 
+app.get('/editcomment', addPostcontroller.commEdit);   // Redirect to edit page
+app.post('/editcomment', addPostcontroller.commEditsaved); // Edits the post frfr
+app.post('/deletecomment', addPostcontroller.getCommDelete);
 
 app.post('/post', addCommentcontroller.commentAdd);
 
