@@ -55,4 +55,7 @@ app.get('/results', controller.getSearchPosts);
 app.get('/vote', controller.getVote);
 app.post('/delete', controller.getDelete);
 
+app.post('/downvote', controller.downvote);
+app.post('/upvote', controller.upvote);
+
 module.exports = app;

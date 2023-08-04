@@ -13,9 +13,11 @@
     <div class="post vert">
         <div class="hori">
             <div class="vert rate">
-                <div class="upvote"></div>
+                <div class="upvote {{post.up}}"></div>
                 <div class="vote">{{post.score}}</div>
-                <div class="downvote"></div>
+                <div class="downvote {{post.down}}"></div>
+                <p hidden>{{post.postId}}</p>
+                <p hidden>{{loggeduser.loggedIn}}</p>
             </div>
             <div class=vert>
                 <div class="hori" style="justify-content:space-between; width: 720px;"> 
@@ -67,9 +69,11 @@
                 <div class="vert main comment">
                     <div class="hori">
                         <div class="vert rate">
-                            <div class="upvote"></div>
+                            <div class="upvote {{up}}"></div>
                             <div class="vote">{{score}}</div>
-                            <div class="downvote"></div>
+                            <div class="downvote {{down}}"></div>
+                            <p hidden>{{commentId}}</p>
+                            <p hidden>{{loggedIn}}</p>
                         </div>
                         <div class="vert comment-proper">
                             <div class="user">
@@ -137,7 +141,10 @@
         alert('Post deleted!');
         $.post('/delete',{id: id});
         window.location.replace('/');
+    }
+</script>
 
+<script>
     const add_reply = document.getElementsByClassName("add-reply");
     for(var i = 0; i < add_reply.length; i++) {
         var reply = add_reply[i];

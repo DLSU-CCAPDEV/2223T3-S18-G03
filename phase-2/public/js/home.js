@@ -76,11 +76,6 @@ function refresh(){
         var homepost = home_posts[i];
         homepost.addEventListener("click", postshow);
     }
-    var deletes = document.getElementsByClassName("delete_icon");
-    for(var i = 0; i < deletes.length; i++) {
-        var deleter = deletes[i];
-        deleter.addEventListener("click", deletepost);
-    }
 }
 
 /*
@@ -98,39 +93,79 @@ function postshow(e){
 
 function upvote(e){
     e.stopPropagation();
-    parent = e.target.parentElement;
-    if(e.target.className.includes("active")){
-        //e.target.className = 'upvote'           // Icon Change
-        e.target.classList.remove("active");
-        parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 1).toString();
-        //location.href = '/vote?query=-1';
-    }else if(parent.children[2].className.includes("active")){
-        //e.target.className = 'upvote'           // Icon Change
-        parent.children[2].classList.remove("active");
-        e.target.classList.add("active");
-        parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 2).toString();
-    }else{
-        //e.target.className = 'upvote_filled'    // Icon Change
-        e.target.classList.add("active");
-        parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 1).toString();
+    //const urlParams = new URLSearchParams(window.location.search);
+    //const id = urlParams.get('id');
+    var change = 0;
+
+    var parent = e.target.parentElement;
+    var id = parent.children[3].innerHTML; // Hidden element that contains the ID of the post!
+    var logged = parent.children[4].innerHTML; // If logged in or not
+
+    if(logged) {
+        if(e.target.className.includes("active")){ // Undo upvote (double click) (-1)
+            e.target.classList.remove("active");
+            parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 1).toString();
+            //location.href = '/vote?query=-1';
+            change = -1;
+            $.post('/upvote',{id: id, change: change});
+    
+        }else if(parent.children[2].className.includes("active")){ // Clicking UP while DOWN (+2)
+            parent.children[2].classList.remove("active");
+            e.target.classList.add("active");
+            parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 2).toString();
+            change = 2;
+            $.post('/upvote',{id: id, change: change});
+    
+        }else{ // First time pressing   (+1)
+            e.target.classList.add("active");
+            parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 1).toString();
+            change = 1;
+            $.post('/upvote',{id: id, change: change});
+        }
+    } 
+    else{
+        alert('You have to be logged in to vote!');
     }
+
+
+
+
+
 }
 function downvote(e){
     e.stopPropagation();
-    parent = e.target.parentElement;
-    if(e.target.className.includes("active")){
-        //e.target.className = 'downvote'         // Icon Change
-        e.target.classList.remove("active");
-        parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 1).toString();
-    }else if(parent.children[0].className.includes("active")){
-        //e.target.className = 'downvote'         // Icon Change
-        parent.children[0].classList.remove("active");
-        e.target.classList.add("active");
-        parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 2).toString();
-    }else{
-        //e.target.className = 'downvote_filled'  // Icon Change
-        e.target.classList.add("active");
-        parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 1).toString();
+    var change = 0;
+
+    var parent = e.target.parentElement;
+    var id = parent.children[3].innerHTML; // Hidden element that contains the ID of the post!
+    var logged = parent.children[4].innerHTML; // If logged in or not
+
+    if(logged) {
+        if(e.target.className.includes("active")){ // Undo downvote (double click) (+1)
+            e.target.classList.remove("active");
+            parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) + 1).toString();
+            change = 1;
+            $.post('/downvote',{id: id, change: change});
+    
+        }else if(parent.children[0].className.includes("active")){  // Clicking DOWN while UP (-2)
+            parent.children[0].classList.remove("active");
+            e.target.classList.add("active");
+            parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 2).toString();
+            change = -2;
+            $.post('/downvote',{id: id, change: change});
+        }else{ // First time pressing   (-1)
+            e.target.classList.add("active");
+            parent.children[1].innerHTML = (parseInt(parent.children[1].innerHTML) - 1).toString();
+            change = -1;
+            $.post('/downvote',{id: id, change: change});
+    
+        }
     }
+    else{
+        alert('You have to be logged in to vote!');
+    }
+
+
+
 }
 

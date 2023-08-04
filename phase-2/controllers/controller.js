@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 //mongoose.connect('mongodb://127.0.0.1/Kahit-Ano');  // Connect to database
 const connection = mongoose.connection;             // Store database as a variable
 const db = require('../models/db.js');
-const {Post, Comment} = require('../models/content_db.js');
+const {Post, Comment, User} = require('../models/content_db.js');
 //var logger = require('../logger.json');              // Get logged in condition
 /*
     defines an object which contains functions executed as callback
@@ -169,13 +169,15 @@ const controller = {
             post.dpType = user.dp.contentType;
             post.dpBuffer = user.dp.data.toString('base64');
             
+
+
             
             var endDate = new Date();
             var startDate = post.postDate;
             var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
             post.span= TimeCalculator(interval)     
 
-            var comments = await commcoll.find({'postId': id}).toArray();
+            //var comments = await commcoll.find({'postId': id}).toArray();
 
                     if(post.posterId === req.session.userId){ // Adds edit and delete icons if poster is the post
                         post.delete = '<div class="delete_icon" style="margin-left:15px"> </div><div class="post_options" style=" font-weight:100">Delete your post </div>';
@@ -185,13 +187,21 @@ const controller = {
                         post.edit = '<div> </div>';
                     }
 
-                        // For rendering navbar
-                        var loggeduser;
-                        if(req.session.userId){
-                            loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
-                            loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
-                            loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
-                        }
+            // For rendering navbar
+            var loggeduser;
+            if(req.session.userId){
+                loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+                loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
+                loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+            
+            
+            }
+
+            var downindex = loggeduser.downvoted.indexOf(post.postId);
+            var upindex = loggeduser.upvoted.indexOf(post.postId);
+
+            if(downindex !== -1) post.down = "active"; // If user has downvoted this already..
+            if(upindex !== -1) post.up = "active";       // If user has upvoted this already..
 
             
             var comments = await commcoll.find({'postId': id, 'parentId': 0}).toArray();
@@ -210,6 +220,12 @@ const controller = {
 
             console.log(comments);
             for (const comment of comments){
+                var downindex = loggeduser.downvoted.indexOf(comment.commentId);
+                var upindex = loggeduser.upvoted.indexOf(comment.commentId);
+
+                if(downindex !== -1) comment.down = "active"; // If user has downvoted this already..
+                if(upindex !== -1) comment.up = "active";       // If user has upvoted this already..
+
                 let founduser = await usercoll.findOne({'userId': comment.commenterId});
                 if(req.session.userId) comment.loggedIn = true;
                 comment.postUsername = founduser.username;
@@ -262,6 +278,14 @@ const controller = {
         getSearchPosts: function (req, res) {
             setTimeout(async () => {
                 
+                // The following 3 lines might be useful for rendering the 'Header' partial everywhere
+                var loggeduser;
+                if(req.session.userId){
+                    loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
+                    loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
+                    loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+                }
+
                 let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
                 let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
                 let commcoll = connection.db.collection("comments");
@@ -307,7 +331,7 @@ const controller = {
                 }
                 
                 
-                res.render('SearchResults', { AllPosts });                               // render ../views/SearchResults.hbs with posts from database and the logged in user
+                res.render('SearchResults', { AllPosts, loggeduser });                               // render ../views/SearchResults.hbs with posts from database and the logged in user
             }, 100);
         },
 
@@ -371,7 +395,212 @@ const controller = {
                     result = await db.updateOne(User, {'userId': userid}, {'username': username, 'bio': bio});
                     res.send(result);
                 }, 100);
-            }
+            },
+
+
+
+            upvote: function (req, res) {
+                setTimeout(async () => {
+                    var change = Number(req.body.change);
+                    var id = Number(req.body.id);
+
+                    let commcoll = connection.db.collection("comments");
+                    let postcoll = connection.db.collection("posts");
+                    let usercoll = connection.db.collection("users");
+                    
+                    let loggeduser = await usercoll.findOne({'userId': req.session.userId})
+                    let post = await postcoll.findOne({'postId': id});
+                    let comment = await commcoll.findOne({'commentId': id});
+
+
+
+
+                    var newUparray = [];
+                    if(loggeduser.upvoted) newUparray = loggeduser.upvoted;
+
+                    var newDownarray = [];
+                    if(loggeduser.downvoted) newDownarray = loggeduser.downvoted;
+
+                    if(post)
+                    {
+                        var newscore = post.score+change;
+                        switch(change){
+                            case -1:
+                                var index = newUparray.indexOf(id);
+                                newUparray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray
+                                });
+                                break;
+                            case 1:
+                                newUparray.push(id);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray
+                                });
+                                break;
+                            case 2:
+                                newUparray.push(id);
+                                var index = newDownarray.indexOf(id);
+                                newDownarray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray,
+                                    downvoted: newDownarray
+                                });
+                                break;
+                        }
+
+                        await db.updateOne(Post,{'postId':id},
+                        {
+                            score: newscore
+                        });
+                    }
+                    else if(comment)
+                    {
+                        var newscore = comment.score+change;
+                        switch(change){
+                            case -1:
+                                var index = newUparray.indexOf(id);
+                                newUparray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray
+                                });
+                                break;
+                            case 1:
+                                newUparray.push(id);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray
+                                });
+                                break;
+                            case 2:
+                                newUparray.push(id);
+                                var index = newDownarray.indexOf(id);
+                                newDownarray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray,
+                                    downvoted: newDownarray
+                                });
+                                break;
+                        }
+                        await db.updateOne(Comment,{'commentId':id},
+                        {
+                            score: newscore
+                        });
+                    }
+
+
+                    // Change = -1, remove up, 2: remove down add up, 1: add up
+                }, 100);
+
+
+
+            },
+
+            
+            downvote: function (req, res) {
+                setTimeout(async () => {
+                    var change = Number(req.body.change);
+                    var id = Number(req.body.id);
+
+                    let commcoll = connection.db.collection("comments");
+                    let postcoll = connection.db.collection("posts");
+                    let usercoll = connection.db.collection("users");
+                    
+                    let loggeduser = await usercoll.findOne({'userId': req.session.userId})
+                    let post = await postcoll.findOne({'postId': id});
+                    let comment = await commcoll.findOne({'commentId': id});
+
+
+                    var newUparray =[];
+                    if(loggeduser.upvoted) newUparray = loggeduser.upvoted;
+
+                    var newDownarray =[];
+                    if(loggeduser.downvoted) newDownarray = loggeduser.downvoted;
+
+                    if(post)
+                    {
+                        var newscore = post.score+change;
+                        switch(change){
+                            case -2:
+                                newDownarray.push(id);
+                                var index = newUparray.indexOf(id);
+                                newUparray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray,
+                                    downvoted: newDownarray
+                                });
+                                break;
+                            case -1:
+                                newDownarray.push(id);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    downvoted: newDownarray
+                                });
+                                break;
+                            case 1:
+                                var index = newDownarray.indexOf(id);
+                                newDownarray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    downvoted: newDownarray
+                                });
+                                break;
+                        }
+
+                        await db.updateOne(Post,{'postId':id},
+                        {
+                            score: newscore
+                        });
+                    }
+                    else if(comment)
+                    {
+                        var newscore = comment.score+change;
+                        switch(change){
+                            case -2:
+                                newDownarray.push(id);
+                                var index = newUparray.indexOf(id);
+                                newUparray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    upvoted: newUparray,
+                                    downvoted: newDownarray
+                                });
+                                break;
+                            case -1:
+                                newDownarray.push(id);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    downvoted: newDownarray
+                                });
+                                break;
+                            case 1:
+                                var index = newDownarray.indexOf(id);
+                                newDownarray.splice(index,1);
+                                await db.updateOne(User,{'userId': req.session.userId},
+                                {
+                                    downvoted: newDownarray
+                                });
+                                break;
+                        }
+                        await db.updateOne(Comment,{'commentId':id},
+                        {
+                            score: newscore
+                        });
+                    }
+                    // Change = 1, remove down, -2: remove up add down, -1: add down
+                }, 100);
+
+
+
+
+
+            },
 }
 
 
