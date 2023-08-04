@@ -280,15 +280,17 @@ const controller = {
                 
                 // The following 3 lines might be useful for rendering the 'Header' partial everywhere
                 var loggeduser;
+
+
+                let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
+                let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
+                let commcoll = connection.db.collection("comments");
+
                 if(req.session.userId){
                     loggeduser = await usercoll.findOne({'userId': req.session.userId})    // Find a userId that matches the logged user's Id, returns the user
                     loggeduser.loggedIn = true;                                     // Attach logger data to loggeduser (for rendering in hbs)
                     loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
                 }
-
-                let postcoll = connection.db.collection("posts");                       // Store the "posts" collection as a variable 
-                let usercoll = connection.db.collection("users");                       // Store the "user" collection as a variable 
-                let commcoll = connection.db.collection("comments");
 
                 var title = req.query.title;
                 var query = req.query.query;
