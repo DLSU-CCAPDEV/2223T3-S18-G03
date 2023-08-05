@@ -81,3 +81,20 @@ input[type="file"] {
 	margin: auto;
 	
 }
+
+#form_submit {
+	position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#misc_div {
+	position: relative;
+	text-align: center;
+}
+
+#misc_div p {
+	position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}

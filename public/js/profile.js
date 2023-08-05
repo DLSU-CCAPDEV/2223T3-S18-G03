@@ -9,7 +9,7 @@ $(document).ready(function (){
         const fd = new FormData(form);
         const obj = Object.fromEntries(fd);
 
-        $.get('/updateProfile', {username: obj.username, bio: obj.bio}, function(result){
+        $.post('/updateProfile', {username: obj.username, bio: obj.bio, pw: obj.pw}, function(result){
             if (result != null){
                 console.log('result in profile.js not null'); // TESTING
                 if (obj.username != "") document.getElementById("profile_username").innerHTML = obj.username;
@@ -24,7 +24,7 @@ $(document).ready(function (){
                 x.style.display = "none";
                 console.log(obj.username);
                 console.log(obj.bio);
-                console.log(document.getElementById("profile_picture"));
+                //console.log(document.getElementById("profile_picture"));
                 //console.log(URL.createObjectURL(obj.pic));
             }
             else{
@@ -45,4 +45,12 @@ $(document).ready(function (){
         $('#error-text').text("__________");
         $('#error-text').style('backgorund-color', 'white');
     });
+
+    function registerHandlebarHelpers () {
+        hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
+            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
+        });
+    }
+
+    registerHandlebarHelpers();
 });

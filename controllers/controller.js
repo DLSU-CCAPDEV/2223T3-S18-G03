@@ -51,13 +51,13 @@ const controller = {
                     var endDate = new Date();
                     var startDate = post.postDate;
                     var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
-                    post.span= TimeCalculator(interval)
+                    post.span= TimeCalculator(interval);
                     
                     if(post.isEdited){ // Adds "Commented 34 minutes ago, etc."
                         var endDate = new Date();
                         var startDate = post.editDate;
                         var interval = (endDate.getTime()-startDate.getTime())/1000; // Shows, 23 minutes ago, etc.
-                        post.editSpan= TimeCalculator(interval)     
+                        post.editSpan= TimeCalculator(interval);     
                     }
                     
                     /* If post is edited, do this
@@ -101,10 +101,25 @@ const controller = {
     redirectCreatePost: function (req, res) {
         res.render('Create');
     },
+    redirectEditProfile: function (req,res) {
+        setTimeout(async () => {
+            let usercoll = connection.db.collection("users");
+            let userId = Number(req.query.userId);
+
+            var loggeduser;
+            if(req.session.userId){
+                loggeduser = await usercoll.findOne({'userId': req.session.userId})         // Find a userId that matches the logged user's Id, returns the user
+                loggeduser.loggedIn = true;                                                 // Attach logger data to loggeduser (for rendering in hbs)
+                loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+            }
+
+            res.render('EditProfile', {userId, loggeduser});
+        }, 100);
+    },
     redirectProfile: function (req, res) {
         setTimeout(async () => {
-            let userId = req.query.id;      // userId parameter when entering profile page (/profile?id=0000)
-
+            let userId = Number(req.query.id);      // userId parameter when entering profile page (/profile?id=0000)
+            console.log(userId);
             // inserting database into function
             let postcoll = connection.db.collection("posts");
             let usercoll = connection.db.collection("users");
@@ -112,16 +127,17 @@ const controller = {
 
             // collecting data associated with userId
             let user = await usercoll.findOne({'userId': userId});
+            console.log(user);
             // error handler if the user is not found -- (testing)
             if (!user) {
                 res.render('error', {error: 'user not found'});
             }
 
-            let post = await postcoll.findOne({'posterId': userId});
-            let comment = await commcoll.findOne({'posterId': userId});
-
-            // inserting user values into post
-            let posts = await postcoll.find({'userId': userId}, {sort:{postDate:1}}).toArray();
+            // finding all posts and comments tied to the user id
+            let posts = await postcoll.find({'posterId': userId}, {sort:{postDate:1}}).toArray();
+            let comments = await commcoll.find({'commenterId': userId}).toArray();
+            console.log(posts);
+            console.log(comments);
 
             for (const post of posts){                                              // For each post...
                 let founduser = await usercoll.findOne({'userId': post.posterId});  // Find a userId that matches the post's posterId, returns the user
@@ -144,12 +160,21 @@ const controller = {
                 }
             }
 
-            loggeduser = await usercoll.findOne({'userId': req.session.userId});
+            // logged user data for loading nav partial
+            var loggeduser;
+            if(req.session.userId){
+                loggeduser = await usercoll.findOne({'userId': req.session.userId})         // Find a userId that matches the logged user's Id, returns the user
+                loggeduser.loggedIn = true;                                                 // Attach logger data to loggeduser (for rendering in hbs)
+                loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+            }
 
-
+            if (loggeduser.userId === userId) {
+                loggeduser.isLoggedUser = true;
+            }
+            
             // creating variables for count statistics
-            let countPost = post.length;
-            let countComment = comment.length;
+            let countPost = posts.length;
+            let countComment = comments.length;
             let stat = {countPost, countComment}
 
             res.render('Profile', {user, posts, stat, loggeduser});
@@ -409,12 +434,21 @@ const controller = {
 
             updateProfile: function (req, res) {
                 setTimeout(async () => {
-                    let username = req.query.username;
-                    let bio = req.query.bio;
+                    let username = req.body.username;
+                    let bio = req.body.bio;
                     let userid = req.session.userid;
+                    let pw = req.body.pw;
 
-                    result = await db.updateOne(User, {'userId': userid}, {'username': username, 'bio': bio});
-                    res.send(result);
+                    let user_pw = await db.findOne(User, {'userId': userid, 'pw': pw});
+                    var result;
+                    if (user_pw != null) {
+                        result = await db.updateOne(User, {'userId': userid}, {'username': username, 'bio': bio});
+                        res.send(result);
+                    }
+                    else {
+                        res.send(result);
+                    }
+                    
                 }, 100);
             },
 

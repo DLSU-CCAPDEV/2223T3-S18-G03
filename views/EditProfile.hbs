@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="/images/logo.png">
+	<link rel="stylesheet" type="text/css" href="/css/noire.css">
+	<link rel="stylesheet" type="text/css" href="/css/profiles.css">
+    <link rel="stylesheet" type="text/css" meda="all" href="/css/navbar.css">
+
+    <script src=“https://code.jquery.com/jquery-3.6.0.min.js” type=“text/javascript”></script>
+
+	<title>Kahit Ano | Edit Profile</title>
+</head>
+<body>
+
+    {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer userId=loggeduser.userId}}
+
+    <h1 style="margin-top: 100px;">Edit Profile</h1>
+
+    <div class="hori" style="justify-content: center; padding-top: 20px;">
+        <div class="vert block">
+            <form id="edit_bio">
+                <label for="username">Change Username</label>
+                <input type="text" id="username" name="username">
+                <br>
+                <label for="bio">Change Bio</label>
+                <input type="text" id="bio" name="bio" style="height: 100px;">
+                <!-- TODO: insert changes for profile picture 
+                <label for="pic">Change Profile Picture</label>
+                <input type="file" id="pic" name="pic" accept="image/png, image/jpeg">
+                -->
+                <label for="bio">Confirm Password</label>
+                <input type="password" id="pw" name="pw">
+                <br>
+                <br>
+                <button type="submit" form="edit_bio" value="Submit" id="form_submit">Apply Changes</button>
+            </form>
+        </div>
+
+        
+    </div>
+
+    <div class="hori" style="justify-content: center; padding-top: 20px;" id="misc_div">
+        <p id="error"></p>
+        <a href="/profile?id={{loggeduser.userId}}"><p>Return to Profile</p></a>
+    </div>
+
+    <script src="/js/profile.js"></script>
+</body>
+</html>

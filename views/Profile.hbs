@@ -8,27 +8,30 @@
 	<link rel="stylesheet" type="text/css" href="/css/profiles.css">
     <link rel="stylesheet" type="text/css" meda="all" href="/css/navbar.css">
 
-    <script src=“https://code.jquery.com/jquery-3.6.0.min.js” type=“text/javascript”></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="/js/profile.js"></script>
 
 	<title>Kahit Ano | Profile</title>
 </head>
 <body>
 
-    {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer }}
+    {{> nav logged=loggeduser.loggedIn username=loggeduser.username imgtype=loggeduser.dp.contentType imgbuffer=loggeduser.dpBuffer userId=loggeduser.userId}}
 
     <div class="hori" style="justify-content: center; padding-top: 20px;">
 		<!-- posts -->
+        <!--TODO: if there are no available posts, add an invisible block to preserve space -->
 		<div class="vert block"id="all_posts">
         {{#each posts}}
             {{> Postbody 
-                posterId=user.userId 
-                imgtype=user.dp.dpType 
-                imgbuffer=user.content 
-                vote=posts.score 
-                username=user.username 
-                postId=posts.postId 
-                post_title=posts.title 
-                post_text=posts.content
+                posterId=posterId 
+                imgtype=dpType 
+                imgbuffer=dpBuffer 
+                vote=score 
+                username=postUsername
+                postId=postId 
+                post_title=title 
+                post_text=content
             }}
         {{/each}}
         </div>
@@ -36,43 +39,31 @@
         <!-- profile -->
         <div class= "vert block" style="padding-top: 25px;" id="profile_div">
             <div class="side_element profile_bio">
+                <!--TODO: replace src with profile picture -->
 				<img src="../images/profilepicture.jpg" id="profile_picture">
 				<div class="profile_title">
-					<p id="profile_username">{{profile_username}}</p>
+					<p id="profile_username">{{user.username}}</p>
 				</div>
 				<p id="profile_bio">
-					{{profile_bio}}
+					{{user.bio}}
 				</p>
 				<div class="profile_center">
-					<span id="profile_posts_num">{{posts_num}}</span><span> Posts</span>
-					<span id="profile_comments_num">{{comments_num}}</span><span> Comments</span>
+					<span id="profile_posts_num">{{stat.countPost}}</span><span> Posts</span>
+					<span id="profile_comments_num">{{stat.countComment}}</span><span> Comments</span>
 				</div>
 				<div class="profile_center">
-					<span class="center" id="error-text">__________</span>
+					<span class="center" >__________</span>
 				</div>
 				<div class="profile_center">
-					<button id="profile_edit_button">Edit Profile</button>
+                    <!-- Check if the profile visited belongs to the user to allow editing -->
+                    {{#if loggeduser.isLoggedUser}}
+                        <a href="/editProfile?id={{logged.userId}}"><button id="profile_edit_button">Edit Profile</button></a>
+                    {{/if}}
 				</div>
 			</div>
-
-			<div class="side_element profile_bio" id="profile_bio_edit">
-                    <form id="edit_bio">
-                        <label for="username">Change Username</label>
-                        <input type="text" id="username" name="username">
-                        <br>
-                        <label for="bio">Change Bio</label>
-                        <input type="text" id="bio" name="bio" style="height: 100px;">
-                        <label for="pic">Change Profile Picture</label>
-                        <input type="file" id="pic" name="pic" accept="image/png, image/jpeg">
-                        <br>
-                        <br>
-                        <button type="submit" form="edit_bio" value="Submit">Apply Changes</button>
-                    </form>
-                    
-                </div>
         </div>
     </div>
 
-    <script src="./javascript/profile.js"></script>
+    
 </body>
 </html>

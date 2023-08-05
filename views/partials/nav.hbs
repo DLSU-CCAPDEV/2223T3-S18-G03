@@ -7,8 +7,8 @@
     <a href="/createpost"><div class="button">Create Post</div></a>
     <div><img src="data:{{imgtype}};base64, {{imgbuffer}}" width="75px" height="75px" id="prof-pic"></div>
     <div class="username-container vert">
-        <div class="username" id="username"><a href="/profile">{{username}}</a></div>
-        <div id="edit-profile" class="button2"><a href="/profile">Edit Profile</a> </div>
+        <div class="username" id="username"><a href="/profile?id={{userId}}">{{username}}</a></div>
+        <div id="edit-profile" class="button2"><a href="/editProfile?id={{userId}}">Edit Profile</a></div>
         <div id="logout" class="button2"><a href="/logout">Log out</a></div>
         <div class="bg"></div>
     </div>
