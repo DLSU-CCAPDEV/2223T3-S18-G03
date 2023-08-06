@@ -69,7 +69,7 @@ input {
 	max-width: 40%;
 	max-height: 30%;
 	overflow:auto;
-	display:table;
+	display:flex;
 }
 
 .profile_picture:hover {

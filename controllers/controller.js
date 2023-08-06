@@ -3,11 +3,17 @@ const mongoose = require("mongoose");
 const connection = mongoose.connection;             // Store database as a variable
 const db = require('../models/db.js');
 const {Post, Comment, User} = require('../models/content_db.js');
+
 //var logger = require('../logger.json');              // Get logged in condition
 /*
     defines an object which contains functions executed as callback
     when a client requests for `index` paths in the server
 */
+
+// import module `bcrypt`
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
 const controller = {
 
     /*
@@ -119,7 +125,7 @@ const controller = {
     redirectProfile: function (req, res) {
         setTimeout(async () => {
             let userId = Number(req.query.id);      // userId parameter when entering profile page (/profile?id=0000)
-            console.log(userId);
+
             // inserting database into function
             let postcoll = connection.db.collection("posts");
             let usercoll = connection.db.collection("users");
@@ -127,7 +133,7 @@ const controller = {
 
             // collecting data associated with userId
             let user = await usercoll.findOne({'userId': userId});
-            console.log(user);
+
             // error handler if the user is not found -- (testing)
             if (!user) {
                 res.render('error', {error: 'user not found'});
@@ -136,8 +142,7 @@ const controller = {
             // finding all posts and comments tied to the user id
             let posts = await postcoll.find({'posterId': userId}, {sort:{postDate:1}}).toArray();
             let comments = await commcoll.find({'commenterId': userId}).toArray();
-            console.log(posts);
-            console.log(comments);
+
 
             for (const post of posts){                                              // For each post...
                 let founduser = await usercoll.findOne({'userId': post.posterId});  // Find a userId that matches the post's posterId, returns the user
@@ -431,24 +436,43 @@ const controller = {
                 }, 100);
 
             },
-
+            checkPassword: function (req, res) {
+                setTimeout(async () => {
+                    const unhashed_pw = req.body.pw;
+                    const user = await db.findOne(User, {'userId': req.session.userId});
+                    bcrypt.compare(unhashed_pw, user.pw, function(err, equal){
+                        console.log(equal);
+                        res.send(equal);
+                    });
+                },100);
+            },
             updateProfile: function (req, res) {
                 setTimeout(async () => {
-                    let username = req.body.username;
-                    let bio = req.body.bio;
-                    let userid = req.session.userid;
-                    let pw = req.body.pw;
+                    console.log('/updateProfile reached');
 
-                    let user_pw = await db.findOne(User, {'userId': userid, 'pw': pw});
-                    var result;
-                    if (user_pw != null) {
-                        result = await db.updateOne(User, {'userId': userid}, {'username': username, 'bio': bio});
-                        res.send(result);
+                    /** Conditions regarding updating the profile */
+                        // if username or bio is empty do not change it
+                        // if password does not match the password of the userid in the db, return password error
+                        // if username or bio matches that found in the db, return no changes occured error
+                    
+                    // load user data
+                    let username = req.query.username;
+                    let bio = req.query.bio;
+
+                    console.log(username);
+                    console.log(bio);
+                    // update username in user if form contained text
+                    let result1=false, result2=false;
+                    if (username != ""){
+                        result1 = await db.updateOne(User,{'userId': req.session.userId}, {username: username});
                     }
-                    else {
-                        res.send(result);
+
+                    // update bio in user if form contained text
+                    if (bio != ""){
+                        result2 = await db.updateOne(User,{'userId': req.session.userId},{bio: bio});
                     }
                     
+                    res.send(result1.acknowledged || result2.acknowledged);
                 }, 100);
             },
 

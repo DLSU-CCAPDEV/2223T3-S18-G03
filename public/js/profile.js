@@ -1,56 +1,41 @@
 $(document).ready(function (){
 
-    $('#edit_bio').submit(function (e){
-        const form = document.querySelector('form');
-        var x = document.getElementById("profile_bio_edit");
-        var y = document.getElementById("profile_edit_button");
-
+    $('#edit_bio').on('submit', function (e){
         e.preventDefault();
-        const fd = new FormData(form);
-        const obj = Object.fromEntries(fd);
+        
+        const formData = $(this).serialize();
 
-        $.post('/updateProfile', {username: obj.username, bio: obj.bio, pw: obj.pw}, function(result){
-            if (result != null){
-                console.log('result in profile.js not null'); // TESTING
-                if (obj.username != "") document.getElementById("profile_username").innerHTML = obj.username;
-                if (obj.bio != "") document.getElementById("profile_bio").innerHTML = obj.bio;
-                //if (obj.pic != null)
-                //    document.getElementById("img.profile_pic").src = URL.createObjectURL(obj.pic);
+        // collect form data and break into components
+        let params = new URLSearchParams(formData);
+        let username = params.get('username');
+        let bio = params.get('bio');
+        let pw = params.get('pw');
+        
+        if (username == "" && bio == ""){
+            $('#error').text('No Changes Made!');
+            $('#error').css('color', 'red');
+            return;
+        }
+
+        $.post('/checkPassword', {pw: pw}, function (result){
+            
+            if (result){
+                console.log('Password Match!');
+
+                $.get('/updateProfile', {username: username, bio: bio}, function(result){
+                    if (result){
+                        console.log(result);
+                        $('#error').text('Password Updated Successfully!');
+                        $('#error').css('color', 'green');
+                    }
+                });
+
                 
-                    
-
-
-                y.style.display = "block";
-                x.style.display = "none";
-                console.log(obj.username);
-                console.log(obj.bio);
-                //console.log(document.getElementById("profile_picture"));
-                //console.log(URL.createObjectURL(obj.pic));
             }
             else{
-                console.log('result in profile.js null'); // TESTING
-                $('#error-text').text("Profile Update Failed");
-                $('#error-text').style('backgorund-color', 'red');
+                $('#error').text('Invalid Password!');
+                $('#error').css('color', 'red');
             }
         });
     });
-
-    $('#profile_edit_button').on('click', function(){
-        console.log('profile edit clicked'); // TESTING
-        var x = document.getElementById("profile_bio_edit");
-        var y = document.getElementById("profile_edit_button");
-
-        y.style.display = "none";
-        x.style.display = "block";
-        $('#error-text').text("__________");
-        $('#error-text').style('backgorund-color', 'white');
-    });
-
-    function registerHandlebarHelpers () {
-        hbs.registerHelper('ifEquals', function(arg1, arg2, options) {
-            return (arg1 == arg2) ? options.fn(this) : options.inverse(this);
-        });
-    }
-
-    registerHandlebarHelpers();
 });

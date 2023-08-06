@@ -39,28 +39,34 @@
         <!-- profile -->
         <div class= "vert block" style="padding-top: 25px;" id="profile_div">
             <div class="side_element profile_bio">
-                <!--TODO: replace src with profile picture -->
-				<img src="../images/profilepicture.jpg" id="profile_picture">
-				<div class="profile_title">
+                <!--TODO: make uploadable profile pictures (optional) -->
+				<img src="data:{{loggeduser.dp.contentType}};base64, {{loggeduser.dpBuffer}}" id="profile_picture">
+				<div class="profile_title side-element">
 					<p id="profile_username">{{user.username}}</p>
 				</div>
 				<p id="profile_bio">
 					{{user.bio}}
-				</p>
-				<div class="profile_center">
-					<span id="profile_posts_num">{{stat.countPost}}</span><span> Posts</span>
+				</p>			
+			</div>
+
+            <div class="side_element profile_bio">
+                <div class="side-element">
+					<span id="profile_posts_num">{{stat.countPost}}</span><span> Posts</span> 
+                    <br>
 					<span id="profile_comments_num">{{stat.countComment}}</span><span> Comments</span>
 				</div>
-				<div class="profile_center">
-					<span class="center" >__________</span>
-				</div>
-				<div class="profile_center">
+            </div>
+
+            {{#if loggeduser.isLoggedUser}}
+            <div class="side_element profile_bio">
+                <div class="side-element profile_center">
                     <!-- Check if the profile visited belongs to the user to allow editing -->
-                    {{#if loggeduser.isLoggedUser}}
+                    
                         <a href="/editProfile?id={{logged.userId}}"><button id="profile_edit_button">Edit Profile</button></a>
-                    {{/if}}
+                    
 				</div>
-			</div>
+            </div>
+            {{/if}}
         </div>
     </div>
 
