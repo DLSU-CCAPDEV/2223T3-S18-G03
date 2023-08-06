@@ -22,6 +22,7 @@ const db = require('./models/db.js');
 
 const app = express();
 const port = 9090;
+const host = '0.0.0.0';
 
 // set `hbs` as view engine
 app.set('view engine', 'hbs');
@@ -59,6 +60,6 @@ app.use(function (req, res) {
 });
 
 // binds the server to a specific port
-app.listen(port, function () {
-    console.log('Kahit-Ano now running at: http://localhost:' + port);
+app.listen(port, host, function () {
+    console.log(`Kahit-Ano now running at: http://localhost:${port}`);
 });
