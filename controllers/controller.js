@@ -171,12 +171,14 @@ const controller = {
                 loggeduser = await usercoll.findOne({'userId': req.session.userId})         // Find a userId that matches the logged user's Id, returns the user
                 loggeduser.loggedIn = true;                                                 // Attach logger data to loggeduser (for rendering in hbs)
                 loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
+            
+                if (loggeduser.userId === userId) {
+                    loggeduser.isLoggedUser = true;
+                }
             }
 
-            if (loggeduser.userId === userId) {
-                loggeduser.isLoggedUser = true;
-            }
-            
+
+            user.dpBuffer = user.dp.data.toString('base64');
             // creating variables for count statistics
             let countPost = posts.length;
             let countComment = comments.length;
@@ -454,15 +456,28 @@ const controller = {
                         // if username or bio is empty do not change it
                         // if password does not match the password of the userid in the db, return password error
                         // if username or bio matches that found in the db, return no changes occured error
-                    
+                    //console.log(req.body.data)
                     // load user data
-                    let username = req.query.username;
-                    let bio = req.query.bio;
+                    let username = req.body.username;
+                    let bio = req.body.bio;
+                    var picture;
+                    if(req.body.picdata) picture = Buffer.from(req.body.picdata, 'base64');
+                    var dp={
+                        data: picture,
+                        contentType: req.body.pictype
+                    };
+
+                    //console.log(req.body.fd);
+
+                    //console.log(req.body.picfile);
+                    
+                    console.log(req.body.pictype)
+                    console.log(dp)
 
                     console.log(username);
                     console.log(bio);
                     // update username in user if form contained text
-                    let result1=false, result2=false;
+                    let result1=false, result2=false, result3 = false;
                     if (username != ""){
                         result1 = await db.updateOne(User,{'userId': req.session.userId}, {username: username});
                     }
@@ -471,8 +486,12 @@ const controller = {
                     if (bio != ""){
                         result2 = await db.updateOne(User,{'userId': req.session.userId},{bio: bio});
                     }
+
+                    if (dp.data && dp.contentType){
+                        result3 = await db.updateOne(User,{'userId': req.session.userId},{dp: dp});
+                    }
                     
-                    res.send(result1.acknowledged || result2.acknowledged);
+                    res.send(result1.acknowledged || result2.acknowledged || result3.acknowledged);
                 }, 100);
             },
 

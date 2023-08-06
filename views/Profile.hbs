@@ -32,19 +32,20 @@
                 postId=postId 
                 post_title=title 
                 post_text=content
+                postSpan=span
             }}
         {{/each}}
         </div>
 
         <!-- profile -->
         <div class= "vert block" style="padding-top: 25px;" id="profile_div">
-            <div class="side_element profile_bio">
+            <div class="side_element profile_bio vert" style="justify-content:center; align-items:center">
                 <!--TODO: make uploadable profile pictures (optional) -->
-				<img src="data:{{loggeduser.dp.contentType}};base64, {{loggeduser.dpBuffer}}" id="profile_picture">
+				<img src="data:{{user.dp.contentType}};base64, {{user.dpBuffer}}" id="profile_picture">
 				<div class="profile_title side-element">
-					<p id="profile_username">{{user.username}}</p>
+					<p id="profile_bio">{{user.username}}</p>
 				</div>
-				<p id="profile_bio">
+				<p id="profile_bio" style="text-align:center;">
 					{{user.bio}}
 				</p>			
 			</div>

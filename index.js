@@ -30,7 +30,7 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 
 // parses incoming requests with urlencoded payloads
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({limit: '50mb', extended: true}));
 
 // set the folder `public` as folder containing static assets
 // such as css, js, and image files

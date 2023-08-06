@@ -35,7 +35,7 @@ app.get('/profile', controller.redirectProfile);
 app.get('/getUser', controller.getUser);
 app.get('/profile', controller.redirectProfile);
 app.get('/editProfile', controller.redirectEditProfile);
-app.get('/updateProfile', controller.updateProfile);
+app.post('/updateProfile', controller.updateProfile);
 app.post('/checkPassword', controller.checkPassword);
 
 app.get('/createpost', addPostcontroller.getAdd);   // Redirect to Create Post page

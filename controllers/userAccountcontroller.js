@@ -73,7 +73,7 @@ const addPostcontroller = {
                 });
 
                 }
-                
+
             }, 100);
         },
 
