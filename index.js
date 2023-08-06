@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 // import module `express`
 const express = require('express');
@@ -21,7 +22,11 @@ const routes = require('./routes/routes.js');
 const db = require('./models/db.js');
 
 const app = express();
-const port = 9090;
+if(process.env.PORT) var PORT = process.env.PORT;
+else var PORT = 9090;
+
+
+
 const host = '0.0.0.0';
 
 // set `hbs` as view engine
@@ -60,6 +65,6 @@ app.use(function (req, res) {
 });
 
 // binds the server to a specific port
-app.listen(port, host, function () {
-    console.log(`Kahit-Ano now running at: http://localhost:${port}`);
+app.listen(PORT, host, function () {
+    console.log(`Kahit-Ano now running at: http://localhost:${PORT}`);
 });
