@@ -81,7 +81,7 @@ const controller = {
                     loggeduser.dpBuffer = loggeduser.dp.data.toString('base64');                // Attach dp data to loggeduser (for rendering in hbs)
                 }
                 
-                let usercount = (await postcoll.find({}, {sort:{postDate:-1}}).toArray()).length; 
+                let usercount = (await usercoll.find({}, {sort:{postDate:-1}}).toArray()).length; 
                 let commcount = (await commcoll.find({}, {sort:{postDate:-1}}).toArray()).length; 
                 let postcount = AllPosts.length;
 
