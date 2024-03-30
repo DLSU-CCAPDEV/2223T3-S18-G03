@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@rowboat/mongoose-fuzzy-searching": "^2.0.3",
     "bcrypt": "^5.1.0",
     "connect-mongo": "^3.2.0",
     "dotenv": "^16.3.1",

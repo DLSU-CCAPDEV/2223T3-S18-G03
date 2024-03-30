@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const connection = mongoose.connection;             // Store database as a variable
 const db = require('../models/db.js');
 const {Post, Comment, User} = require('../models/content_db.js');
+const mongoose_fuzzy_searching = require('@rowboat/mongoose-fuzzy-searching');
 
 //var logger = require('../logger.json');              // Get logged in condition
 /*
@@ -40,9 +41,9 @@ const controller = {
 
                 var AllPosts;
 
-                if(req.query.sorted === "oldest" ) AllPosts = await postcoll.find({}, {sort:{postDate:1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
-                else if(req.query.sorted === "best" ) AllPosts = await postcoll.find({}, {sort:{score:-1}}).toArray(); 
-                else AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+                if(req.query.sorted === "oldest" ) AllPosts = await postcoll.find({}, {sort:{postDate:1}}).skip(5).limit(10).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+                else if(req.query.sorted === "best" ) AllPosts = await postcoll.find({}, {sort:{score:-1}}).skip(5).limit(10).toArray(); 
+                else AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).skip(5).limit(10).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
                 
                 
                 //let AllPosts = await postcoll.find({}, {sort:{postDate:-1}}).toArray(); // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
@@ -90,6 +91,7 @@ const controller = {
                     postcount: postcount,
                     commcount: commcount,
                 }
+
                 
                 res.render('Home', { AllPosts, loggeduser, stats });                               // render `../views/Home.hbs with posts from database and the logged in user`
             }, 100);
@@ -347,13 +349,12 @@ const controller = {
                 var query = req.query.query;
                 var found = {};
                 
-                let searchRes = await postcoll.find({'title': query}).toArray();
-                if(searchRes){
+                let AllPosts = await Post.fuzzySearch(query);    
+                //let AllPosts = await postcoll.find({'title': query}).toArray();         // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
+                if(AllPosts){
                     found.attribute = 1;
 
                 }
-
-                let AllPosts = await postcoll.find({'title': query}).toArray();         // -1 Sorts posts from newest to oldest order as an array, store it in AllPosts
                 for (const post of AllPosts){                                           // For each post...
                     let founduser = await usercoll.findOne({'userId': post.posterId});  // Find a userId that matches the post's posterId, returns the user
                     post.postUsername = founduser.username;                             // Attach a postUsername attribute to the post for rendering purposes only (does not appear in database)

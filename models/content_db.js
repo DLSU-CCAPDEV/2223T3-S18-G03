@@ -1,5 +1,6 @@
 // import module `mongoose`
 var mongoose = require('mongoose');
+const mongoose_fuzzy_searching = require('@rowboat/mongoose-fuzzy-searching');
 
 // defines the schema for forum users
 var userSchema = new mongoose.Schema({
@@ -118,6 +119,9 @@ var loggerSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `users` -> plural of the argument `User`
 */
+
+postSchema.plugin(mongoose_fuzzy_searching, { fields: ['title', 'content'] });
+
 const User = mongoose.model('User', userSchema);            // Automatically creates collection called "users" in database
 const Post = mongoose.model('Post', postSchema);            // Automatically creates collection called "posts" in database
 const Comment = mongoose.model('Comment', commentSchema);   // Automatically creates collection called "comments" in database
