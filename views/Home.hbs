@@ -26,13 +26,9 @@
                 {{#each AllPosts}}
                     {{> Postbody commentnum=commentnum postSpan=span postredId=postId posterId=posterId vote=score username=postUsername imgtype=dpType imgbuffer=dpBuffer post_title=title post_text=content del=delete}}
                 {{/each}}
-            
-                        <div class="hori block"id="all_posts">
-                            <button class="next_button">PREV PAGE</button> 
-                            <button class="next_button">NEXT PAGE</button>   
-                        </div>
+
             </div> 
- 
+
             <!-- Sidebar -->
             <div class="vert block">
 
@@ -41,10 +37,6 @@
             </div>
 
         </div>
-
-
-                                        
-
         <script src="/js/home.js"></script> 
         <script src="/js/grab_text.js"></script>
 
